@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一. Requests库1. requests库的安装： “以管理者身份”运行cmd，执行以下代码：python -m pip install requests 2.HTTP协议HTTP是一个基于“请求与响应”模式的无状态的应用层协议，采用URL作为定位网络资源的标识。URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。 HTTP协议可以对资源进行操作，有如下方法：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-18T12:29:51.117Z">
+<meta property="og:updated_time" content="2019-04-18T12:31:43.864Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AsaTung：python网络爬虫与信息提取学习笔记">
 <meta name="twitter:description" content="一. Requests库1. requests库的安装： “以管理者身份”运行cmd，执行以下代码：python -m pip install requests 2.HTTP协议HTTP是一个基于“请求与响应”模式的无状态的应用层协议，采用URL作为定位网络资源的标识。URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。 HTTP协议可以对资源进行操作，有如下方法：">
@@ -98,14 +98,14 @@
 <li>DELETE -请求删除URL位置存储的资源</li>
 </ul>
 <p>通过URL和命令管理资源，操作都是<strong>独立无状态</strong>。</p>
-<h2 id="3-Requests库的7个主要方法"><a href="#3-Requests库的7个主要方法" class="headerlink" title="3.Requests库的7个主要方法"></a>3.Requests库的7个主要方法</h2><p>###(1)<strong>requests.request(method, url, *</strong>kwargs<strong>*)</strong> </p>
+<h2 id="3-Requests库的7个主要方法"><a href="#3-Requests库的7个主要方法" class="headerlink" title="3.Requests库的7个主要方法"></a>3.Requests库的7个主要方法</h2><p>###(1)requests.request(method, url, <strong><em>kwargs</em></strong>)</p>
 <p>构造一个请求，此方法为requests库的基本方法，其余六种方法都以该方法支撑。</p>
 <ul>
 <li>method: 请求方式，对应get/put/post等7种</li>
 <li>url: 拟获取页面的url链接</li>
 <li><strong><em>kwargs</em></strong>: 控制访问的参数，为可选参数，共13个(可自行查看requests库文档)</li>
 </ul>
-<p>###(2)<strong>requests.get(url, params=None, *</strong>kwargs<strong>*)</strong></p>
+<p>###(2)requests.get(url, params=None, <strong><em>kwargs</em></strong>)</p>
 <p>获取HTML网页的主要方法，对应于HTTP的GET。</p>
 <ul>
 <li>url: 拟获取页面的url链接</li>
@@ -125,13 +125,13 @@ r = requests.get(url)
 <pre><code>r.encoding = r.apparent_encoding
 r.text
 </code></pre><p>这样，r.text就会返回我们更熟悉的内容</p>
-<p>###(3)<strong>requests.head(url, *</strong>kwargs<strong>*)</strong></p>
+<p>###(3)requests.head(url, <strong><em>kwargs</em></strong>)</p>
 <p>获取HTTP网页头信息的方法，对应于HTTP的HEAD。</p>
 <ul>
 <li>url: 拟获取页面的url链接</li>
 <li><strong><em>kwargs</em></strong>: 12个控制访问的参数，为可选参数</li>
 </ul>
-<p>###(4)<strong>requests.post(url, data=None, json=None, *</strong>kwargs<strong>*)</strong></p>
+<p>###(4)requests.post(url, data=None, json=None, <strong><em>kwargs</em></strong>)</p>
 <p>向HTML网页提交POST请求的方法，对应于HTTP的POST。</p>
 <ul>
 <li>url: 拟获取页面的url链接</li>
@@ -139,21 +139,21 @@ r.text
 <li>json: JSON格式的数据，Request的内容</li>
 <li><strong><em>kwargs</em></strong>: 12个控制访问的参数，为可选参数</li>
 </ul>
-<p>###(5)<strong>requests.put(url, data=None, *</strong>kwargs<strong>*)</strong></p>
+<p>###(5)requests.put(url, data=None, <strong><em>kwargs</em></strong>)</p>
 <p>向HTML网页提交PUT请求的方法，对应于HTTP的PUT。</p>
 <ul>
 <li>url: 拟获取页面的url链接</li>
 <li>data: 字典、字节序列或文件，Request的内容</li>
 <li><strong><em>kwargs</em></strong>: 12个控制访问的参数，为可选参数</li>
 </ul>
-<p>###(6)<strong>requests.patch(url, data=None, *</strong>kwargs<strong>*)</strong></p>
+<p>###(6)requests.patch(url, data=None, <strong><em>kwargs</em></strong>)</p>
 <p>向HTML网页提交局部修改请求，对应于HTTP的PATCH。</p>
 <ul>
 <li>url: 拟获取页面的url链接</li>
 <li>data: 字典、字节序列或文件，Request的内容</li>
 <li><strong><em>kwargs</em></strong>: 12个控制访问的参数，为可选参数</li>
 </ul>
-<p>###(7)<strong>requests.delete(url, *</strong>kwargs<strong>*)</strong></p>
+<p>###(7)requests.delete(url, <strong><em>kwargs</em></strong>)</p>
 <p>向HTML网页提交删除请求，对应于HTTP的DELETE。</p>
 <ul>
 <li>url: 拟获取页面的url链接</li>
