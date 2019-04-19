@@ -14,10 +14,12 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="一. Requests库1. requests库的安装： “以管理者身份”运行cmd，执行以下代码：python -m pip install requests 2.HTTP协议HTTP是一个基于“请求与响应”模式的无状态的应用层协议，采用URL作为定位网络资源的标识。URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。 HTTP协议可以对资源进行操作，有如下方法：">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-18T12:46:30.487Z">
+<meta property="og:image" content="d:/Screenshot_2019-04-19-22-31-16.png">
+<meta property="og:updated_time" content="2019-04-19T14:43:22.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AsaTung：python网络爬虫与信息提取学习笔记">
 <meta name="twitter:description" content="一. Requests库1. requests库的安装： “以管理者身份”运行cmd，执行以下代码：python -m pip install requests 2.HTTP协议HTTP是一个基于“请求与响应”模式的无状态的应用层协议，采用URL作为定位网络资源的标识。URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。 HTTP协议可以对资源进行操作，有如下方法：">
+<meta name="twitter:image" content="d:/Screenshot_2019-04-19-22-31-16.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -161,7 +163,79 @@ r.text
         r.encoding = r.apparent_encoding
     except:
         return &quot;产生异常&quot;
-</code></pre>
+</code></pre><h1 id="二-Robots协议"><a href="#二-Robots协议" class="headerlink" title="二. Robots协议"></a>二. Robots协议</h1><p>网络爬虫可能会引发许多问题，如性能骚扰、法律风险、隐私泄露等。因此，许多网站对网络爬虫有限制，有以下两种：</p>
+<ul>
+<li>来源审查：判断User-Agent进行限制</li>
+</ul>
+<p>检查来访HTTP协议头的User-Agent域，只影响浏览器或友好爬虫的访问</p>
+<ul>
+<li>发布公告：Robots协议</li>
+</ul>
+<p>告知所有爬虫的爬取策略，要求爬虫遵守</p>
+<h2 id="Robots协议，Robots-Exclusion-Standard-，网络爬虫排除标准"><a href="#Robots协议，Robots-Exclusion-Standard-，网络爬虫排除标准" class="headerlink" title="Robots协议，Robots Exclusion Standard ，网络爬虫排除标准"></a>Robots协议，Robots Exclusion Standard ，网络爬虫排除标准</h2><p>作用：网站告知网络爬虫哪些页面可以抓取，哪些不行。形式：在网站根目录下的robots.txt文件。</p>
+<p>Robots协议基本语法</p>
+<pre><code># 注释，* 代表所有， /代表根目录
+User-Agent: *
+Disallow: /
+</code></pre><h1 id="三-Beautiful-Soup库"><a href="#三-Beautiful-Soup库" class="headerlink" title="三. Beautiful Soup库"></a>三. Beautiful Soup库</h1><h2 id="1-Beautiful-Soup库的安装：-“以管理者身份”运行cmd，执行以下代码："><a href="#1-Beautiful-Soup库的安装：-“以管理者身份”运行cmd，执行以下代码：" class="headerlink" title="1. Beautiful Soup库的安装： “以管理者身份”运行cmd，执行以下代码："></a>1. Beautiful Soup库的安装： “以管理者身份”运行cmd，执行以下代码：</h2><p><code>python -m pip install BeautifulSoup4</code></p>
+<h2 id="2-Beautiful-Soup的基本元素"><a href="#2-Beautiful-Soup的基本元素" class="headerlink" title="2. Beautiful Soup的基本元素"></a>2. Beautiful Soup的基本元素</h2><p>HTML可表示为如下的标签树</p>
+<pre><code>&lt;html&gt;
+
+   &lt;body&gt;
+
+      &lt;p class=&quot;title&quot;&gt;...&lt;/p&gt;
+
+   &lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><p>beautifulSoup就是解析、遍历、维护“标签树”的功能库。</p>
+<pre><code>import requests
+from bs4 import BeautifulSoup #B和S大写
+
+r = requests.get(url)
+demo = r.text
+
+soup = BeautifulSoup(demo, &quot;html.parser&quot;)
+</code></pre><p>以上代码得到一个BeautifulSoup类对象，存储在soup中，对应一个HTML/XML文档的全部内容</p>
+<p>“html.parser”表示是bs4的HTML解析器，条件是安装bs4库，还有以下的解析器</p>
+<ul>
+<li>lxml的HTML解析器，BeautifulSoup(mk, ‘lxml’), 条件为pip install lxml</li>
+<li>lxml的XML解析器，BeautifulSoup(mk, ‘xml’), 条件为pip install lxml</li>
+<li>html5lib解析器，BeautifulSoup(mk, ‘html5lib’), 条件为pip install html5lib</li>
+</ul>
+<p>BeautifulSoup类的基本元素</p>
+<pre><code>&lt;p class=&quot;title&quot;&gt;...&lt;/p&gt;
+</code></pre><ul>
+<li>Tag, 标签，最基本的信息组织单元，分别用&lt;&gt;和&lt;/&gt;表明开头和结尾 </li>
+<li>Name, 标签的名字，<p>…</p>的名字是’p’, 格式：<tag>.name</tag></li>
+<li>Attributes, 标签的属性，字典形式组织，格式：<tag>.attr</tag></li>
+<li>NavigableString, 标签内非属性字符串，&lt;&gt;…&lt;/&gt;中的字符串，格式：<tag>.string</tag></li>
+<li>Comment, 标签内字符串的注释部分，一种特殊的Comment类型</li>
+</ul>
+<p>任何存在于HTML语法中的标签都可以用soup.<tag>访问获得，当HTML文档中存在多个相同<tag>对应内容时，soup.<tag>返回第一个。</tag></tag></tag></p>
+<p>比如title标签和a标签</p>
+<pre><code>&gt;&gt;&gt;soup.title
+&gt;&gt;&gt;soup.a
+</code></pre><p>每个<tag>都有自己的名字，通过<tag>.name获取，字符串类型</tag></tag></p>
+<pre><code>&gt;&gt;&gt;soup.a.name
+&gt;&gt;&gt;soup.a.parent.name
+&gt;&gt;&gt;soup.a.parent.parent.name
+</code></pre><p>一个<tag>可以有0个或多个属性，字典类型</tag></p>
+<pre><code>&gt;&gt;&gt;tag = soup.a
+&gt;&gt;&gt;tag.attrs
+</code></pre><p>NavigableString可以跨越多个层次，Comment是一种特殊类型。</p>
+<pre><code>&gt;&gt;&gt;newsoup = BeautifulSoup(&quot;&lt;b&gt;&lt;!--This is a comment--&gt;&lt;/b&gt;&lt;p&gt;This is not a comment&lt;/p&gt;&quot;, &quot;html.parser&quot;)
+&gt;&gt;&gt;newsoup.b.string
+&gt;&gt;&gt;type(newsoup.b.string)
+&gt;&gt;&gt;newsoup.p.string
+&gt;&gt;&gt;tyoe(newsoup.p.string)
+</code></pre><p>输出结果为</p>
+<pre><code>&apos;This is a comment&apos; #Comment类型的字符串开头有一个!
+&lt;class &apos;bs4.element.Comment&apos;&gt;
+&apos;This is not a comment&apos;
+&lt;class &apos;bs4.element.NavigableString&apos;&gt;
+</code></pre><p><img src="D:\Screenshot_2019-04-19-22-31-16.png" alt="基本元素"></p>
+
       
     </div>
     <footer class="article-footer">
