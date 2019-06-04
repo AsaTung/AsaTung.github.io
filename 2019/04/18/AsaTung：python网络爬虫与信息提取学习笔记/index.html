@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>AsaTung：python网络爬虫与信息提取学习笔记 | AsaTung</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="一. Requests库1. requests库的安装： “以管理者身份”运行cmd，执行以下代码：python -m pip install requests 2.HTTP协议HTTP是一个基于“请求与响应”模式的无状态的应用层协议，采用URL作为定位网络资源的标识。URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。 HTTP协议可以对资源进行操作，有如下方法：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AsaTung：python网络爬虫与信息提取学习笔记">
+<meta property="og:url" content="http://yoursite.com/2019/04/18/AsaTung：python网络爬虫与信息提取学习笔记/index.html">
+<meta property="og:site_name" content="AsaTung">
+<meta property="og:description" content="一. Requests库1. requests库的安装： “以管理者身份”运行cmd，执行以下代码：python -m pip install requests 2.HTTP协议HTTP是一个基于“请求与响应”模式的无状态的应用层协议，采用URL作为定位网络资源的标识。URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。 HTTP协议可以对资源进行操作，有如下方法：">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="d:/Screenshot_2019-04-19-22-31-16.png">
+<meta property="og:updated_time" content="2019-04-19T14:49:46.349Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AsaTung：python网络爬虫与信息提取学习笔记">
+<meta name="twitter:description" content="一. Requests库1. requests库的安装： “以管理者身份”运行cmd，执行以下代码：python -m pip install requests 2.HTTP协议HTTP是一个基于“请求与响应”模式的无状态的应用层协议，采用URL作为定位网络资源的标识。URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。 HTTP协议可以对资源进行操作，有如下方法：">
+<meta name="twitter:image" content="d:/Screenshot_2019-04-19-22-31-16.png">
+  
+    <link rel="alternate" href="/atom.xml" title="AsaTung" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">AsaTung</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">This Is My Post Website.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-AsaTung：python网络爬虫与信息提取学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/18/AsaTung：python网络爬虫与信息提取学习笔记/" class="article-date">
+  <time datetime="2019-04-18T10:48:25.000Z" itemprop="datePublished">2019-04-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AsaTung：python网络爬虫与信息提取学习笔记
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一-Requests库"><a href="#一-Requests库" class="headerlink" title="一. Requests库"></a>一. Requests库</h1><h2 id="1-requests库的安装：-“以管理者身份”运行cmd，执行以下代码："><a href="#1-requests库的安装：-“以管理者身份”运行cmd，执行以下代码：" class="headerlink" title="1. requests库的安装： “以管理者身份”运行cmd，执行以下代码："></a>1. requests库的安装： “以管理者身份”运行cmd，执行以下代码：</h2><p><code>python -m pip install requests</code></p>
+<h2 id="2-HTTP协议"><a href="#2-HTTP协议" class="headerlink" title="2.HTTP协议"></a>2.HTTP协议</h2><p>HTTP是一个基于“请求与响应”模式的无状态的应用层协议，采用URL作为定位网络资源的标识。URL是通过HTTP协议存取资源的Internet路径，一个URL对应一个数据资源。</p>
+<p>HTTP协议可以对资源进行操作，有如下方法：</p>
+<ul>
+<li>GET    -请求获取URL位置的资源</li>
+<li>HEAD   -请求获取URL位置资源的响应消息报告，即获得该资源的头部信息</li>
+<li>POST   -请求向URL位置的资源后附加新的数据</li>
+<li>PUT    -请求向URL位置存储一个资源，覆盖原URL位置的资源</li>
+<li>PATCH  -请求局部更新URL位置的资源，即改变该处资源的部分内容</li>
+<li>DELETE -请求删除URL位置存储的资源</li>
+</ul>
+<p>通过URL和命令管理资源，操作都是<strong>独立无状态</strong>。</p>
+<h2 id="3-Requests库的7个主要方法"><a href="#3-Requests库的7个主要方法" class="headerlink" title="3.Requests库的7个主要方法"></a>3.Requests库的7个主要方法</h2><h3 id="1-requests-request-method-url-kwargs"><a href="#1-requests-request-method-url-kwargs" class="headerlink" title="(1)requests.request(method, url, kwargs)"></a>(1)requests.request(method, url, <em>kwargs</em>)</h3><p>构造一个请求，此方法为requests库的基本方法，其余六种方法都以该方法支撑。</p>
+<ul>
+<li>method: 请求方式，对应get/put/post等7种</li>
+<li>url: 拟获取页面的url链接</li>
+<li><em>kwargs</em>: 控制访问的参数，为可选参数，共13个(可自行查看requests库文档)</li>
+</ul>
+<h3 id="2-requests-get-url-params-None-kwargs"><a href="#2-requests-get-url-params-None-kwargs" class="headerlink" title="(2)requests.get(url, params=None, kwargs)"></a>(2)requests.get(url, params=None, <em>kwargs</em>)</h3><p>获取HTML网页的主要方法，对应于HTTP的GET。</p>
+<ul>
+<li>url: 拟获取页面的url链接</li>
+<li>params: url中的额外参数，字典火字节流格式，可选</li>
+<li><em>kwargs</em>: 12个控制访问的参数，为可选参数</li>
+</ul>
+<p>基础代码为：</p>
+<pre><code>import requests
+r = requests.get(url)
+</code></pre><p>其中，url为一个Request对象，r为Response类的对象，包含爬虫返回的所有信息，也包含请求的Request信息。Response对象的属性：</p>
+<h4 id="r-status-code"><a href="#r-status-code" class="headerlink" title=" r.status_code"></a><1> r.status_code</1></h4><p>HTTP请求的返回状态，200则返回成功 </p>
+<h4 id="r-text"><a href="#r-text" class="headerlink" title=" r.text"></a><2> r.text</2></h4><p>url对应的页面信息（字符串格式）</p>
+<h4 id="r-encoding"><a href="#r-encoding" class="headerlink" title=" r.encoding"></a><3> r.encoding</3></h4><p>从HTTP header中猜测的响应内容编码方式</p>
+<h4 id="r-apparent-encoding"><a href="#r-apparent-encoding" class="headerlink" title=" r.apparent_encoding"></a><4> r.apparent_encoding</4></h4><p>从内容中分析出的响应内容编码方式</p>
+<h4 id="r-content"><a href="#r-content" class="headerlink" title=" r.content"></a><5> r.content</5></h4><p>HTTP响应内容的二进制形式</p>
+<p>对于<3>和<4>两种编码，如果header中不存在charset，则认为编码为ISO-8859-1，r.text根据r.encoding显示网页内容，但往往显示的内容不是我们易懂的，所以通常执行以下代码：</4></3></p>
+<pre><code>r.encoding = r.apparent_encoding
+r.text
+</code></pre><p>这样，r.text就会返回我们更熟悉的内容</p>
+<h3 id="3-requests-head-url-kwargs"><a href="#3-requests-head-url-kwargs" class="headerlink" title="(3)requests.head(url, kwargs)"></a>(3)requests.head(url, <strong><em>kwargs</em></strong>)</h3><p>获取HTTP网页头信息的方法，对应于HTTP的HEAD。</p>
+<ul>
+<li>url: 拟获取页面的url链接</li>
+<li><em>kwargs</em>: 12个控制访问的参数，为可选参数</li>
+</ul>
+<h3 id="4-requests-post-url-data-None-json-None-kwargs"><a href="#4-requests-post-url-data-None-json-None-kwargs" class="headerlink" title="(4)requests.post(url, data=None, json=None, kwargs)"></a>(4)requests.post(url, data=None, json=None, <em>kwargs</em>)</h3><p>向HTML网页提交POST请求的方法，对应于HTTP的POST。</p>
+<ul>
+<li>url: 拟获取页面的url链接</li>
+<li>data: 字典、字节序列或文件，Request的内容</li>
+<li>json: JSON格式的数据，Request的内容</li>
+<li><em>kwargs</em>: 12个控制访问的参数，为可选参数</li>
+</ul>
+<h3 id="5-requests-put-url-data-None-kwargs"><a href="#5-requests-put-url-data-None-kwargs" class="headerlink" title="(5)requests.put(url, data=None, kwargs)"></a>(5)requests.put(url, data=None, <em>kwargs</em>)</h3><p>向HTML网页提交PUT请求的方法，对应于HTTP的PUT。</p>
+<ul>
+<li>url: 拟获取页面的url链接</li>
+<li>data: 字典、字节序列或文件，Request的内容</li>
+<li><em>kwargs</em>: 12个控制访问的参数，为可选参数</li>
+</ul>
+<h3 id="6-requests-patch-url-data-None-kwargs"><a href="#6-requests-patch-url-data-None-kwargs" class="headerlink" title="(6)requests.patch(url, data=None, kwargs)"></a>(6)requests.patch(url, data=None, <em>kwargs</em>)</h3><p>向HTML网页提交局部修改请求，对应于HTTP的PATCH。</p>
+<ul>
+<li>url: 拟获取页面的url链接</li>
+<li>data: 字典、字节序列或文件，Request的内容</li>
+<li><em>kwargs</em>: 12个控制访问的参数，为可选参数</li>
+</ul>
+<h3 id="7-requests-delete-url-kwargs"><a href="#7-requests-delete-url-kwargs" class="headerlink" title="(7)requests.delete(url, kwargs)"></a>(7)requests.delete(url, <strong><em>kwargs</em></strong>)</h3><p>向HTML网页提交删除请求，对应于HTTP的DELETE。</p>
+<ul>
+<li>url: 拟获取页面的url链接</li>
+<li><em>kwargs</em>: 12个控制访问的参数，为可选参数</li>
+</ul>
+<h2 id="4-爬取网页的通用代码框架"><a href="#4-爬取网页的通用代码框架" class="headerlink" title="4.爬取网页的通用代码框架"></a>4.爬取网页的通用代码框架</h2><p>如果url请求连接失败，则会产生异常。</p>
+<p>代码如下：</p>
+<pre><code>def getHTMLText(url):
+    try:
+        r = requests.get(url)
+        r.raise_for_status() #在方法内部判断r.status_code是否等于200
+        r.encoding = r.apparent_encoding
+    except:
+        return &quot;产生异常&quot;
+</code></pre><h1 id="二-Robots协议"><a href="#二-Robots协议" class="headerlink" title="二. Robots协议"></a>二. Robots协议</h1><p>网络爬虫可能会引发许多问题，如性能骚扰、法律风险、隐私泄露等。因此，许多网站对网络爬虫有限制，有以下两种：</p>
+<ul>
+<li>来源审查：判断User-Agent进行限制</li>
+</ul>
+<p>检查来访HTTP协议头的User-Agent域，只影响浏览器或友好爬虫的访问</p>
+<ul>
+<li>发布公告：Robots协议</li>
+</ul>
+<p>告知所有爬虫的爬取策略，要求爬虫遵守</p>
+<h2 id="Robots协议，Robots-Exclusion-Standard-，网络爬虫排除标准"><a href="#Robots协议，Robots-Exclusion-Standard-，网络爬虫排除标准" class="headerlink" title="Robots协议，Robots Exclusion Standard ，网络爬虫排除标准"></a>Robots协议，Robots Exclusion Standard ，网络爬虫排除标准</h2><p>作用：网站告知网络爬虫哪些页面可以抓取，哪些不行。形式：在网站根目录下的robots.txt文件。</p>
+<p>Robots协议基本语法</p>
+<pre><code># 注释，* 代表所有， /代表根目录
+User-Agent: *
+Disallow: /
+</code></pre><h1 id="三-Beautiful-Soup库"><a href="#三-Beautiful-Soup库" class="headerlink" title="三. Beautiful Soup库"></a>三. Beautiful Soup库</h1><h2 id="1-Beautiful-Soup库的安装：-“以管理者身份”运行cmd，执行以下代码："><a href="#1-Beautiful-Soup库的安装：-“以管理者身份”运行cmd，执行以下代码：" class="headerlink" title="1. Beautiful Soup库的安装： “以管理者身份”运行cmd，执行以下代码："></a>1. Beautiful Soup库的安装： “以管理者身份”运行cmd，执行以下代码：</h2><p><code>python -m pip install BeautifulSoup4</code></p>
+<h2 id="2-Beautiful-Soup的基本元素"><a href="#2-Beautiful-Soup的基本元素" class="headerlink" title="2. Beautiful Soup的基本元素"></a>2. Beautiful Soup的基本元素</h2><p>HTML可表示为如下的标签树</p>
+<pre><code>&lt;html&gt;
+
+   &lt;body&gt;
+
+      &lt;p class=&quot;title&quot;&gt;...&lt;/p&gt;
+
+   &lt;/body&gt;
+
+&lt;/html&gt;
+</code></pre><p>beautifulSoup就是解析、遍历、维护“标签树”的功能库。</p>
+<pre><code>import requests
+from bs4 import BeautifulSoup #B和S大写
+
+r = requests.get(url)
+demo = r.text
+
+soup = BeautifulSoup(demo, &quot;html.parser&quot;)
+</code></pre><p>以上代码得到一个BeautifulSoup类对象，存储在soup中，对应一个HTML/XML文档的全部内容</p>
+<p>“html.parser”表示是bs4的HTML解析器，条件是安装bs4库，还有以下的解析器</p>
+<ul>
+<li>lxml的HTML解析器，BeautifulSoup(mk, ‘lxml’), 条件为pip install lxml</li>
+<li>lxml的XML解析器，BeautifulSoup(mk, ‘xml’), 条件为pip install lxml</li>
+<li>html5lib解析器，BeautifulSoup(mk, ‘html5lib’), 条件为pip install html5lib</li>
+</ul>
+<p>BeautifulSoup类的基本元素</p>
+<pre><code>&lt;p class=&quot;title&quot;&gt;...&lt;/p&gt;
+</code></pre><ul>
+<li>Tag, 标签，最基本的信息组织单元，分别用&lt;&gt;和&lt;/&gt;表明开头和结尾 </li>
+<li>Name, 标签的名字，&lt;p&gt;…&lt;/p&gt;的名字是’p’, 格式：<tag>.name</tag></li>
+<li>Attributes, 标签的属性，字典形式组织，格式：<tag>.attr</tag></li>
+<li>NavigableString, 标签内非属性字符串，&lt;&gt;…&lt;/&gt;中的字符串，格式：<tag>.string</tag></li>
+<li>Comment, 标签内字符串的注释部分，一种特殊的Comment类型</li>
+</ul>
+<p>任何存在于HTML语法中的标签都可以用soup.<tag>访问获得，当HTML文档中存在多个相同<tag>对应内容时，soup.<tag>返回第一个。</tag></tag></tag></p>
+<p>比如title标签和a标签</p>
+<pre><code>&gt;&gt;&gt;soup.title
+&gt;&gt;&gt;soup.a
+</code></pre><p>每个<tag>都有自己的名字，通过<tag>.name获取，字符串类型</tag></tag></p>
+<pre><code>&gt;&gt;&gt;soup.a.name
+&gt;&gt;&gt;soup.a.parent.name
+&gt;&gt;&gt;soup.a.parent.parent.name
+</code></pre><p>一个<tag>可以有0个或多个属性，字典类型</tag></p>
+<pre><code>&gt;&gt;&gt;tag = soup.a
+&gt;&gt;&gt;tag.attrs
+</code></pre><p>NavigableString可以跨越多个层次，Comment是一种特殊类型。</p>
+<pre><code>&gt;&gt;&gt;newsoup = BeautifulSoup(&quot;&lt;b&gt;&lt;!--This is a comment--&gt;&lt;/b&gt;&lt;p&gt;This is not a comment&lt;/p&gt;&quot;, &quot;html.parser&quot;)
+&gt;&gt;&gt;newsoup.b.string
+&gt;&gt;&gt;type(newsoup.b.string)
+&gt;&gt;&gt;newsoup.p.string
+&gt;&gt;&gt;tyoe(newsoup.p.string)
+</code></pre><p>输出结果为</p>
+<pre><code>&apos;This is a comment&apos; #Comment类型的字符串开头有一个!
+&lt;class &apos;bs4.element.Comment&apos;&gt;
+&apos;This is not a comment&apos;
+&lt;class &apos;bs4.element.NavigableString&apos;&gt;
+</code></pre><p><img src="D:\Screenshot_2019-04-19-22-31-16.png" alt="基本元素"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/18/AsaTung：python网络爬虫与信息提取学习笔记/" data-id="cjwhqeoqq00009ct4tjs292ll" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/04/18/AsaTung：python网络爬虫与信息提取学习笔记/">AsaTung：python网络爬虫与信息提取学习笔记</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 AsaTung<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
