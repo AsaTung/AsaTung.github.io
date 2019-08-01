@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-08-01 07:55:21 / 修改时间：11:48:27" itemprop="dateCreated datePublished" datetime="2019-08-01T07:55:21+08:00">2019-08-01</time>
+              <time title="创建时间：2019-08-01 07:55:21 / 修改时间：11:51:44" itemprop="dateCreated datePublished" datetime="2019-08-01T07:55:21+08:00">2019-08-01</time>
             
 
             
@@ -428,8 +428,7 @@
         
           
             <p>最近在读机器学习深度学习代码时，时常发现发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。本文主要记录一些入门numpy常见的使用技巧，一方面在记录的过程中在脑海里留下一些实现方法的印象，一方面便于日后复习。</p>
-<p>#numpy常用技巧</p>
-<p>内容主要来自：<a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></p>
+<h1 id="numpy常用技巧"><a href="#numpy常用技巧" class="headerlink" title="numpy常用技巧"></a>numpy常用技巧</h1><p>内容主要来自：<a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></p>
 <ol>
 <li><p>Import the numpy package under the name np (★☆☆)</p>
 <pre><code>import numpy as np
@@ -520,7 +519,7 @@ print(Z)
 [0 0 0 4 0]]
 &quot;&quot;&quot;
 </code></pre></li>
-<li><p>Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element?</p>
+<li><p>Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element? (★☆☆)</p>
 <pre><code>print(np.unravel_index(99,(6,7,8)))
 #(1, 5, 3)
 </code></pre></li>
