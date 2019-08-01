@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近在读机器学习深度学习代码时，时常发现发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。本文主要记录一些入门numpy常见的使用技巧，一方面在记录的过程中在脑海里留下一些实现方法的印象，一方面便于日后复习。 #numpy常用技巧 内容主要来自：numpy-100  Import the">
+<meta name="keywords" content="numpy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy exercises and experiences">
+<meta property="og:url" content="http://yoursite.com/2019/08/01/numpy-exercises & experiences/index.html">
+<meta property="og:site_name" content="书写筑明天">
+<meta property="og:description" content="最近在读机器学习深度学习代码时，时常发现发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。本文主要记录一些入门numpy常见的使用技巧，一方面在记录的过程中在脑海里留下一些实现方法的印象，一方面便于日后复习。 #numpy常用技巧 内容主要来自：numpy-100  Import the">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-01T03:48:27.593Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="numpy exercises and experiences">
+<meta name="twitter:description" content="最近在读机器学习深度学习代码时，时常发现发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。本文主要记录一些入门numpy常见的使用技巧，一方面在记录的过程中在脑海里留下一些实现方法的印象，一方面便于日后复习。 #numpy常用技巧 内容主要来自：numpy-100  Import the">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/08/01/numpy-exercises & experiences/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>numpy exercises and experiences | 书写筑明天</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">书写筑明天</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Show me the code please.</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/01/numpy-exercises & experiences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="书写筑明天">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">numpy exercises and experiences
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-01 07:55:21 / 修改时间：11:48:27" itemprop="dateCreated datePublished" datetime="2019-08-01T07:55:21+08:00">2019-08-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在读机器学习深度学习代码时，时常发现发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。本文主要记录一些入门numpy常见的使用技巧，一方面在记录的过程中在脑海里留下一些实现方法的印象，一方面便于日后复习。</p>
+<p>#numpy常用技巧</p>
+<p>内容主要来自：<a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></p>
+<ol>
+<li><p>Import the numpy package under the name np (★☆☆)</p>
+<pre><code>import numpy as np
+</code></pre></li>
+<li><p>Print the numpy version and the configuration (★☆☆)</p>
+<pre><code>print(np.__veision__)
+np.show_config()
+</code></pre></li>
+<li><p>Create a null vector of size 10 but the fifth value which is 1 (★☆☆)</p>
+<pre><code>Z = np.zeros(10)
+Z[4] = 1
+print(Z)
+</code></pre></li>
+<li><p>Create a vector with values ranging from 10 to 49 (★☆☆)</p>
+<pre><code>Z = np.arange(10, 50)
+print(Z)
+</code></pre></li>
+<li><p>How to find the memory size of any array (★☆☆)</p>
+<pre><code>Z = np.zeros((10,10))
+print(&quot;%d bytes&quot; % (Z.size * Z.itemsize))
+#Z.size=10*10=100, Z.itemsize=8
+</code></pre></li>
+<li><p>Reverse a vector (first element becomes last) (★☆☆)</p>
+<pre><code>Z = np.arange(50)
+Z = Z[::-1]
+print(Z)
+</code></pre></li>
+<li><p>Create a 3x3 matrix with values ranging from 0 to 8 (★☆☆)</p>
+<pre><code>Z = np.arange(9).reshape(3, 3)
+print(Z)
+</code></pre></li>
+<li><p>Find indices of non-zero elements from [1,2,0,0,4,0] (★☆☆)</p>
+<pre><code>nz = np.nonzero([1,2,0,0,4,0])
+print(nz)
+#np.nonzero会返回非0值的下标
+</code></pre></li>
+<li><p>Create a 3x3 identity matrix(单位矩阵) (★☆☆)</p>
+<pre><code>Z = np.eye(3)
+print(Z)
+
+&quot;&quot;&quot;
+array([[1., 0., 0.],
+       [0., 1., 0.],
+       [0., 0., 1.]])
+&quot;&quot;&quot;
+</code></pre></li>
+<li><p>Create a 3x3x3 array with random values (★☆☆)</p>
+<pre><code>Z = np.random.random((3,3,3))
+print(Z)
+</code></pre></li>
+<li><p>Create a 10x10 array with random values and find the minimum and maximum values (★☆☆)</p>
+<pre><code>Z = np.random.random((10,10))
+Zmin, Zmax = Z.min(), Z.max()
+print(Zmin, Zmax)
+</code></pre></li>
+<li><p>Create a random vector of size 30 and find the mean value (★☆☆)</p>
+<pre><code>Z = np.random.random(30)
+m = Z.mean()        #无axis参数，求所有element的均值. axis=0表示列，axis=1表示行.
+print(m)
+</code></pre></li>
+<li><p>Create a 2d array with 1 on the border and 0 inside (★☆☆)</p>
+<pre><code>Z = np.ones((10,10))
+Z[1:-1,1:-1] = 0
+print(Z)
+</code></pre></li>
+<li><p>How to add a border (filled with 0’s) around an existing array? (★☆☆)</p>
+<pre><code>Z = np.ones((5,5))
+Z = np.pad(Z, pad_width=1, mode=&apos;constant&apos;, constant_values=0)
+print(Z)
+</code></pre></li>
+<li><p>What is the result of the following expression? (★☆☆)</p>
+<pre><code>print(0 * np.nan)                  #nan
+print(np.nan == np.nan)            #False
+print(np.inf &gt; np.nan)             #False
+print(np.nan - np.nan)             #nan
+print(np.nan in set([np.nan]))     #True
+print(0.3 == 3 * 0.1)              #False
+</code></pre></li>
+<li><p>Create a 5x5 matrix with values 1,2,3,4 just below the diagonal (★☆☆)</p>
+<pre><code>Z = np.diag(1+np.arange(4),k=-1)
+print(Z)
+
+&quot;&quot;&quot;
+[[0 0 0 0 0]
+[1 0 0 0 0]
+[0 2 0 0 0]
+[0 0 3 0 0]
+[0 0 0 4 0]]
+&quot;&quot;&quot;
+</code></pre></li>
+<li><p>Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element?</p>
+<pre><code>print(np.unravel_index(99,(6,7,8)))
+#(1, 5, 3)
+</code></pre></li>
+<li><p>Normalize a 5x5 random matrix (★☆☆)</p>
+<pre><code>Z = np.random.random((5,5))
+Z = (Z - np.mean (Z)) / (np.std (Z))    #np.std()计算标准差
+print(Z)
+</code></pre></li>
+<li><p>Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) (★☆☆)</p>
+<pre><code>Z = np.dot(np.ones((5,3)), np.ones((3,2)))
+print(Z)
+
+# Alternative solution, in Python 3.5 and above
+Z = np.ones((5,3)) @ np.ones((3,2))
+print(Z)
+</code></pre></li>
+<li><p>Given a 1D array, negate all elements which are between 3 and 8, in place. (★☆☆)</p>
+<pre><code>Z = np.arange(11)
+Z[(3 &lt; Z) &amp; (Z &lt;= 8)] *= -1
+print(Z)
+</code></pre></li>
+<li><p>What is the output of the following script? (★☆☆)</p>
+<pre><code>print(sum(range(5),-1))    #9
+from numpy import *
+print(sum(range(5),-1))    #10
+</code></pre></li>
+<li><p>How to find common values between two arrays? (★☆☆)</p>
+<pre><code>Z1 = np.random.randint(0,10,10)
+Z2 = np.random.randint(0,10,10)
+print(np.intersect1d(Z1,Z2))
+</code></pre></li>
+<li><p>How to ignore all numpy warnings (not recommended)? (★☆☆)</p>
+<pre><code># Suicide mode on
+defaults = np.seterr(all=&quot;ignore&quot;)
+Z = np.ones(1) / 0
+
+# Back to sanity
+_ = np.seterr(**defaults)
+</code></pre></li>
+<li><p>Is the following expressions true? (★☆☆)</p>
+<pre><code>np.sqrt(-1) == np.emath.sqrt(-1)    #False
+</code></pre></li>
+<li><p>How to get the dates of yesterday, today and tomorrow? (★☆☆)</p>
+<pre><code>yesterday = np.datetime64(&apos;today&apos;, &apos;D&apos;) - np.timedelta64(1, &apos;D&apos;)
+today     = np.datetime64(&apos;today&apos;, &apos;D&apos;)
+tomorrow  = np.datetime64(&apos;today&apos;, &apos;D&apos;) + np.timedelta64(1, &apos;D&apos;)
+</code></pre></li>
+<li><p>How to get all the dates corresponding to the month of July 2016? (★★☆)</p>
+<pre><code>Z = np.arange(&apos;2016-07&apos;, &apos;2016-08&apos;, dtype=&apos;datetime64[D]&apos;)
+print(Z)
+</code></pre></li>
+<li><p>How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)</p>
+<pre><code>A = np.ones(3)*1
+B = np.ones(3)*2
+C = np.ones(3)*3
+np.add(A,B,out=B)
+np.divide(A,2,out=A)
+np.negative(A,out=A)
+np.multiply(A,B,out=A)
+</code></pre></li>
+<li><p>Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆)</p>
+<pre><code>Z = np.zeros((5,5))
+Z += np.arange(5)
+print(Z)
+</code></pre></li>
+<li><p>Extract the integer part of a random array using 5 different methods (★★☆)</p>
+<pre><code>print (Z - Z%1)
+print (np.floor(Z))
+print (np.ceil(Z)-1)
+print (Z.astype(int))
+print (np.trunc(Z))
+</code></pre></li>
+<li><p>Create a random vector of size 10 and sort it (★★☆)</p>
+<pre><code>Z = np.random.random(10)
+Z.sort()
+print(Z)
+</code></pre></li>
+<li><p>Consider two random array A and B, check if they are equal (★★☆)</p>
+<pre><code>A = np.random.randint(0,2,5)
+B = np.random.randint(0,2,5)
+
+# Assuming identical shape of the arrays and a tolerance for the comparison of values
+equal = np.allclose(A,B)
+print(equal)
+
+# Checking both the shape and the element values, no tolerance (values have to be exactly equal)
+equal = np.array_equal(A,B)
+print(equal)
+</code></pre></li>
+<li><p>Create random vector of size 10 and replace the maximum value by 0 (★★☆)</p>
+<pre><code>Z = np.random.random(10)
+Z[Z.argmax()] = 0
+print(Z)
+</code></pre></li>
+<li><p>Print the minimum and maximum representable value for each numpy scalar type (★★☆)</p>
+<pre><code>for dtype in [np.int8, np.int32, np.int64]:
+   print(np.iinfo(dtype).min)
+   print(np.iinfo(dtype).max)
+for dtype in [np.float32, np.float64]:
+   print(np.finfo(dtype).min)
+   print(np.finfo(dtype).max)
+   print(np.finfo(dtype).eps)
+
+&quot;&quot;&quot;
+-128
+127
+-2147483648
+2147483647
+-9223372036854775808
+9223372036854775807
+-3.4028235e+38
+3.4028235e+38
+1.1920929e-07
+-1.7976931348623157e+308
+1.7976931348623157e+308
+2.220446049250313e-16
+&quot;&quot;&quot;
+</code></pre></li>
+<li><p>How to find the closest value (to a given scalar) in a vector? (★★☆)</p>
+<pre><code>Z = np.arange(100)
+v = np.random.uniform(0,100)
+index = (np.abs(Z-v)).argmin()
+print(Z[index])
+</code></pre></li>
+<li><p>How to convert a float (32 bits) array into an integer (32 bits) in place? (★★☆)</p>
+<pre><code>Z = np.arange(10, dtype=np.float32)
+Z = Z.astype(np.int32, copy=False)
+print(Z)
+</code></pre></li>
+<li><p>What is the equivalent of enumerate for numpy arrays? (★★☆)</p>
+<pre><code>Z = np.arange(9).reshape(3,3)
+for index, value in np.ndenumerate(Z):
+    print(index, value)
+for index in np.ndindex(Z.shape):
+    print(index, Z[index])
+</code></pre></li>
+<li><p>How to I sort an array by the nth column? (★★☆)</p>
+<pre><code>Z = np.random.randint(0,10,(3,3))
+print(Z)
+print(Z[Z[:,1].argsort()])
+</code></pre></li>
+<li><p>How to tell if a given 2D array has null columns? (★★☆)</p>
+<pre><code>Z = np.random.randint(0,3,(3,10))
+print((~Z.any(axis=0)).any())
+</code></pre></li>
+<li><p>Consider an array of dimension (5,5,3), how to mulitply it by an array with dimensions (5,5)? (★★★)</p>
+<pre><code>A = np.ones((5,5,3))
+B = 2*np.ones((5,5))
+print(A * B[:,:,None])
+</code></pre></li>
+<li><p>How to swap two rows of an array? (★★★)</p>
+<pre><code>A = np.arange(25).reshape(5,5)
+A[[0,1]] = A[[1,0]]
+print(A)
+#swap 0 row and 1 row
+</code></pre></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/numpy/" rel="tag"># numpy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/17/AsaTung：信息标记的三种形式与信息提取的一般方法概述/" rel="next" title="AsaTung：信息标记的三种形式与信息提取的一般方法概述">
+                <i class="fa fa-chevron-left"></i> AsaTung：信息标记的三种形式与信息提取的一般方法概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
