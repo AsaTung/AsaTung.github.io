@@ -386,12 +386,24 @@
                 
               
 
-              <time title="创建时间：2019-08-01 07:55:21 / 修改时间：15:41:52" itemprop="dateCreated datePublished" datetime="2019-08-01T07:55:21+08:00">2019-08-01</time>
+              <time title="创建时间：2019-08-01 07:55:21" itemprop="dateCreated datePublished" datetime="2019-08-01T07:55:21+08:00">2019-08-01</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-02 11:04:18" itemprop="dateModified" datetime="2019-08-02T11:04:18+08:00">2019-08-02</time>
               
             
           </span>
@@ -427,8 +439,107 @@
       
         
           
-            <p>最近在读机器学习深度学习代码时，时常发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。本文主要记录一些入门numpy常见的使用技巧，一方面在记录的过程中在脑海里留下一些实现方法的印象，一方面便于日后复习。</p>
-<h1 id="numpy常用技巧"><a href="#numpy常用技巧" class="headerlink" title="numpy常用技巧"></a>numpy常用技巧</h1><p>内容主要来自：<a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></p>
+            <p>最近在读机器学习深度学习代码时，时常发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。Numpy数组有许多极其优良的性能，在对大量数据进行数学和其他类型的操作是，我们通常会选择numpy数组而不是python原生的list。因此，本文主要记录一些入门numpy的一些容易混淆的概念和常见的使用技巧，一方面在记录的过程中理清思路，在脑海里留下一些实现方法的印象，一方面便于日后复习。</p>
+<h1 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h1><ul>
+<li>The N-dimensional array (class ndarray)<ul>
+<li>Preface</li>
+<li>Momory layout<ul>
+<li>Item layout</li>
+<li>Flattened item layout</li>
+<li>Memory layout</li>
+</ul>
+</li>
+<li>Copies &amp; Views<ul>
+<li>No Copy</li>
+<li>View or Shallow Copy</li>
+<li>Deep Copy</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>numpy experience</li>
+<li>Refrence</li>
+</ul>
+<h1 id="The-N-dimeensional-array-class-ndarray"><a href="#The-N-dimeensional-array-class-ndarray" class="headerlink" title="The N-dimeensional array (class ndarray)"></a>The N-dimeensional array (class ndarray)</h1><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>The ndarray class is the core of numpy. The numpy documentation defines the ndarray class very clearly: An instance of class ndarray consists of a contiguous one-dimensional segment of computer memory (owned by the array, or by some other object), combined with an indexing scheme that maps N integers into the location of an item in the block.</p>
+<p>Said differently, an array is mostly a contiguous block of memory whose parts can be accessed using an indexing scheme. </p>
+<h2 id="Memory-layout"><a href="#Memory-layout" class="headerlink" title="Memory layout"></a>Memory layout</h2><p>Such indexing scheme is in turn defined by a shape and a data type and this is precisely what is needed when you define a new array:</p>
+<pre><code>Z = np.arange(9).reshape(3,3).astype(np.int16)
+</code></pre><p>Here, we know that Z itemsize is 2 bytes (int16), the shape is (3,3) and the number of dimensions is 2 (len(Z.shape)).</p>
+<pre><code>print(Z.itemsize)    #2
+print(Z.shape)        #(3, 3)
+print(Z.ndim)        #2
+</code></pre><blockquote>
+<p>The number of dimensions (axes) of the array. In the Python world, the number of dimensions is referred to as rank. The rank of array Z is np.ndim(Z). 这里的 rank 不是线性代数中的 rank（秩），它指代的是维数（number of dimensions）</p>
+</blockquote>
+<h3 id="Item-layout"><a href="#Item-layout" class="headerlink" title="Item layout"></a>Item layout</h3><pre><code>               shape[1]
+                 (=3)
+            ┌───────────┐
+
+         ┌  ┌───┬───┬───┐  ┐
+         │  │ 0 │ 1 │ 2 │  │
+         │  ├───┼───┼───┤  │
+shape[0] │  │ 3 │ 4 │ 5 │  │ len(Z)
+ (=3)    │  ├───┼───┼───┤  │  (=3)
+         │  │ 6 │ 7 │ 8 │  │
+         └  └───┴───┴───┘  ┘
+</code></pre><p>axis的计数方式是从外到内奇数的，例如矩阵Z在numpy中表示为：</p>
+<pre><code>Z = [[0,1,2],
+     [3,4,5],
+     [6,7,8]]
+</code></pre><p>对应的轴为：</p>
+<pre><code>    axis = 0
+    |
+    | axis = 1
+    | |
+    ↓ ↓
+Z = [ [0,1,2],
+      [3,4,5],
+      [6,7,8] ]
+</code></pre><p>在指定axis上求和，即对于np.sum(x, axis=0)和np.sum(x, axis=1)会有不同的结果</p>
+<h3 id="Flattened-item-layout"><a href="#Flattened-item-layout" class="headerlink" title="Flattened item layout"></a>Flattened item layout</h3><pre><code>┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+│ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │
+└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+
+└───────────────────────────────────┘
+               Z.size
+                (=9)
+</code></pre><h3 id="Memory-layout-1"><a href="#Memory-layout-1" class="headerlink" title="Memory layout"></a>Memory layout</h3><pre><code>                         strides[1]
+                           (=2)
+                  ┌─────────────────────┐
+
+          ┌       ┌──────────┬──────────┐ ┐
+          │ p+00: │ 00000000 │ 00000000 │ │
+          │       ├──────────┼──────────┤ │
+          │ p+02: │ 00000000 │ 00000001 │ │ strides[0]
+          │       ├──────────┼──────────┤ │   (=2x3)
+          │ p+04  │ 00000000 │ 00000010 │ │
+          │       ├──────────┼──────────┤ ┘
+          │ p+06  │ 00000000 │ 00000011 │
+          │       ├──────────┼──────────┤
+Z.nbytes  │ p+08: │ 00000000 │ 00000100 │
+(=3x3x2)  │       ├──────────┼──────────┤
+          │ p+10: │ 00000000 │ 00000101 │
+          │       ├──────────┼──────────┤
+          │ p+12: │ 00000000 │ 00000110 │
+          │       ├──────────┼──────────┤
+          │ p+14: │ 00000000 │ 00000111 │
+          │       ├──────────┼──────────┤
+          │ p+16: │ 00000000 │ 00001000 │
+          └       └──────────┴──────────┘
+
+                  └─────────────────────┘
+                        Z.itemsize
+                     Z.dtype.itemsize
+                           (=2)
+</code></pre><h2 id="Copies-amp-Views"><a href="#Copies-amp-Views" class="headerlink" title="Copies &amp; Views"></a>Copies &amp; Views</h2><h3 id="No-Copy-b-a"><a href="#No-Copy-b-a" class="headerlink" title="No Copy (b=a)"></a>No Copy (b=a)</h3><p>Simple assignments do not make the copy of array object. Instead, it uses the same id() of the original array to access it. The id() returns a universal identifier of Python object, similar to the pointer in C.</p>
+<p>Furthermore, any changes in either gets reflected in the other. For example, the changing shape of one will change the shape of the other too.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(12)</span><br><span class="line">b = a</span><br><span class="line"></span><br><span class="line">print(b is a)  # 返回 True</span><br><span class="line">b.shape = (3,4)</span><br><span class="line">print (&quot;a.shape=&quot;,a.shape)  # a.shape= (3, 4)</span><br><span class="line">print (id(a))   # 2493855732640</span><br><span class="line">print (id(b))   # 2493855732640</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="View-or-Shallow-Copy-c-a-view"><a href="#View-or-Shallow-Copy-c-a-view" class="headerlink" title="View or Shallow Copy (c = a.view())"></a>View or Shallow Copy (c = a.view())</h3><p>NumPy has ndarray.view() method which is a new array object that looks at the same data of the original array. Unlike the earlier case, change in dimensions of the new array doesn’t change dimensions of the original.</p>
+<p>Slice of an array creates a view.</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">c = a.view()            # 将a复制给c</span><br><span class="line">print(c is a)           # False</span><br><span class="line">print(&quot;c=&quot;,c)</span><br><span class="line">      &quot;&quot;&quot;</span><br><span class="line">      c = array([[ 0,  1,  2,  3],</span><br><span class="line">     				 [ 4,  5,  6,  7],</span><br><span class="line">                   [ 8,  9, 10, 11]])</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">      </span><br><span class="line">c.shape = (2,6)             # 改变c的结构为2行6列，看a是否会变化</span><br><span class="line">print(&quot;c.shape=&quot;,c.shape)   # c.shape=(2, 6)</span><br><span class="line">print (&quot;a.shape=&quot;,a.shape)  # a.shape=(3, 4)</span><br><span class="line"></span><br><span class="line">c[0,4] = 1234             # 改变矩阵c第0行4列的值，看a的值是否会变化</span><br><span class="line">print(&quot;c=&quot;,c)</span><br><span class="line">print(&quot;a=&quot;,a)             #结果显示a中相应的值也发生了变化</span><br><span class="line"></span><br><span class="line">print(id(a))    # 2493855144416</span><br><span class="line">print(id(b))    # 2493855144416</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="Deep-Copy-d-a-copy"><a href="#Deep-Copy-d-a-copy" class="headerlink" title="Deep Copy (d=a.copy())"></a>Deep Copy (d=a.copy())</h3><p>The ndarray.copy() function creates a deep copy. It is a complete copy of the array and its data, and doesn’t share with the original array.</p>
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a>Example</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">d = a.copy() </span><br><span class="line">print(d is a)  # False</span><br><span class="line"></span><br><span class="line">d[0,0] = 9999</span><br><span class="line">print (d) </span><br><span class="line">print (a)     # a中相应的值不会变化</span><br><span class="line"></span><br><span class="line">print(id(d))  # 2493855735440</span><br><span class="line">print(id(a))  # 2493855732640</span><br></pre></td></tr></table></figure>
+</code></pre><h1 id="numpy-experience"><a href="#numpy-experience" class="headerlink" title="numpy experience"></a>numpy experience</h1><p>内容主要来自：<a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></p>
 <ol>
 <li><p>Import the numpy package under the name np (★☆☆)</p>
 <pre><code>import numpy as np
@@ -677,6 +788,12 @@ print(A)
 #swap 0 row and 1 row
 </code></pre></li>
 </ol>
+<h1 id="Refrence"><a href="#Refrence" class="headerlink" title="Refrence"></a>Refrence</h1><ul>
+<li><a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></li>
+<li><a href="http://www.labri.fr/perso/nrougier/from-python-to-numpy/" target="_blank" rel="noopener">http://www.labri.fr/perso/nrougier/from-python-to-numpy/</a></li>
+<li><a href="https://www.tutorialspoint.com/numpy/numpy_copies_and_views.htm" target="_blank" rel="noopener">NumPy - Copies &amp; Views</a></li>
+<li><a href="https://www.cnblogs.com/wodexk/p/10311293.html" target="_blank" rel="noopener">复制理解</a></li>
+</ul>
 
           
         
