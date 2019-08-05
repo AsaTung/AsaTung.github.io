@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-08-05 20:45:02 / 修改时间：20:45:11" itemprop="dateCreated datePublished" datetime="2019-08-05T20:45:02+08:00">2019-08-05</time>
+              <time title="创建时间：2019-08-05 21:15:20 / 修改时间：21:15:27" itemprop="dateCreated datePublished" datetime="2019-08-05T21:15:20+08:00">2019-08-05</time>
             
 
             
@@ -439,9 +439,16 @@
 \begin{equation}\begin{split}
 p(s)&=p(\omega_1)P(\omega_2 | \omega_1)p(\omega_3 | \omega_1\omega_2)\cdots p(\omega_l | \omega_1...\omega_{l-1})\\
     &=\prod_{i=1}^lp(\omega_i | \omega_1\cdots\omega_{i-1})
-\end{split}\end{equation}</script><p>式中，产生第$i(1≤i≤l)$个词的概率是由已经产生的$i-1$个词$\omega_1\cdots\omega_{i-1}$决定的。一般地，我们把前$i-1$个词$\omega_1\cdots\omega_{i-1}$称为第$i$个词地“历史（history）”。在这种计算方法中，随着历史长度的增加，不同的历史数目按指数级增长。如果历史的长度为$i-1$，那么，就有$L^{i-1}$种不同的的历史（假设$L$为词汇集的大小），而我们必须考虑在所有$L^{i-1}$种不同历史情况下，产生第$i$个词的概率。这样的话，模型种就有$L^i$个自由参数$p(\omega_i|\omega_1,\omega_2,\cdots,\omega_{i-1})$。假设$L=500$，$i=3$，那么自由参数的数目就是1250亿个。</p>
-<p>为了解决以上问题，我们提出n元语法（n-gram），它的含义我们可以简单理解成：一个词的概率只依赖于它前面的$n-1$个词。当$n=1$时，即词$\omega_1$独立于历史时，记作unigram；当$n=2$时，词$\omega_1$仅与它前面的一个历史词$\omega_{i-1}$有关，记作bigram；当$n=3$时，词$\omega_1$仅与它前面的两个历史词$\omega_{i-1}\omega_{i-2}$有关，记作trigram。</p>
-
+\end{split}\end{equation}</script><p>式中，产生第$i(1≤i≤l)$个词的概率是由已经产生的$i-1$个词$\omega_1\cdots\omega_{i-1}$决定的。一般地，我们把前$i-1$个词$\omega_1\cdots\omega_{i-1}$称为第$i$个词的“历史（history）”。在这种计算方法中，随着历史长度的增加，不同的历史数目按指数级增长。如果历史的长度为$i-1$，那么，就有$L^{i-1}$种不同的的历史（假设$L$为词汇集的大小），而我们必须考虑在所有$L^{i-1}$种不同历史情况下，产生第$i$个词的概率。这样的话，模型种就有$L^i$个自由参数$p(\omega_i|\omega_1,\omega_2,\cdots,\omega_{i-1})$。假设$L=500$，$i=3$，那么自由参数的数目就是1250亿个。</p>
+<p>为了解决以上问题，我们提出<strong>n元语法</strong>（n-gram）地概念，它的含义我们可以简单理解成：<strong>一个词的概率只依赖于它前面的$n-1$个词</strong>。当$n=1$时，即词$\omega_1$独立于历史时，记作unigram；当$n=2$时，词$\omega_1$仅与它前面的一个历史词$\omega_{i-1}$有关，记作bigram；当$n=3$时，词$\omega_1$仅与它前面的两个历史词$\omega_{i-1}\omega_{i-2}$有关，记作trigram。</p>
+<p>以二元语法模型为例，根据前面的解释，我们可以近似地认为，一个词地概率只依赖于它前面一个词，那么，</p>
+<script type="math/tex; mode=display">
+p(s)=\prod_{i=1}^lp(\omega_i|\omega_1\omega_2\cdots\omega_{i-1}) \approx \prod_{i=1}^lp(\omega_i|\omega_{i-1})</script><p>为了使得$p(\omega_i|\omega_{i-1})$对于$i=1$有意义，我们在句子开头加上一个句首标记&lt;<bos>BOS&gt;，即假设$\omega_0$就是&lt;<bos>BOS&gt;。相应地，在句子末尾加上一个句尾标记&lt;<eos>EOS&gt;。例如，要计算$p(Mark\ wrote\ a\ book)$，我们可以这样计算：</eos></bos></bos></p>
+<script type="math/tex; mode=display">
+\begin{equation}\begin{split}
+p(Mark\ wrote\ a\ book)=&p(Mark|<BOS>)×p(wrote|Mark)\\
+&×p(a|wrote)×p(book|a)×p(<EOS>|book)
+\end{split}\end{equation}</script>
           
         
       
