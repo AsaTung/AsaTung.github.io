@@ -341,6 +341,162 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/tags_ NLP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="书写筑明天">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/08/05/tags_ NLP/" class="post-title-link" itemprop="url">词向量与word2vec</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-05 20:45:02 / 修改时间：20:45:11" itemprop="dateCreated datePublished" datetime="2019-08-05T20:45:02+08:00">2019-08-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h1><p>顾名思义，词向量是用来表示词的向量，通常也被认为是词的特征向量。近年来，词向量已逐渐成为自然语言处理的基础知识。</p>
+<p>在自然语言处理（NLP）的世界里，词是最小的单元，由词组成句，句组成段落、篇章、文档，所以处理NLP问题，必须<strong>从词入手</strong>。在自然语言中词是符号形式的，要对词进行处理，就必须把它们转换成数值形式，或者说，把词嵌入到一个数学空间里，这种嵌入方式，就是<strong>词嵌入</strong>（<strong>word embedding</strong>)。word2vec，就是word embedding的一种。</p>
+<p>word2vec工具是2013年谷歌团队开发的。主要包含两个model：<strong>skip-gram</strong>（跳字模型）和<strong>CBOW</strong>（continuous bag of words，连续词袋模型），以及两种高效的训练算法：<strong>负采样</strong>（negative sampling）和<strong>层序softmax</strong>（hierarchical softmax）。值得一提的是，word2vec词向量可以较好地表达不同词之间的相似和类比关系。</p>
+<h1 id="词向量类型"><a href="#词向量类型" class="headerlink" title="词向量类型"></a>词向量类型</h1><h2 id="one-hot-representation"><a href="#one-hot-representation" class="headerlink" title="one-hot representation"></a>one-hot representation</h2><p>传统的基于规则或基于统计的自然语义处理方法将单词看作一个原子符号，被称作one-hot representation。one-hot representation把每个词表示为一个长向量。这个向量的维度是词表的长度，向量中只有一个值为1，其余值为0，这个向量就代表了当前的词。 例如：苹果 [0，0，0，1，0，0，0，0，0，……] </p>
+<p>one-hot representation相当于给每个词分配一个id，这就导致这种表示方式不能展示词与词之间的关系。另外，one-hot representation将会导致特征空间非常大，这可能会导致维度爆炸。</p>
+<h2 id="distribution-representation"><a href="#distribution-representation" class="headerlink" title="distribution representation"></a>distribution representation</h2><p>distribution representation（分布式表示）将词表示成一个定长的连续的稠密向量。它能使词之间存在相似关系，使词之间存在“距离”概念。</p>
+<h1 id="语言模型（Language-model"><a href="#语言模型（Language-model" class="headerlink" title="语言模型（Language model)"></a>语言模型（Language model)</h1><h2 id="n元语法（n-gram）"><a href="#n元语法（n-gram）" class="headerlink" title="n元语法（n-gram）"></a>n元语法（n-gram）</h2><p>一个语言模型通常构建为字符串$s$的概率分布$p(s)$，这里$p(s)$试图反应的是字符串$s$作为一个句子出现的概率。</p>
+<p>对于一个由$l$个基元（“基元”可以为字、词或短语等，为表述方便，用“词”来通指）构成的句子$s=\omega_1\omega_2\cdots\omega_l$，其概率计算公式可以表示为：</p>
+<script type="math/tex; mode=display">
+\begin{equation}\begin{split}
+p(s)&=p(\omega_1)P(\omega_2 | \omega_1)p(\omega_3 | \omega_1\omega_2)\cdots p(\omega_l | \omega_1...\omega_{l-1})\\
+    &=\prod_{i=1}^lp(\omega_i | \omega_1\cdots\omega_{i-1})
+\end{split}\end{equation}</script><p>式中，产生第$i(1≤i≤l)$个词的概率是由已经产生的$i-1$个词$\omega_1\cdots\omega_{i-1}$决定的。一般地，我们把前$i-1$个词$\omega_1\cdots\omega_{i-1}$称为第$i$个词地“历史（history）”。在这种计算方法中，随着历史长度的增加，不同的历史数目按指数级增长。如果历史的长度为$i-1$，那么，就有$L^{i-1}$种不同的的历史（假设$L$为词汇集的大小），而我们必须考虑在所有$L^{i-1}$种不同历史情况下，产生第$i$个词的概率。这样的话，模型种就有$L^i$个自由参数$p(\omega_i|\omega_1,\omega_2,\cdots,\omega_{i-1})$。假设$L=500$，$i=3$，那么自由参数的数目就是1250亿个。</p>
+<p>为了解决以上问题，我们提出n元语法（n-gram），它的含义我们可以简单理解成：一个词的概率只依赖于它前面的$n-1$个词。当$n=1$时，即词$\omega_1$独立于历史时，记作unigram；当$n=2$时，词$\omega_1$仅与它前面的一个历史词$\omega_{i-1}$有关，记作bigram；当$n=3$时，词$\omega_1$仅与它前面的两个历史词$\omega_{i-1}\omega_{i-2}$有关，记作trigram。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/01/numpy-exercises & experiences/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1384,7 +1540,7 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1407,7 +1563,9 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                      
+                    
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1601,6 +1759,10 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
   
     
       
+        
+      
+    
+      
     
       
     
@@ -1608,6 +1770,46 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
     
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
