@@ -557,10 +557,10 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
 <p>BeautifulSoup类的基本元素</p>
 <pre><code>&lt;p class=&quot;title&quot;&gt;...&lt;/p&gt;
 </code></pre><ul>
-<li>Tag, 标签，最基本的信息组织单元，分别用&lt;&gt;和&lt;/&gt;表明开头和结尾 </li>
+<li>Tag, 标签，最基本的信息组织单元，分别用<>和</>表明开头和结尾 </li>
 <li>Name, 标签的名字，&lt;p&gt;…&lt;/p&gt;的名字是’p’, 格式：<tag>.name</tag></li>
 <li>Attributes, 标签的属性，字典形式组织，格式：<tag>.attr</tag></li>
-<li>NavigableString, 标签内非属性字符串，&lt;&gt;…&lt;/&gt;中的字符串，格式：<tag>.string</tag></li>
+<li>NavigableString, 标签内非属性字符串，<>...</>中的字符串，格式：<tag>.string</tag></li>
 <li>Comment, 标签内字符串的注释部分，一种特殊的Comment类型</li>
 </ul>
 <p>任何存在于HTML语法中的标签都可以用soup.<tag>访问获得，当HTML文档中存在多个相同<tag>对应内容时，soup.<tag>返回第一个。</tag></tag></tag></p>
@@ -581,10 +581,10 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
 &gt;&gt;&gt;newsoup.p.string
 &gt;&gt;&gt;tyoe(newsoup.p.string)
 </code></pre><p>输出结果为</p>
-<pre><code>&apos;This is a comment&apos; #Comment类型的字符串开头有一个!
-&lt;class &apos;bs4.element.Comment&apos;&gt;
-&apos;This is not a comment&apos;
-&lt;class &apos;bs4.element.NavigableString&apos;&gt;
+<pre><code>&#39;This is a comment&#39; #Comment类型的字符串开头有一个!
+&lt;class &#39;bs4.element.Comment&#39;&gt;
+&#39;This is not a comment&#39;
+&lt;class &#39;bs4.element.NavigableString&#39;&gt;
 </code></pre>
       
     </div>

@@ -604,78 +604,78 @@
 <li>numpy experience</li>
 <li>Refrence</li>
 </ul>
-<h1 id="import"><a href="#import" class="headerlink" title="import"></a>import</h1><pre><code>import numpy as np
+<h1 id="import"><a href="#import" class="headerlink" title="import"></a>import</h1><pre><code>    import numpy as np
 </code></pre><h1 id="The-N-dimeensional-array-class-ndarray"><a href="#The-N-dimeensional-array-class-ndarray" class="headerlink" title="The N-dimeensional array (class ndarray)"></a>The N-dimeensional array (class ndarray)</h1><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>The ndarray class is the core of numpy. The numpy documentation defines the ndarray class very clearly: An instance of class ndarray consists of a contiguous one-dimensional segment of computer memory (owned by the array, or by some other object), combined with an indexing scheme that maps N integers into the location of an item in the block.</p>
 <p>Said differently, an array is mostly a contiguous block of memory whose parts can be accessed using an indexing scheme. </p>
 <h2 id="Memory-layout"><a href="#Memory-layout" class="headerlink" title="Memory layout"></a>Memory layout</h2><p>Such indexing scheme is in turn defined by a <strong>shape</strong> and a <strong>data type</strong> and this is precisely what is needed when you define a new array:</p>
-<pre><code>Z = np.arange(9).reshape(3,3).astype(np.int16)
+<pre><code>    Z = np.arange(9).reshape(3,3).astype(np.int16)
 </code></pre><p>Here, we know that Z itemsize is 2 bytes (int16), the shape is (3,3) and the number of dimensions is 2 (len(Z.shape)).</p>
-<pre><code>print(Z.itemsize)    #2
-print(Z.shape)        #(3, 3)
-print(Z.ndim)        #2
+<pre><code>    print(Z.itemsize)    #2
+    print(Z.shape)        #(3, 3)
+    print(Z.ndim)        #2
 </code></pre><blockquote>
 <p>The number of dimensions (axes) of the array. In the Python world, the number of dimensions is referred to as <strong>rank</strong>. The rank of array Z is np.ndim(Z). 这里的 rank 不是线性代数中的 rank（秩），它指代的是<strong>维数</strong>（number of dimensions）</p>
 </blockquote>
-<h3 id="Item-layout"><a href="#Item-layout" class="headerlink" title="Item layout"></a>Item layout</h3><pre><code>               shape[1]
-                 (=3)
-            ┌───────────┐
+<h3 id="Item-layout"><a href="#Item-layout" class="headerlink" title="Item layout"></a>Item layout</h3><pre><code>                   shape[1]
+                     (=3)
+                ┌───────────┐
 
-         ┌  ┌───┬───┬───┐  ┐
-         │  │ 0 │ 1 │ 2 │  │
-         │  ├───┼───┼───┤  │
-shape[0] │  │ 3 │ 4 │ 5 │  │ len(Z)
- (=3)    │  ├───┼───┼───┤  │  (=3)
-         │  │ 6 │ 7 │ 8 │  │
-         └  └───┴───┴───┘  ┘
+             ┌  ┌───┬───┬───┐  ┐
+             │  │ 0 │ 1 │ 2 │  │
+             │  ├───┼───┼───┤  │
+    shape[0] │  │ 3 │ 4 │ 5 │  │ len(Z)
+     (=3)    │  ├───┼───┼───┤  │  (=3)
+             │  │ 6 │ 7 │ 8 │  │
+             └  └───┴───┴───┘  ┘
 </code></pre><p>axis的计数方式是<strong>从外到内</strong>计数的，例如矩阵Z在numpy中表示为：</p>
-<pre><code>Z = [[0,1,2],
-     [3,4,5],
-     [6,7,8]]
+<pre><code>    Z = [[0,1,2],
+         [3,4,5],
+         [6,7,8]]
 </code></pre><p>对应的轴为：</p>
-<pre><code>    axis = 0
-    |
-    | axis = 1
-    | |
-    ↓ ↓
-Z = [ [0,1,2],
-      [3,4,5],
-      [6,7,8] ]
+<pre><code>        axis = 0
+        |
+        | axis = 1
+        | |
+        ↓ ↓
+    Z = [ [0,1,2],
+          [3,4,5],
+          [6,7,8] ]
 </code></pre><p>在指定axis上求和，即对于np.sum(Z, <strong>axis=0</strong>)和np.sum(Z, <strong>axis=1</strong>)会有不同的结果</p>
-<h3 id="Flattened-item-layout"><a href="#Flattened-item-layout" class="headerlink" title="Flattened item layout"></a>Flattened item layout</h3><pre><code>┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
-│ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │
-└───┴───┴───┴───┴───┴───┴───┴───┴───┘
+<h3 id="Flattened-item-layout"><a href="#Flattened-item-layout" class="headerlink" title="Flattened item layout"></a>Flattened item layout</h3><pre><code>    ┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+    │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │
+    └───┴───┴───┴───┴───┴───┴───┴───┴───┘
 
-└───────────────────────────────────┘
-               Z.size
-                (=9)
-</code></pre><h3 id="Memory-layout-1"><a href="#Memory-layout-1" class="headerlink" title="Memory layout"></a>Memory layout</h3><pre><code>                         strides[1]
-                           (=2)
-                  ┌─────────────────────┐
+    └───────────────────────────────────┘
+                   Z.size
+                    (=9)
+</code></pre><h3 id="Memory-layout-1"><a href="#Memory-layout-1" class="headerlink" title="Memory layout"></a>Memory layout</h3><pre><code>                             strides[1]
+                               (=2)
+                      ┌─────────────────────┐
 
-          ┌       ┌──────────┬──────────┐ ┐
-          │ p+00: │ 00000000 │ 00000000 │ │
-          │       ├──────────┼──────────┤ │
-          │ p+02: │ 00000000 │ 00000001 │ │ strides[0]
-          │       ├──────────┼──────────┤ │   (=2x3)
-          │ p+04  │ 00000000 │ 00000010 │ │
-          │       ├──────────┼──────────┤ ┘
-          │ p+06  │ 00000000 │ 00000011 │
-          │       ├──────────┼──────────┤
-Z.nbytes  │ p+08: │ 00000000 │ 00000100 │
-(=3x3x2)  │       ├──────────┼──────────┤
-          │ p+10: │ 00000000 │ 00000101 │
-          │       ├──────────┼──────────┤
-          │ p+12: │ 00000000 │ 00000110 │
-          │       ├──────────┼──────────┤
-          │ p+14: │ 00000000 │ 00000111 │
-          │       ├──────────┼──────────┤
-          │ p+16: │ 00000000 │ 00001000 │
-          └       └──────────┴──────────┘
+              ┌       ┌──────────┬──────────┐ ┐
+              │ p+00: │ 00000000 │ 00000000 │ │
+              │       ├──────────┼──────────┤ │
+              │ p+02: │ 00000000 │ 00000001 │ │ strides[0]
+              │       ├──────────┼──────────┤ │   (=2x3)
+              │ p+04  │ 00000000 │ 00000010 │ │
+              │       ├──────────┼──────────┤ ┘
+              │ p+06  │ 00000000 │ 00000011 │
+              │       ├──────────┼──────────┤
+    Z.nbytes  │ p+08: │ 00000000 │ 00000100 │
+    (=3x3x2)  │       ├──────────┼──────────┤
+              │ p+10: │ 00000000 │ 00000101 │
+              │       ├──────────┼──────────┤
+              │ p+12: │ 00000000 │ 00000110 │
+              │       ├──────────┼──────────┤
+              │ p+14: │ 00000000 │ 00000111 │
+              │       ├──────────┼──────────┤
+              │ p+16: │ 00000000 │ 00001000 │
+              └       └──────────┴──────────┘
 
-                  └─────────────────────┘
-                        Z.itemsize
-                     Z.dtype.itemsize
-                           (=2)
+                      └─────────────────────┘
+                            Z.itemsize
+                         Z.dtype.itemsize
+                               (=2)
 </code></pre><h2 id="Copies-amp-Views"><a href="#Copies-amp-Views" class="headerlink" title="Copies &amp; Views"></a>Copies &amp; Views</h2><h3 id="No-Copy-b-a"><a href="#No-Copy-b-a" class="headerlink" title="No Copy (b=a)"></a>No Copy (b=a)</h3><p>Simple assignments do not make the copy of array object. Instead, it uses <strong>the same id()</strong> of the original array to access it. The id() returns a universal identifier of Python object, similar to the pointer in C.</p>
 <p>Furthermore, any changes in either gets reflected in the other. For example, the changing shape of one will change the shape of the other too.</p>
 <h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(12)</span><br><span class="line">b = a</span><br><span class="line"></span><br><span class="line">print(b is a)  # 返回 True</span><br><span class="line">b.shape = (3,4)</span><br><span class="line">print (&quot;a.shape=&quot;,a.shape)  # a.shape= (3, 4)</span><br><span class="line">print (id(a))   # 2493855732640</span><br><span class="line">print (id(b))   # 2493855732640</span><br></pre></td></tr></table></figure>
@@ -687,49 +687,49 @@ Z.nbytes  │ p+08: │ 00000000 │ 00000100 │
 </code></pre><h1 id="numpy-experience"><a href="#numpy-experience" class="headerlink" title="numpy experience"></a>numpy experience</h1><p>内容主要来自：<a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></p>
 <ol>
 <li><p>Import the numpy package under the name np (★☆☆)</p>
-<pre><code>import numpy as np
+<pre><code> import numpy as np
 </code></pre></li>
 <li><p>Print the numpy version and the configuration (★☆☆)</p>
-<pre><code>print(np.__veision__)
-np.show_config()
+<pre><code> print(np.__veision__)
+ np.show_config()
 </code></pre></li>
 <li><p>Create a null vector of size 10 but the fifth value which is 1 (★☆☆)</p>
-<pre><code>Z = np.zeros(10)
-Z[4] = 1
-print(Z)
+<pre><code> Z = np.zeros(10)
+ Z[4] = 1
+ print(Z)
 </code></pre></li>
 <li><p>Create a vector with values ranging from 10 to 49 (★☆☆)</p>
-<pre><code>Z = np.arange(10, 50)
-print(Z)
+<pre><code> Z = np.arange(10, 50)
+ print(Z)
 </code></pre></li>
 <li><p>How to find the memory size of any array (★☆☆)</p>
-<pre><code>Z = np.zeros((10,10))
-print(&quot;%d bytes&quot; % (Z.size * Z.itemsize))
-#Z.size=10*10=100, Z.itemsize=8
+<pre><code> Z = np.zeros((10,10))
+ print(&quot;%d bytes&quot; % (Z.size * Z.itemsize))
+ #Z.size=10*10=100, Z.itemsize=8
 </code></pre></li>
 <li><p>Reverse a vector (first element becomes last) (★☆☆)</p>
-<pre><code>Z = np.arange(50)
-Z = Z[::-1]
-print(Z)
+<pre><code> Z = np.arange(50)
+ Z = Z[::-1]
+ print(Z)
 </code></pre></li>
 <li><p>Create a 3x3 matrix with values ranging from 0 to 8 (★☆☆)</p>
-<pre><code>Z = np.arange(9).reshape(3, 3)
-print(Z)
+<pre><code> Z = np.arange(9).reshape(3, 3)
+ print(Z)
 </code></pre></li>
 <li><p>Find indices of non-zero elements from [1,2,0,0,4,0] (★☆☆)</p>
-<pre><code>nz = np.nonzero([1,2,0,0,4,0])
-print(nz)
-#np.nonzero会返回非0值的下标
+<pre><code> nz = np.nonzero([1,2,0,0,4,0])
+ print(nz)
+ #np.nonzero会返回非0值的下标
 </code></pre></li>
 <li><p>Create a 3x3 identity matrix(单位矩阵) (★☆☆)</p>
-<pre><code>Z = np.eye(3)
-print(Z)
+<pre><code> Z = np.eye(3)
+ print(Z)
 
-&quot;&quot;&quot;
-array([[1., 0., 0.],
-       [0., 1., 0.],
-       [0., 0., 1.]])
-&quot;&quot;&quot;
+ &quot;&quot;&quot;
+ array([[1., 0., 0.],
+        [0., 1., 0.],
+        [0., 0., 1.]])
+ &quot;&quot;&quot;
 </code></pre></li>
 <li><p>Create a 3x3x3 array with random values (★☆☆)</p>
 <pre><code>Z = np.random.random((3,3,3))
@@ -752,7 +752,7 @@ print(Z)
 </code></pre></li>
 <li><p>How to add a border (filled with 0’s) around an existing array? (★☆☆)</p>
 <pre><code>Z = np.ones((5,5))
-Z = np.pad(Z, pad_width=1, mode=&apos;constant&apos;, constant_values=0)
+Z = np.pad(Z, pad_width=1, mode=&#39;constant&#39;, constant_values=0)
 print(Z)
 </code></pre></li>
 <li><p>What is the result of the following expression? (★☆☆)</p>
@@ -819,12 +819,12 @@ _ = np.seterr(**defaults)
 <pre><code>np.sqrt(-1) == np.emath.sqrt(-1)    #False
 </code></pre></li>
 <li><p>How to get the dates of yesterday, today and tomorrow? (★☆☆)</p>
-<pre><code>yesterday = np.datetime64(&apos;today&apos;, &apos;D&apos;) - np.timedelta64(1, &apos;D&apos;)
-today     = np.datetime64(&apos;today&apos;, &apos;D&apos;)
-tomorrow  = np.datetime64(&apos;today&apos;, &apos;D&apos;) + np.timedelta64(1, &apos;D&apos;)
+<pre><code>yesterday = np.datetime64(&#39;today&#39;, &#39;D&#39;) - np.timedelta64(1, &#39;D&#39;)
+today     = np.datetime64(&#39;today&#39;, &#39;D&#39;)
+tomorrow  = np.datetime64(&#39;today&#39;, &#39;D&#39;) + np.timedelta64(1, &#39;D&#39;)
 </code></pre></li>
 <li><p>How to get all the dates corresponding to the month of July 2016? (★★☆)</p>
-<pre><code>Z = np.arange(&apos;2016-07&apos;, &apos;2016-08&apos;, dtype=&apos;datetime64[D]&apos;)
+<pre><code>Z = np.arange(&#39;2016-07&#39;, &#39;2016-08&#39;, dtype=&#39;datetime64[D]&#39;)
 print(Z)
 </code></pre></li>
 <li><p>How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)</p>
@@ -1099,7 +1099,7 @@ print(A)
 <li>标记后的信息可用于通信、存储或展示</li>
 <li>标记后的信息更有利于程序理解和应用</li>
 </ul>
-<p>&nbsp;&nbsp;&nbsp;HTML通过预定义的&lt;&gt;…&lt;/&gt;标签形式组织不同类型的信息</p>
+<p>&nbsp;&nbsp;&nbsp;HTML通过预定义的<>...</>标签形式组织不同类型的信息</p>
 <h1 id="Ⅱ-信息标记的三种方式"><a href="#Ⅱ-信息标记的三种方式" class="headerlink" title="Ⅱ.信息标记的三种方式"></a>Ⅱ.信息标记的三种方式</h1><h2 id="1-XML"><a href="#1-XML" class="headerlink" title="1.XML"></a>1.XML</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<code>&lt;img src=&quot;china.jpg&quot; size=&quot;10&quot;&gt;...&lt;/img&gt;</code></p>
 <p>&nbsp;&nbsp;以<code>&lt;img&gt;</code>开始，以<code>&lt;/img&gt;</code>结束，<code>&lt;img&gt;</code>为标签tag<br>&nbsp;&nbsp;<code>img</code>为名称name，标签中的<code>src</code>与<code>size</code>为属性attibute</p>
 <p>&nbsp;&nbsp;如果是空元素，有以下缩写形式：<code>&lt;img src=&quot;china.jpg&quot; size=&quot;10&quot; /&gt;</code></p>
@@ -1416,10 +1416,10 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
 <p>BeautifulSoup类的基本元素</p>
 <pre><code>&lt;p class=&quot;title&quot;&gt;...&lt;/p&gt;
 </code></pre><ul>
-<li>Tag, 标签，最基本的信息组织单元，分别用&lt;&gt;和&lt;/&gt;表明开头和结尾 </li>
+<li>Tag, 标签，最基本的信息组织单元，分别用<>和</>表明开头和结尾 </li>
 <li>Name, 标签的名字，&lt;p&gt;…&lt;/p&gt;的名字是’p’, 格式：<tag>.name</tag></li>
 <li>Attributes, 标签的属性，字典形式组织，格式：<tag>.attr</tag></li>
-<li>NavigableString, 标签内非属性字符串，&lt;&gt;…&lt;/&gt;中的字符串，格式：<tag>.string</tag></li>
+<li>NavigableString, 标签内非属性字符串，<>...</>中的字符串，格式：<tag>.string</tag></li>
 <li>Comment, 标签内字符串的注释部分，一种特殊的Comment类型</li>
 </ul>
 <p>任何存在于HTML语法中的标签都可以用soup.<tag>访问获得，当HTML文档中存在多个相同<tag>对应内容时，soup.<tag>返回第一个。</tag></tag></tag></p>
@@ -1440,10 +1440,10 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
 &gt;&gt;&gt;newsoup.p.string
 &gt;&gt;&gt;tyoe(newsoup.p.string)
 </code></pre><p>输出结果为</p>
-<pre><code>&apos;This is a comment&apos; #Comment类型的字符串开头有一个!
-&lt;class &apos;bs4.element.Comment&apos;&gt;
-&apos;This is not a comment&apos;
-&lt;class &apos;bs4.element.NavigableString&apos;&gt;
+<pre><code>&#39;This is a comment&#39; #Comment类型的字符串开头有一个!
+&lt;class &#39;bs4.element.Comment&#39;&gt;
+&#39;This is not a comment&#39;
+&lt;class &#39;bs4.element.NavigableString&#39;&gt;
 </code></pre>
           
         
