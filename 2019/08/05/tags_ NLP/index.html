@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="书写筑明天">
 <meta property="og:description" content="word2vec顾名思义，词向量是用来表示词的向量，通常也被认为是词的特征向量。近年来，词向量已逐渐成为自然语言处理的基础知识。 在自然语言处理（NLP）的世界里，词是最小的单元，由词组成句，句组成段落、篇章、文档，所以处理NLP问题，必须从词入手。在自然语言中词是符号形式的，要对词进行处理，就必须把它们转换成数值形式，或者说，把词嵌入到一个数学空间里，这种嵌入方式，就是词嵌入（word embe">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-05T13:38:09.921Z">
+<meta property="og:updated_time" content="2019-08-05T13:40:43.709Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量与word2vec">
 <meta name="twitter:description" content="word2vec顾名思义，词向量是用来表示词的向量，通常也被认为是词的特征向量。近年来，词向量已逐渐成为自然语言处理的基础知识。 在自然语言处理（NLP）的世界里，词是最小的单元，由词组成句，句组成段落、篇章、文档，所以处理NLP问题，必须从词入手。在自然语言中词是符号形式的，要对词进行处理，就必须把它们转换成数值形式，或者说，把词嵌入到一个数学空间里，这种嵌入方式，就是词嵌入（word embe">
@@ -388,7 +388,7 @@
                 
               
 
-              <time title="创建时间：2019-08-05 21:38:02 / 修改时间：21:38:09" itemprop="dateCreated datePublished" datetime="2019-08-05T21:38:02+08:00">2019-08-05</time>
+              <time title="创建时间：2019-08-05 21:38:02 / 修改时间：21:40:43" itemprop="dateCreated datePublished" datetime="2019-08-05T21:38:02+08:00">2019-08-05</time>
             
 
             
@@ -448,7 +448,7 @@ p(s)=\prod_{i=1}^lp(w_i|w_1w_2\cdots w_{i-1}) \approx \prod_{i=1}^lp(w_i|w_{i-1}
 \begin{equation}\begin{split}
 p(Mark\ wrote\ a\ book)=&p(Mark|<BOS>)×p(wrote|Mark)\\
 &×p(a|wrote)×p(book|a)×p(<EOS>|book)
-\end{split}\end{equation}</script><p>为了估计$p(w_i|w_{i-1})$条件概率，可以简单地计算$w_{i-1}w_i$在某一文本中出现地频率，然后归一化。如果用$c(w_{i-1}w_i)$表示二元语法$w_{i-1}w_i$在给定文本中地出现次数，我们可以采用以下的计算公式：</p>
+\end{split}\end{equation}</script><p>为了估计$p(w_i|w_{i-1})$条件概率，可以简单地计算$w_{i-1}w_i$在某一文本中出现的频率，然后归一化。如果用$c(w_{i-1}w_i)$表示二元语法$w_{i-1}w_i$在给定文本中的出现次数，我们可以采用以下的计算公式：</p>
 <script type="math/tex; mode=display">
 \begin{equation}\begin{split}
 p(w_i|w_{i-1})={c(w_{i-1}w_i)\over \sum_{w_i}c(w_{i-1}w_i)}

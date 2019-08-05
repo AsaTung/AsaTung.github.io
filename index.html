@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2019-08-05 21:38:02 / 修改时间：21:38:09" itemprop="dateCreated datePublished" datetime="2019-08-05T21:38:02+08:00">2019-08-05</time>
+              <time title="创建时间：2019-08-05 21:38:02 / 修改时间：21:40:43" itemprop="dateCreated datePublished" datetime="2019-08-05T21:38:02+08:00">2019-08-05</time>
             
 
             
@@ -448,7 +448,7 @@ p(s)=\prod_{i=1}^lp(w_i|w_1w_2\cdots w_{i-1}) \approx \prod_{i=1}^lp(w_i|w_{i-1}
 \begin{equation}\begin{split}
 p(Mark\ wrote\ a\ book)=&p(Mark|<BOS>)×p(wrote|Mark)\\
 &×p(a|wrote)×p(book|a)×p(<EOS>|book)
-\end{split}\end{equation}</script><p>为了估计$p(w_i|w_{i-1})$条件概率，可以简单地计算$w_{i-1}w_i$在某一文本中出现地频率，然后归一化。如果用$c(w_{i-1}w_i)$表示二元语法$w_{i-1}w_i$在给定文本中地出现次数，我们可以采用以下的计算公式：</p>
+\end{split}\end{equation}</script><p>为了估计$p(w_i|w_{i-1})$条件概率，可以简单地计算$w_{i-1}w_i$在某一文本中出现的频率，然后归一化。如果用$c(w_{i-1}w_i)$表示二元语法$w_{i-1}w_i$在给定文本中的出现次数，我们可以采用以下的计算公式：</p>
 <script type="math/tex; mode=display">
 \begin{equation}\begin{split}
 p(w_i|w_{i-1})={c(w_{i-1}w_i)\over \sum_{w_i}c(w_{i-1}w_i)}
