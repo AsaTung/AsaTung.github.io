@@ -341,6 +341,182 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/08/title_ 操作系统（operating system）那些事 (1)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="书写筑明天">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/08/title_ 操作系统（operating system）那些事 (1)/" class="post-title-link" itemprop="url">未命名</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-08 17:09:42 / 修改时间：17:11:58" itemprop="dateCreated datePublished" datetime="2019-09-08T17:09:42+08:00">2019-09-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>tags:os</p>
+<h2 id="title-操作系统（operating-system）那些事"><a href="#title-操作系统（operating-system）那些事" class="headerlink" title="title:操作系统（operating system）那些事"></a>title:操作系统（operating system）那些事</h2><p>操作系统是计算机系统中的一个系统软件（<strong>是什么</strong>），它是这样一些程序模块的集合——它们管理和控制计算机系统中的硬件及软件资源，合理地组织计算机工作流程（<strong>干什么</strong>），以便有效地利用这些资源为用户提供一个具有足够的功能、使用方便、可扩展、安全和可管理的工作环境，从而在计算机与其用户之间起到接口的作用（<strong>为什么</strong>）。</p>
+<p>本文主要内容为操作系统的发展历史和各种操作系统简介。</p>
+<h1 id="Table-Of-Contents"><a href="#Table-Of-Contents" class="headerlink" title="Table Of Contents"></a>Table Of Contents</h1><ul>
+<li>os发展过程</li>
+</ul>
+<h1 id="os发展过程"><a href="#os发展过程" class="headerlink" title="os发展过程"></a>os发展过程</h1><p><strong>计算机</strong>发展过程分为四个阶段。第一代，电子管时代，无操作系统。第二代，晶体管时代，批处理系统。第三代，集成电路时代，多道程序设计。第四代，大规模和超大规模集成电路时代，分时系统。</p>
+<p>适应上述计算机发展过程，操作系统经历了如下的发展过程：手工操作系统，批处理，执行系统，多道程序系统，分时系统，实时系统，通用操作系统，网络操作系统和分布式操作系统等。</p>
+<h2 id="手工操作阶段"><a href="#手工操作阶段" class="headerlink" title="手工操作阶段"></a>手工操作阶段</h2><p>计算机工作采用手工操作方式，用户独占全机。不会出现因资源已被其他用户占用而等待的现象，但资源的利用率低。20世纪50年代后期，手工操作的慢速度和计算机的高速度之间形成了尖锐矛盾，手工操作方式已严重损害了系统资源的利用率。</p>
+<h2 id="批处理系统"><a href="#批处理系统" class="headerlink" title="批处理系统"></a>批处理系统</h2><p>在批处理系统的控制下，计算机能够自动地、成批地处理一个或多个用户的作业。</p>
+<h3 id="联机批处理"><a href="#联机批处理" class="headerlink" title="联机批处理"></a>联机批处理</h3><p>作业的输入/输出由CPU来处理。在作业输入和结果输出时，主机的高速CPU仍处于空闲状态，等待慢速的输入/输出设备完成工作。</p>
+<h3 id="脱机批处理"><a href="#脱机批处理" class="headerlink" title="脱机批处理"></a>脱机批处理</h3><p>为克服与缓解，高速主机与慢速外设的矛盾，提高CPU的利用率，又引入了脱机批处理系统，即输入/输出脱离主机控制。这种方式的显著特征是：增加一台不与主机直接相连而专门用于与输入/输出设备打交道的卫星机。</p>
+<p>卫星机从<strong>输入机上读取用户作业并放到输入磁带上，从输出磁带上读取执行结果并传给输出机</strong>，这样，主机不是直接与慢速的输入/输出设备打交道，而是与速度相对较快的磁带机发生关系，有效缓解了主机与设备的矛盾。主机与卫星机可并行工作，二者分工明确，可以充分发挥主机的高速计算能力。</p>
+<p>不足：每次主机内存中仅存放一道作业，每当它运行期间发出输入/输出（I/O）请求后，高速的CPU便处于等待低速的I/O完成状态，致使CPU空闲。为改善CPU的利用率，又引入了多道程序系统。</p>
+<h2 id="多道程序系统"><a href="#多道程序系统" class="headerlink" title="多道程序系统"></a>多道程序系统</h2><p>所谓多道程序设计技术，就是指允许多个程序同时进入内存并运行。即同时把多个程序放入内存，并允许它们交替在CPU中运行，它们共享系统中的各种硬、软件资源。当一道程序因I/O请求而暂停运行时，CPU便立即转去运行另一道程序。</p>
+<p>多道程序运行的特点有：多道、宏观上并行、微观上串行。</p>
+<h2 id="分时系统"><a href="#分时系统" class="headerlink" title="分时系统"></a>分时系统</h2><p>由于CPU速度不断提高和采用分时技术，一台计算机可同时连接多个用户终端，而每个用户可在自己的终端上联机使用计算机，好象自己独占机器一样。</p>
+<p>分时技术：把处理机的运行时间分成很短的时间片，按时间片轮流把处理机分配给各联机作业使用。分时系统的主要目标：对用户响应的及时性，即不至于用户等待每一个命令的处理时间过长。</p>
+<p>分时系统可以同时接纳数十个甚至上百个用户，由于内存空间有限，往往采用对换（又称交换）方式的存储方法。即将未“轮到”的作业放入磁盘，一旦“轮到”，再将其调入内存；而时间片用完后，又将作业存回磁盘（俗称“滚进”、“滚出”法），使同一存储区域轮流为多个用户服务。</p>
+<p>多用户分时系统是当今计算机操作系统中最普遍使用的一类操作系统。</p>
+<h2 id="实时操作系统"><a href="#实时操作系统" class="headerlink" title="实时操作系统"></a>实时操作系统</h2><p>实时操作系统是以<strong>在允许时间范围之内做出响应</strong>为特征的。它要求计算机对于外来信息能以足够快的速度进行处理，并在被控对象允许时间范围内做出快速响应，其响应时间要求的秒级、毫秒级甚至微秒级或更小。</p>
+<h2 id="通用操作系统"><a href="#通用操作系统" class="headerlink" title="通用操作系统"></a>通用操作系统</h2><p>操作系统的三种基本类型：多道批处理系统、分时系统、实时系统。通用操作系统：<strong>具有多种类型操作特征的操作系统</strong>。可以同时兼有多道批处理、分时、实时处理的功能，或其中两种以上的功能。</p>
+<p>从上世纪60年代中期，国际上开始研制一些大型的通用操作系统。这些系统试图达到功能齐全、可适应各种应用范围和操作方式变化多端的环境的目标。但是，这些系统过于复杂和庞大，不仅付出了巨大的代价，且在解决其可靠性、可维护性和可理解性方面都遇到很大的困难。</p>
+<p>相比之下，<strong>UNIX操作系统</strong>却是一个例外。这是一个通用的多用户分时交互型的操作系统。它首先建立的是一个精干的核心，而其功能却足以与许多大型的操作系统相媲美，在核心层以外，可以支持庞大的软件系统。它很快得到应用和推广，并不断完善，对现代操作系统有着重大的影响。</p>
+<p>至此，操作系统的基本概念、功能、基本结构和组成都已形成并渐趋完善。</p>
+<h2 id="操作系统的进一步发展"><a href="#操作系统的进一步发展" class="headerlink" title="操作系统的进一步发展"></a>操作系统的进一步发展</h2><p>操作系统的进一步发展包括：</p>
+<ul>
+<li>个人计算机操作系统，例如Windows系列；</li>
+<li>嵌入式操作系统，例如Symbian操作系统；</li>
+<li>网络操作系统；</li>
+<li>分布式操作系统；</li>
+<li>智能化操作系统。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/tags_ NLP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1564,7 +1740,7 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1781,6 +1957,8 @@ soup = BeautifulSoup(demo, &quot;html.parser&quot;)
 
   
   
+    
+      
     
       
         
