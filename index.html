@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2020-05-25 00:00:00 / 修改时间：11:58:11" itemprop="dateCreated datePublished" datetime="2020-05-25T00:00:00+08:00">2020-05-25</time>
+              <time title="创建时间：2020-05-25 00:00:00 / 修改时间：12:06:46" itemprop="dateCreated datePublished" datetime="2020-05-25T00:00:00+08:00">2020-05-25</time>
             
 
             
@@ -443,8 +443,7 @@
 <li>Configure Trunk</li>
 </ul>
 </li>
-<li><p>Router</p>
-<ul>
+<li>Router<ul>
 <li>Router basic configuration<ul>
 <li>IPv4 Config and DCE Clock Rate</li>
 <li>IPv6 Config</li>
@@ -458,13 +457,12 @@
 </ul>
 </li>
 <li>Configure RIPv2</li>
-<li><p>Configuring Router-on-a-Stick Inter-VLAN Routing</p>
-<h1 id="Basic-Devide-Configuration"><a href="#Basic-Devide-Configuration" class="headerlink" title="Basic Devide Configuration"></a>Basic Devide Configuration</h1><h2 id="Configure-Passwords"><a href="#Configure-Passwords" class="headerlink" title="Configure Passwords"></a>Configure Passwords</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#enable password cisco</span><br><span class="line">Switch(config)#enable secret class</span><br><span class="line"></span><br><span class="line">Switch(config)#line console 0</span><br><span class="line">Switch(config)#password cisco</span><br><span class="line">Switch(config)#login</span><br><span class="line"></span><br><span class="line">Switch(config)#line vty 0 15</span><br><span class="line">Switch(config)#password cisco</span><br><span class="line">Switch(config)#login</span><br><span class="line"></span><br><span class="line">Switch#show running-config</span><br></pre></td></tr></table></figure>
-</li>
+<li>Configuring Router-on-a-Stick Inter-VLAN Routing</li>
 </ul>
 </li>
 </ul>
-<h2 id="Encrypt-Passwords"><a href="#Encrypt-Passwords" class="headerlink" title="Encrypt Passwords"></a>Encrypt Passwords</h2><pre><code>S1(config)#service password-encryption
+<h1 id="Basic-Device-Configuration"><a href="#Basic-Device-Configuration" class="headerlink" title="Basic Device Configuration"></a>Basic Device Configuration</h1><h2 id="Configure-Passwords"><a href="#Configure-Passwords" class="headerlink" title="Configure Passwords"></a>Configure Passwords</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#enable password cisco</span><br><span class="line">Switch(config)#enable secret class</span><br><span class="line"></span><br><span class="line">Switch(config)#line console 0</span><br><span class="line">Switch(config)#password cisco</span><br><span class="line">Switch(config)#login</span><br><span class="line"></span><br><span class="line">Switch(config)#line vty 0 15</span><br><span class="line">Switch(config)#password cisco</span><br><span class="line">Switch(config)#login</span><br><span class="line"></span><br><span class="line">Switch#show running-config</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Encrypt-Passwords"><a href="#Encrypt-Passwords" class="headerlink" title="Encrypt Passwords"></a>Encrypt Passwords</h2><pre><code>S1(config)#service password-encryption
 </code></pre><p>Use the <code>show running-config</code> command to verify that passwords are now encrypted.</p>
 <h2 id="Banner-Messages"><a href="#Banner-Messages" class="headerlink" title="Banner Messages"></a>Banner Messages</h2><pre><code>S1(config)#banner motd # the message of the day #
 </code></pre><h2 id="Save-the-Running-Configuration-File"><a href="#Save-the-Running-Configuration-File" class="headerlink" title="Save the Running Configuration File"></a>Save the Running Configuration File</h2><pre><code>S1#copy running-config startup-config
