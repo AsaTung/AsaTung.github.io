@@ -386,7 +386,7 @@
                 
               
 
-              <time title="创建时间：2023-04-09 17:05:48 / 修改时间：18:37:54" itemprop="dateCreated datePublished" datetime="2023-04-09T17:05:48+08:00">2023-04-09</time>
+              <time title="创建时间：2023-04-09 17:05:48 / 修改时间：18:38:45" itemprop="dateCreated datePublished" datetime="2023-04-09T17:05:48+08:00">2023-04-09</time>
             
 
             
@@ -428,9 +428,12 @@
         
           <h2 id="提取出二进制位最右的1"><a href="#提取出二进制位最右的1" class="headerlink" title="提取出二进制位最右的1"></a>提取出二进制位最右的1</h2><pre><code>    int n;
     int rightOne = n &amp; (~n + 1);     //n与n的取反加1
-</code></pre><h2 id="求中点"><a href="#求中点" class="headerlink" title="求中点"></a>求中点</h2><p>mid = (L + R) / 2   (L+R可能会溢出)</p>
-<p>mid = L + (R - L) / 2</p>
-<p>mid = L + (R - L) &gt;&gt; 1   (右移一位相当于除以2)</p>
+</code></pre><h2 id="求中点"><a href="#求中点" class="headerlink" title="求中点"></a>求中点</h2><pre><code>    mid = (L + R) / 2   (L+R可能会溢出)
+
+    mid = L + (R - L) / 2
+
+    mid = L + (R - L) &gt;&gt; 1   (右移一位相当于除以2)
+</code></pre>
           <!--noindex-->
           
             <div class="post-button text-center">
