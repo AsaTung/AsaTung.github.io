@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="书写筑明天">
 <meta property="og:description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2023-04-11T12:47:43.712Z">
+<meta property="og:updated_time" content="2023-04-13T13:36:59.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt入门（不定时持续补充）">
 <meta name="twitter:description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
@@ -388,12 +388,24 @@
                 
               
 
-              <time title="创建时间：2023-04-11 21:18:43 / 修改时间：20:47:43" itemprop="dateCreated datePublished" datetime="2023-04-11T21:18:43+08:00">2023-04-11</time>
+              <time title="创建时间：2023-04-11 21:18:43" itemprop="dateCreated datePublished" datetime="2023-04-11T21:18:43+08:00">2023-04-11</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-04-13 21:36:59" itemprop="dateModified" datetime="2023-04-13T21:36:59+08:00">2023-04-13</time>
               
             
           </span>
@@ -507,6 +519,26 @@
 <li>Qt::LeftToolBarArea</li>
 <li>设置后期停靠区域，设置浮动，设置移动</li>
 <li>添加菜单项、添加小控件</li>
+</ul>
+</li>
+<li>状态栏<ul>
+<li>最多有一个</li>
+<li>QStatusBar * stBar = statusBar();</li>
+<li>设置到窗口中 setStatusBar(stBar);</li>
+<li>放左侧信息 stBar-&gt;addWidget(label);</li>
+<li>放右侧信息 stBar-&gt;addPermanentWidget(label2);</li>
+</ul>
+</li>
+<li>铆接部件<ul>
+<li>即浮动窗口，可以有多个</li>
+<li>QDockWidget * dockWidget = new QDockWidget(“浮动”, this);<br>addDockWidget(默认停靠区域, 浮动窗口指针);<br>addDockWidget(Qt::BottomDockWidgetArea, dockWidget);</li>
+<li>设置后期停靠区域<br>dockWidget-&gt;setAllowedAreas(Qt::TopDockWidgetArea | Qt::BottomDockWidgetArea);</li>
+</ul>
+</li>
+<li>设置核心部件<ul>
+<li>最多只有一个</li>
+<li>QTextEdit * edit = new QTextEdit(this);</li>
+<li>setCentralWidget(edit);</li>
 </ul>
 </li>
 </ul>
