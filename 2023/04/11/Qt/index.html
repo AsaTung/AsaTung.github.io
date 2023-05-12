@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="书写筑明天">
 <meta property="og:description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2023-05-12T13:26:34.940Z">
+<meta property="og:updated_time" content="2023-05-12T13:30:37.324Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt入门">
 <meta name="twitter:description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2023-05-12 21:26:34" itemprop="dateModified" datetime="2023-05-12T21:26:34+08:00">2023-05-12</time>
+                <time title="修改时间：2023-05-12 21:30:37" itemprop="dateModified" datetime="2023-05-12T21:30:37+08:00">2023-05-12</time>
               
             
           </span>
@@ -538,15 +538,19 @@
 <li>设置核心部件<ul>
 <li>最多只有一个</li>
 <li>QTextEdit * edit = new QTextEdit(this);</li>
-<li>setCentralWidget(edit);<h1 id="资源文件"><a href="#资源文件" class="headerlink" title="资源文件"></a>资源文件</h1></li>
+<li>setCentralWidget(edit);</li>
 </ul>
 </li>
+</ul>
+<h1 id="资源文件"><a href="#资源文件" class="headerlink" title="资源文件"></a>资源文件</h1><ul>
 <li>将图片文件拷贝到项目位置下</li>
 <li>右键项目-&gt;添加新文件-&gt;Qt-&gt;Qt resouce file-&gt;给资源文件起名res</li>
 <li>res 生成 res.qrc</li>
 <li>open in editor 编辑资源</li>
 <li>添加前缀  添加文件</li>
-<li>使用 “ :+ 前缀名 + 文件名”<h1 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h1></li>
+<li>使用 “ :+ 前缀名 + 文件名”</li>
+</ul>
+<h1 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h1><ul>
 <li>分类<ul>
 <li>模态对话框<ul>
 <li>不可以对其他窗口进行操作 阻塞</li>
@@ -574,15 +578,19 @@
 <li>其他标准对话框<ul>
 <li>颜色对话框  QColorDialog::getColor </li>
 <li>文件对话框  QFileDialog::getOpenFileName(父亲，标题，默认路径，过滤文件)</li>
-<li>字体对话框  QFontDialog::getFont <h1 id="界面布局"><a href="#界面布局" class="headerlink" title="界面布局"></a>界面布局</h1></li>
+<li>字体对话框  QFontDialog::getFont </li>
 </ul>
 </li>
+</ul>
+<h1 id="界面布局"><a href="#界面布局" class="headerlink" title="界面布局"></a>界面布局</h1><ul>
 <li>实现了一个登录窗口</li>
 <li>利用布局方式给窗口进行美化</li>
 <li>选取 widget 进行布局，有水平布局、垂直布局、栅格布局</li>
 <li>给用户名、密码、登录、退出按钮进行布局</li>
 <li>默认窗口和控件之间有9像素间隙，可以调整 layoutLeftMargin</li>
-<li>利用弹簧进行布局<h1 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h1></li>
+<li>利用弹簧进行布局</li>
+</ul>
+<h1 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h1><ul>
 <li>按钮组<ul>
 <li>QPushButton 常用按钮</li>
 <li>QToolButton 工具按钮 用于显示图片，如果图片旁边想显示文字，修改风格：toolButtonStyle，凸起风格 autoRaise</li>
