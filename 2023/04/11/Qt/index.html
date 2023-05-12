@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="书写筑明天">
 <meta property="og:description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2023-04-13T13:36:59.212Z">
+<meta property="og:updated_time" content="2023-05-12T13:24:16.417Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Qt入门（不定时持续补充）">
 <meta name="twitter:description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2023-04-13 21:36:59" itemprop="dateModified" datetime="2023-04-13T21:36:59+08:00">2023-04-13</time>
+                <time title="修改时间：2023-05-12 21:24:16" itemprop="dateModified" datetime="2023-05-12T21:24:16+08:00">2023-05-12</time>
               
             
           </span>
@@ -538,7 +538,101 @@
 <li>设置核心部件<ul>
 <li>最多只有一个</li>
 <li>QTextEdit * edit = new QTextEdit(this);</li>
-<li>setCentralWidget(edit);</li>
+<li>setCentralWidget(edit);<h1 id="资源文件"><a href="#资源文件" class="headerlink" title="资源文件"></a>资源文件</h1></li>
+</ul>
+</li>
+<li>将图片文件拷贝到项目位置下</li>
+<li>右键项目-&gt;添加新文件-&gt;Qt-&gt;Qt resouce file-&gt;给资源文件起名res</li>
+<li>res 生成 res.qrc</li>
+<li>open in editor 编辑资源</li>
+<li>添加前缀  添加文件</li>
+<li>使用 “ :+ 前缀名 + 文件名”<h1 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h1></li>
+<li>分类<ul>
+<li>模态对话框<ul>
+<li>不可以对其他窗口进行操作 阻塞</li>
+<li>QDialog dlg(this);  </li>
+<li>dlg.exec();</li>
+</ul>
+</li>
+<li>非模态对话框<ul>
+<li>可以对其他窗口进行操作</li>
+<li>防止一闪而过，创建到堆区</li>
+<li>QDialog * dlg2 = new QDialog(this);</li>
+<li>dlg2-&gt;show();</li>
+<li>dlg2-&gt;setAttribute(Qt::WA_DeleteOnClose); //55号 属性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>标准对话框 — 消息对话框<ul>
+<li>用 QMessageBox 的静态成员函数  创建对话框</li>
+<li>错误对话框、信息对话框、提问对话框、警告对话框</li>
+<li>参数1: 父亲 参数2: 标题  参数3: 显示内容 参数4: 按键类型  参数5: 默认关联回车按键</li>
+<li>返回值 也是StandardButton类型，利用返回值判断用户的输入</li>
+</ul>
+</li>
+<li>其他标准对话框<ul>
+<li>颜色对话框  QColorDialog::getColor </li>
+<li>文件对话框  QFileDialog::getOpenFileName(父亲，标题，默认路径，过滤文件)</li>
+<li>字体对话框  QFontDialog::getFont <h1 id="界面布局"><a href="#界面布局" class="headerlink" title="界面布局"></a>界面布局</h1></li>
+</ul>
+</li>
+<li>实现了一个登录窗口</li>
+<li>利用布局方式给窗口进行美化</li>
+<li>选取 widget 进行布局，有水平布局、垂直布局、栅格布局</li>
+<li>给用户名、密码、登录、退出按钮进行布局</li>
+<li>默认窗口和控件之间有9像素间隙，可以调整 layoutLeftMargin</li>
+<li>利用弹簧进行布局<h1 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h1></li>
+<li>按钮组<ul>
+<li>QPushButton 常用按钮</li>
+<li>QToolButton 工具按钮 用于显示图片，如果图片旁边想显示文字，修改风格：toolButtonStyle，凸起风格 autoRaise</li>
+<li>radioButton 单选按钮，设置默认ui-&gt;rBtnMan-&gt;setChecked(true);</li>
+<li>checkbox 多选按钮，监听状态，2选中，1半选，0未选</li>
+</ul>
+</li>
+<li>QListWidgt 列表控件<ul>
+<li>QListWidgetItem * item = new QListWidgetItem(“锄禾日当午”);  //一行内容</li>
+<li>ui-&gt;listWidget-&gt;addItem(item);  //将一行诗放入到listWidget控件中</li>
+<li>item-&gt;setTextAlignment(Qt::AlignHCenter);   //设置居中方式</li>
+<li>可以利用 addItems 一次性添加整个诗内容</li>
+</ul>
+</li>
+<li>QTreeWidget 树控件<ul>
+<li>设置头<ul>
+<li>ui-&gt;treeWidget-&gt;setHeaderLabels(QStringList()&lt;&lt; “英雄”&lt;&lt; “英雄介绍”);</li>
+</ul>
+</li>
+<li>创建根节点<ul>
+<li>QTreeWidgetItem * liItem = new QTreeWidgetItem(QStringList()&lt;&lt; “力量”);</li>
+</ul>
+</li>
+<li>添加<strong>根节点</strong>到<strong>树控件</strong>上<ul>
+<li>ui-&gt;treeWidget-&gt;addTopLevelItem(liItem);</li>
+</ul>
+</li>
+<li>添加子节点<ul>
+<li>QStringList heroL1;<br>heroL1 &lt;&lt; “刚被猪” &lt;&lt; “前排坦克，能在吸收伤害的同时造成可观的范围输出”;<br>QTreeWidgetItem * l1 = new QTreeWidgetItem(heroL1);<br>liItem-&gt;addChild(l1);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>QTableWidget 表格控件<ul>
+<li>设置列数<ul>
+<li>ui-&gt;tableWidget-&gt;setColumnCount(3);</li>
+</ul>
+</li>
+<li>设置水平表头<ul>
+<li>ui-&gt;tableWidget-&gt;setHorizontalHeaderLabels(QStringList()&lt;&lt;”姓名”&lt;&lt; “性别”&lt;&lt; “年龄”);</li>
+</ul>
+</li>
+<li>设置行数<ul>
+<li>ui-&gt;tableWidget-&gt;setRowCount(5);</li>
+</ul>
+</li>
+<li>设置正文<ul>
+<li>ui-&gt;tableWidget-&gt;setItem(0,0, new QTableWidgetItem(“亚瑟”));</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -732,7 +826,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Signal-and-Slot"><span class="nav-number">1.</span> <span class="nav-text">Signal and Slot</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#QMainWindow"><span class="nav-number">2.</span> <span class="nav-text">QMainWindow</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Signal-and-Slot"><span class="nav-number">1.</span> <span class="nav-text">Signal and Slot</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#QMainWindow"><span class="nav-number">2.</span> <span class="nav-text">QMainWindow</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#资源文件"><span class="nav-number">3.</span> <span class="nav-text">资源文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对话框"><span class="nav-number">4.</span> <span class="nav-text">对话框</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#界面布局"><span class="nav-number">5.</span> <span class="nav-text">界面布局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控件"><span class="nav-number">6.</span> <span class="nav-text">控件</span></a></li></ol></div>
             
 
           </div>
