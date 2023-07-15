@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最近在读机器学习深度学习代码时，时常发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。Numpy数组有许多极其优良的性能，在对大量数据进行数学和其他类型的操作是，我们通常会选择numpy数组而不是python原生的list。因此，本文主要记录入门numpy的一些容易混淆的概念和常见的使用">
+<meta name="keywords" content="numpy">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy exercises and experience">
+<meta property="og:url" content="http://yoursite.com/2023/04/09/numpy-exercises & experiences/index.html">
+<meta property="og:site_name" content="书写筑明天">
+<meta property="og:description" content="最近在读机器学习深度学习代码时，时常发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。Numpy数组有许多极其优良的性能，在对大量数据进行数学和其他类型的操作是，我们通常会选择numpy数组而不是python原生的list。因此，本文主要记录入门numpy的一些容易混淆的概念和常见的使用">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2023-05-12T14:08:06.524Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="numpy exercises and experience">
+<meta name="twitter:description" content="最近在读机器学习深度学习代码时，时常发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。Numpy数组有许多极其优良的性能，在对大量数据进行数学和其他类型的操作是，我们通常会选择numpy数组而不是python原生的list。因此，本文主要记录入门numpy的一些容易混淆的概念和常见的使用">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2023/04/09/numpy-exercises & experiences/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>numpy exercises and experience | 书写筑明天</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">书写筑明天</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Dong Boyang weblog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/04/09/numpy-exercises & experiences/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="书写筑明天">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">numpy exercises and experience
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2023-04-09 18:26:56" itemprop="dateCreated datePublished" datetime="2023-04-09T18:26:56+08:00">2023-04-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-05-12 22:08:06" itemprop="dateModified" datetime="2023-05-12T22:08:06+08:00">2023-05-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近在读机器学习深度学习代码时，时常发现自己读不懂，原因除了不熟悉算法原理之外，还有不知道某个函数实现了什么功能，例如numpy有无数种创建数组和矩阵的方式，为什么这个算法的实现要用到这种方式等等。Numpy数组有许多极其优良的性能，在对大量数据进行数学和其他类型的操作是，我们通常会选择numpy数组而不是python原生的list。因此，本文主要记录入门numpy的一些容易混淆的概念和常见的使用技巧，一方面在记录的过程中理清思路，在脑海里留下一些实现方法的印象，一方面便于日后复习。<br><a id="more"></a></p>
+<h1 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h1><ul>
+<li>import</li>
+<li>The N-dimensional array (class ndarray)<ul>
+<li>Preface</li>
+<li>Memory layout<ul>
+<li>Item layout</li>
+<li>Flattened item layout</li>
+<li>Memory layout</li>
+</ul>
+</li>
+<li>Copies &amp; Views<ul>
+<li>No Copy</li>
+<li>View or Shallow Copy</li>
+<li>Deep Copy</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>numpy experience</li>
+<li>Refrence</li>
+</ul>
+<h1 id="import"><a href="#import" class="headerlink" title="import"></a>import</h1><pre><code>    import numpy as np
+</code></pre><h1 id="The-N-dimeensional-array-class-ndarray"><a href="#The-N-dimeensional-array-class-ndarray" class="headerlink" title="The N-dimeensional array (class ndarray)"></a>The N-dimeensional array (class ndarray)</h1><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>The ndarray class is the core of numpy. The numpy documentation defines the ndarray class very clearly: An instance of class ndarray consists of a contiguous one-dimensional segment of computer memory (owned by the array, or by some other object), combined with an indexing scheme that maps N integers into the location of an item in the block.</p>
+<p>Said differently, an array is mostly a contiguous block of memory whose parts can be accessed using an indexing scheme. </p>
+<h2 id="Memory-layout"><a href="#Memory-layout" class="headerlink" title="Memory layout"></a>Memory layout</h2><p>Such indexing scheme is in turn defined by a <strong>shape</strong> and a <strong>data type</strong> and this is precisely what is needed when you define a new array:</p>
+<pre><code>    Z = np.arange(9).reshape(3,3).astype(np.int16)
+</code></pre><p>Here, we know that Z itemsize is 2 bytes (int16), the shape is (3,3) and the number of dimensions is 2 (len(Z.shape)).</p>
+<pre><code>    print(Z.itemsize)    #2
+    print(Z.shape)        #(3, 3)
+    print(Z.ndim)        #2
+</code></pre><blockquote>
+<p>The number of dimensions (axes) of the array. In the Python world, the number of dimensions is referred to as <strong>rank</strong>. The rank of array Z is np.ndim(Z). 这里的 rank 不是线性代数中的 rank（秩），它指代的是<strong>维数</strong>（number of dimensions）</p>
+</blockquote>
+<h3 id="Item-layout"><a href="#Item-layout" class="headerlink" title="Item layout"></a>Item layout</h3><pre><code>                   shape[1]
+                     (=3)
+                ┌───────────┐
+
+             ┌  ┌───┬───┬───┐  ┐
+             │  │ 0 │ 1 │ 2 │  │
+             │  ├───┼───┼───┤  │
+    shape[0] │  │ 3 │ 4 │ 5 │  │ len(Z)
+     (=3)    │  ├───┼───┼───┤  │  (=3)
+             │  │ 6 │ 7 │ 8 │  │
+             └  └───┴───┴───┘  ┘
+</code></pre><p>axis的计数方式是<strong>从外到内</strong>计数的，例如矩阵Z在numpy中表示为：</p>
+<pre><code>    Z = [[0,1,2],
+         [3,4,5],
+         [6,7,8]]
+</code></pre><p>对应的轴为：</p>
+<pre><code>        axis = 0
+        |
+        | axis = 1
+        | |
+        ↓ ↓
+    Z = [ [0,1,2],
+          [3,4,5],
+          [6,7,8] ]
+</code></pre><p>在指定axis上求和，即对于np.sum(Z, <strong>axis=0</strong>)和np.sum(Z, <strong>axis=1</strong>)会有不同的结果</p>
+<h3 id="Flattened-item-layout"><a href="#Flattened-item-layout" class="headerlink" title="Flattened item layout"></a>Flattened item layout</h3><pre><code>    ┌───┬───┬───┬───┬───┬───┬───┬───┬───┐
+    │ 0 │ 1 │ 2 │ 3 │ 4 │ 5 │ 6 │ 7 │ 8 │
+    └───┴───┴───┴───┴───┴───┴───┴───┴───┘
+
+    └───────────────────────────────────┘
+                   Z.size
+                    (=9)
+</code></pre><h3 id="Memory-layout-1"><a href="#Memory-layout-1" class="headerlink" title="Memory layout"></a>Memory layout</h3><pre><code>                             strides[1]
+                               (=2)
+                      ┌─────────────────────┐
+
+              ┌       ┌──────────┬──────────┐ ┐
+              │ p+00: │ 00000000 │ 00000000 │ │
+              │       ├──────────┼──────────┤ │
+              │ p+02: │ 00000000 │ 00000001 │ │ strides[0]
+              │       ├──────────┼──────────┤ │   (=2x3)
+              │ p+04  │ 00000000 │ 00000010 │ │
+              │       ├──────────┼──────────┤ ┘
+              │ p+06  │ 00000000 │ 00000011 │
+              │       ├──────────┼──────────┤
+    Z.nbytes  │ p+08: │ 00000000 │ 00000100 │
+    (=3x3x2)  │       ├──────────┼──────────┤
+              │ p+10: │ 00000000 │ 00000101 │
+              │       ├──────────┼──────────┤
+              │ p+12: │ 00000000 │ 00000110 │
+              │       ├──────────┼──────────┤
+              │ p+14: │ 00000000 │ 00000111 │
+              │       ├──────────┼──────────┤
+              │ p+16: │ 00000000 │ 00001000 │
+              └       └──────────┴──────────┘
+
+                      └─────────────────────┘
+                            Z.itemsize
+                         Z.dtype.itemsize
+                               (=2)
+</code></pre><h2 id="Copies-amp-Views"><a href="#Copies-amp-Views" class="headerlink" title="Copies &amp; Views"></a>Copies &amp; Views</h2><h3 id="No-Copy-b-a"><a href="#No-Copy-b-a" class="headerlink" title="No Copy (b=a)"></a>No Copy (b=a)</h3><p>Simple assignments do not make the copy of array object. Instead, it uses <strong>the same id()</strong> of the original array to access it. The id() returns a universal identifier of Python object, similar to the pointer in C.</p>
+<p>Furthermore, any changes in either gets reflected in the other. For example, the changing shape of one will change the shape of the other too.</p>
+<h4 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(12)</span><br><span class="line">b = a</span><br><span class="line"></span><br><span class="line">print(b is a)  # 返回 True</span><br><span class="line">b.shape = (3,4)</span><br><span class="line">print (&quot;a.shape=&quot;,a.shape)  # a.shape= (3, 4)</span><br><span class="line">print (id(a))   # 2493855732640</span><br><span class="line">print (id(b))   # 2493855732640</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="View-or-Shallow-Copy-c-a-view"><a href="#View-or-Shallow-Copy-c-a-view" class="headerlink" title="View or Shallow Copy (c = a.view())"></a>View or Shallow Copy (c = a.view())</h3><p>NumPy has ndarray.view() method which is a new array object that looks at the <strong>same data</strong> of the original array. Unlike the earlier case, change in dimensions of the new array doesn’t change dimensions of the original.</p>
+<p>Slice of an array creates a view.</p>
+<h4 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a>Example</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">c = a.view()            # 将a复制给c</span><br><span class="line">print(c is a)           # False</span><br><span class="line">print(&quot;c=&quot;,c)</span><br><span class="line">        </span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">c=array([[0, 1, 2, 3],</span><br><span class="line">         [4, 5, 6, 7],</span><br><span class="line">         [8, 9, 10, 11]])</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">        </span><br><span class="line">c.shape = (2,6)             # 改变c的结构为2行6列，看a是否会变化</span><br><span class="line">print(&quot;c.shape=&quot;,c.shape)   # c.shape=(2, 6)</span><br><span class="line">print (&quot;a.shape=&quot;,a.shape)  # a.shape=(3, 4)</span><br><span class="line"></span><br><span class="line">c[0,4] = 1234             # 改变矩阵c第0行4列的值，看a的值是否会变化</span><br><span class="line">print(&quot;c=&quot;,c)</span><br><span class="line">print(&quot;a=&quot;,a)             #结果显示a中相应的值也发生了变化</span><br><span class="line"></span><br><span class="line">print(id(a))    # 2493855144416</span><br><span class="line">print(id(b))    # 2493855144416</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="Deep-Copy-d-a-copy"><a href="#Deep-Copy-d-a-copy" class="headerlink" title="Deep Copy (d=a.copy())"></a>Deep Copy (d=a.copy())</h3><p>The ndarray.copy() function creates a deep copy. It is a <strong>complete copy</strong> of the array and its data, and doesn’t share with the original array.</p>
+<h4 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a>Example</h4><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">d = a.copy() </span><br><span class="line">print(d is a)  # False</span><br><span class="line"></span><br><span class="line">d[0,0] = 9999</span><br><span class="line">print (d) </span><br><span class="line">print (a)     # a中相应的值不会变化</span><br><span class="line"></span><br><span class="line">print(id(d))  # 2493855735440</span><br><span class="line">print(id(a))  # 2493855732640</span><br></pre></td></tr></table></figure>
+</code></pre><h1 id="numpy-experience"><a href="#numpy-experience" class="headerlink" title="numpy experience"></a>numpy experience</h1><p>内容主要来自：<a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></p>
+<ol>
+<li><p>Import the numpy package under the name np (★☆☆)</p>
+<pre><code> import numpy as np
+</code></pre></li>
+<li><p>Print the numpy version and the configuration (★☆☆)</p>
+<pre><code> print(np.__veision__)
+ np.show_config()
+</code></pre></li>
+<li><p>Create a null vector of size 10 but the fifth value which is 1 (★☆☆)</p>
+<pre><code> Z = np.zeros(10)
+ Z[4] = 1
+ print(Z)
+</code></pre></li>
+<li><p>Create a vector with values ranging from 10 to 49 (★☆☆)</p>
+<pre><code> Z = np.arange(10, 50)
+ print(Z)
+</code></pre></li>
+<li><p>How to find the memory size of any array (★☆☆)</p>
+<pre><code> Z = np.zeros((10,10))
+ print(&quot;%d bytes&quot; % (Z.size * Z.itemsize))
+ #Z.size=10*10=100, Z.itemsize=8
+</code></pre></li>
+<li><p>Reverse a vector (first element becomes last) (★☆☆)</p>
+<pre><code> Z = np.arange(50)
+ Z = Z[::-1]
+ print(Z)
+</code></pre></li>
+<li><p>Create a 3x3 matrix with values ranging from 0 to 8 (★☆☆)</p>
+<pre><code> Z = np.arange(9).reshape(3, 3)
+ print(Z)
+</code></pre></li>
+<li><p>Find indices of non-zero elements from [1,2,0,0,4,0] (★☆☆)</p>
+<pre><code> nz = np.nonzero([1,2,0,0,4,0])
+ print(nz)
+ #np.nonzero会返回非0值的下标
+</code></pre></li>
+<li><p>Create a 3x3 identity matrix(单位矩阵) (★☆☆)</p>
+<pre><code> Z = np.eye(3)
+ print(Z)
+
+ &quot;&quot;&quot;
+ array([[1., 0., 0.],
+        [0., 1., 0.],
+        [0., 0., 1.]])
+ &quot;&quot;&quot;
+</code></pre></li>
+<li><p>Create a 3x3x3 array with random values (★☆☆)</p>
+<pre><code>Z = np.random.random((3,3,3))
+print(Z)
+</code></pre></li>
+<li><p>Create a 10x10 array with random values and find the minimum and maximum values (★☆☆)</p>
+<pre><code>Z = np.random.random((10,10))
+Zmin, Zmax = Z.min(), Z.max()
+print(Zmin, Zmax)
+</code></pre></li>
+<li><p>Create a random vector of size 30 and find the mean value (★☆☆)</p>
+<pre><code>Z = np.random.random(30)
+m = Z.mean()        #无axis参数，求所有element的均值. axis=0表示列，axis=1表示行.
+print(m)
+</code></pre></li>
+<li><p>Create a 2d array with 1 on the border and 0 inside (★☆☆)</p>
+<pre><code>Z = np.ones((10,10))
+Z[1:-1,1:-1] = 0
+print(Z)
+</code></pre></li>
+<li><p>How to add a border (filled with 0’s) around an existing array? (★☆☆)</p>
+<pre><code>Z = np.ones((5,5))
+Z = np.pad(Z, pad_width=1, mode=&#39;constant&#39;, constant_values=0)
+print(Z)
+</code></pre></li>
+<li><p>What is the result of the following expression? (★☆☆)</p>
+<pre><code>print(0 * np.nan)                  #nan
+print(np.nan == np.nan)            #False
+print(np.inf &gt; np.nan)             #False
+print(np.nan - np.nan)             #nan
+print(np.nan in set([np.nan]))     #True
+print(0.3 == 3 * 0.1)              #False
+</code></pre></li>
+<li><p>Create a 5x5 matrix with values 1,2,3,4 just below the diagonal (★☆☆)</p>
+<pre><code>Z = np.diag(1+np.arange(4),k=-1)
+print(Z)
+
+&quot;&quot;&quot;
+[[0 0 0 0 0]
+[1 0 0 0 0]
+[0 2 0 0 0]
+[0 0 3 0 0]
+[0 0 0 4 0]]
+&quot;&quot;&quot;
+</code></pre></li>
+<li><p>Consider a (6,7,8) shape array, what is the index (x,y,z) of the 100th element? (★☆☆)</p>
+<pre><code>print(np.unravel_index(99,(6,7,8)))
+#(1, 5, 3)
+</code></pre></li>
+<li><p>Normalize a 5x5 random matrix (★☆☆)</p>
+<pre><code>Z = np.random.random((5,5))
+Z = (Z - np.mean (Z)) / (np.std (Z))    #np.std()计算标准差
+print(Z)
+</code></pre></li>
+<li><p>Multiply a 5x3 matrix by a 3x2 matrix (real matrix product) (★☆☆)</p>
+<pre><code>Z = np.dot(np.ones((5,3)), np.ones((3,2)))
+print(Z)
+
+# Alternative solution, in Python 3.5 and above
+Z = np.ones((5,3)) @ np.ones((3,2))
+print(Z)
+</code></pre></li>
+<li><p>Given a 1D array, negate all elements which are between 3 and 8, in place. (★☆☆)</p>
+<pre><code>Z = np.arange(11)
+Z[(3 &lt; Z) &amp; (Z &lt;= 8)] *= -1
+print(Z)
+</code></pre></li>
+<li><p>What is the output of the following script? (★☆☆)</p>
+<pre><code>print(sum(range(5),-1))    #9
+from numpy import *
+print(sum(range(5),-1))    #10
+</code></pre></li>
+<li><p>How to find common values between two arrays? (★☆☆)</p>
+<pre><code>Z1 = np.random.randint(0,10,10)
+Z2 = np.random.randint(0,10,10)
+print(np.intersect1d(Z1,Z2))
+</code></pre></li>
+<li><p>How to ignore all numpy warnings (not recommended)? (★☆☆)</p>
+<pre><code># Suicide mode on
+defaults = np.seterr(all=&quot;ignore&quot;)
+Z = np.ones(1) / 0
+
+# Back to sanity
+_ = np.seterr(**defaults)
+</code></pre></li>
+<li><p>Is the following expressions true? (★☆☆)</p>
+<pre><code>np.sqrt(-1) == np.emath.sqrt(-1)    #False
+</code></pre></li>
+<li><p>How to get the dates of yesterday, today and tomorrow? (★☆☆)</p>
+<pre><code>yesterday = np.datetime64(&#39;today&#39;, &#39;D&#39;) - np.timedelta64(1, &#39;D&#39;)
+today     = np.datetime64(&#39;today&#39;, &#39;D&#39;)
+tomorrow  = np.datetime64(&#39;today&#39;, &#39;D&#39;) + np.timedelta64(1, &#39;D&#39;)
+</code></pre></li>
+<li><p>How to get all the dates corresponding to the month of July 2016? (★★☆)</p>
+<pre><code>Z = np.arange(&#39;2016-07&#39;, &#39;2016-08&#39;, dtype=&#39;datetime64[D]&#39;)
+print(Z)
+</code></pre></li>
+<li><p>How to compute ((A+B)*(-A/2)) in place (without copy)? (★★☆)</p>
+<pre><code>A = np.ones(3)*1
+B = np.ones(3)*2
+C = np.ones(3)*3
+np.add(A,B,out=B)
+np.divide(A,2,out=A)
+np.negative(A,out=A)
+np.multiply(A,B,out=A)
+</code></pre></li>
+<li><p>Create a 5x5 matrix with row values ranging from 0 to 4 (★★☆)</p>
+<pre><code>Z = np.zeros((5,5))
+Z += np.arange(5)
+print(Z)
+</code></pre></li>
+<li><p>Extract the integer part of a random array using 5 different methods (★★☆)</p>
+<pre><code>print (Z - Z%1)
+print (np.floor(Z))
+print (np.ceil(Z)-1)
+print (Z.astype(int))
+print (np.trunc(Z))
+</code></pre></li>
+<li><p>Create a random vector of size 10 and sort it (★★☆)</p>
+<pre><code>Z = np.random.random(10)
+Z.sort()
+print(Z)
+</code></pre></li>
+<li><p>Consider two random array A and B, check if they are equal (★★☆)</p>
+<pre><code>A = np.random.randint(0,2,5)
+B = np.random.randint(0,2,5)
+
+# Assuming identical shape of the arrays and a tolerance for the comparison of values
+equal = np.allclose(A,B)
+print(equal)
+
+# Checking both the shape and the element values, no tolerance (values have to be exactly equal)
+equal = np.array_equal(A,B)
+print(equal)
+</code></pre></li>
+<li><p>Create random vector of size 10 and replace the maximum value by 0 (★★☆)</p>
+<pre><code>Z = np.random.random(10)
+Z[Z.argmax()] = 0
+print(Z)
+</code></pre></li>
+<li><p>Print the minimum and maximum representable value for each numpy scalar type (★★☆)</p>
+<pre><code>for dtype in [np.int8, np.int32, np.int64]:
+   print(np.iinfo(dtype).min)
+   print(np.iinfo(dtype).max)
+for dtype in [np.float32, np.float64]:
+   print(np.finfo(dtype).min)
+   print(np.finfo(dtype).max)
+   print(np.finfo(dtype).eps)
+
+&quot;&quot;&quot;
+-128
+127
+-2147483648
+2147483647
+-9223372036854775808
+9223372036854775807
+-3.4028235e+38
+3.4028235e+38
+1.1920929e-07
+-1.7976931348623157e+308
+1.7976931348623157e+308
+2.220446049250313e-16
+&quot;&quot;&quot;
+</code></pre></li>
+<li><p>How to find the closest value (to a given scalar) in a vector? (★★☆)</p>
+<pre><code>Z = np.arange(100)
+v = np.random.uniform(0,100)
+index = (np.abs(Z-v)).argmin()
+print(Z[index])
+</code></pre></li>
+<li><p>How to convert a float (32 bits) array into an integer (32 bits) in place? (★★☆)</p>
+<pre><code>Z = np.arange(10, dtype=np.float32)
+Z = Z.astype(np.int32, copy=False)
+print(Z)
+</code></pre></li>
+<li><p>What is the equivalent of enumerate for numpy arrays? (★★☆)</p>
+<pre><code>Z = np.arange(9).reshape(3,3)
+for index, value in np.ndenumerate(Z):
+    print(index, value)
+for index in np.ndindex(Z.shape):
+    print(index, Z[index])
+</code></pre></li>
+<li><p>How to I sort an array by the nth column? (★★☆)</p>
+<pre><code>Z = np.random.randint(0,10,(3,3))
+print(Z)
+print(Z[Z[:,1].argsort()])
+</code></pre></li>
+<li><p>How to tell if a given 2D array has null columns? (★★☆)</p>
+<pre><code>Z = np.random.randint(0,3,(3,10))
+print((~Z.any(axis=0)).any())
+</code></pre></li>
+<li><p>Consider an array of dimension (5,5,3), how to mulitply it by an array with dimensions (5,5)? (★★★)</p>
+<pre><code>A = np.ones((5,5,3))
+B = 2*np.ones((5,5))
+print(A * B[:,:,None])
+</code></pre></li>
+<li><p>How to swap two rows of an array? (★★★)</p>
+<pre><code>A = np.arange(25).reshape(5,5)
+A[[0,1]] = A[[1,0]]
+print(A)
+#swap 0 row and 1 row
+</code></pre></li>
+</ol>
+<h1 id="Refrence"><a href="#Refrence" class="headerlink" title="Refrence"></a>Refrence</h1><ul>
+<li><a href="https://github.com/rougier/numpy-100" target="_blank" rel="noopener">numpy-100</a></li>
+<li><a href="http://www.labri.fr/perso/nrougier/from-python-to-numpy/" target="_blank" rel="noopener">http://www.labri.fr/perso/nrougier/from-python-to-numpy/</a></li>
+<li><a href="https://www.tutorialspoint.com/numpy/numpy_copies_and_views.htm" target="_blank" rel="noopener">NumPy - Copies &amp; Views</a></li>
+<li><a href="https://www.cnblogs.com/wodexk/p/10311293.html" target="_blank" rel="noopener">复制理解</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/numpy/" rel="tag"># numpy</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/04/09/some_scattered_knowledge/" rel="next" title="some scattered knowledge">
+                <i class="fa fa-chevron-left"></i> some scattered knowledge
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/04/11/Qt/" rel="prev" title="Qt入门">
+                Qt入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Table"><span class="nav-number">1.</span> <span class="nav-text">Table</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#import"><span class="nav-number">2.</span> <span class="nav-text">import</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#The-N-dimeensional-array-class-ndarray"><span class="nav-number">3.</span> <span class="nav-text">The N-dimeensional array (class ndarray)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-number">3.1.</span> <span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Memory-layout"><span class="nav-number">3.2.</span> <span class="nav-text">Memory layout</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Item-layout"><span class="nav-number">3.2.1.</span> <span class="nav-text">Item layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flattened-item-layout"><span class="nav-number">3.2.2.</span> <span class="nav-text">Flattened item layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Memory-layout-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">Memory layout</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Copies-amp-Views"><span class="nav-number">3.3.</span> <span class="nav-text">Copies &amp; Views</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#No-Copy-b-a"><span class="nav-number">3.3.1.</span> <span class="nav-text">No Copy (b=a)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example"><span class="nav-number">3.3.1.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View-or-Shallow-Copy-c-a-view"><span class="nav-number">3.3.2.</span> <span class="nav-text">View or Shallow Copy (c = a.view())</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-1"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deep-Copy-d-a-copy"><span class="nav-number">3.3.3.</span> <span class="nav-text">Deep Copy (d=a.copy())</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Example-2"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">Example</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#numpy-experience"><span class="nav-number">4.</span> <span class="nav-text">numpy experience</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refrence"><span class="nav-number">5.</span> <span class="nav-text">Refrence</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
+
+
+
+
+<% if (page.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
+</%></%-></%>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

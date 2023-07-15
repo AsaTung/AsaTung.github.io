@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
+<meta name="keywords" content="cpp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Qt入门">
+<meta property="og:url" content="http://yoursite.com/2023/04/11/Qt/index.html">
+<meta property="og:site_name" content="书写筑明天">
+<meta property="og:description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2023-05-12T13:30:37.324Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Qt入门">
+<meta name="twitter:description" content="Signal and Slot 自定义信号和槽 自定义信号 写到 signal 下 返回 void 需要声明，不需要实现 可以有参数，可以重载   自定义槽函数 返回void 早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数 需要声明，也需要实现 可以有参数，可以重载   触发自定义的信号 emit 信号">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2023/04/11/Qt/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Qt入门 | 书写筑明天</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">书写筑明天</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Dong Boyang weblog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/04/11/Qt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="书写筑明天">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Qt入门
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2023-04-11 21:18:43" itemprop="dateCreated datePublished" datetime="2023-04-11T21:18:43+08:00">2023-04-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-05-12 21:30:37" itemprop="dateModified" datetime="2023-05-12T21:30:37+08:00">2023-05-12</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Signal-and-Slot"><a href="#Signal-and-Slot" class="headerlink" title="Signal and Slot"></a>Signal and Slot</h1><ul>
+<li>自定义信号和槽<ul>
+<li>自定义信号<ul>
+<li>写到 signal 下</li>
+<li>返回 void</li>
+<li>需要声明，不需要实现</li>
+<li>可以有参数，可以重载</li>
+</ul>
+</li>
+<li>自定义槽函数<ul>
+<li>返回void</li>
+<li>早期Qt版本必须写到 public slots 下，高级版本也可以写到 public 下或者全局函数</li>
+<li>需要声明，也需要实现</li>
+<li>可以有参数，可以重载</li>
+</ul>
+</li>
+<li>触发自定义的信号<ul>
+<li>emit 信号<a id="more"></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>当自定义信号和槽出现重载<ul>
+<li>需要利用函数指针，明确指向函数的地址</li>
+<li>void(Teacher::*tSignal)<strong>(QString)</strong> = &amp;Teacher::hungry;</li>
+<li>QString 转成 char*<ul>
+<li>.toUtf8() 转为 QByteArray</li>
+<li>.Data() 转为 char*</li>
+</ul>
+</li>
+<li>信号可以连接信号</li>
+<li>断开信号 disconnect</li>
+</ul>
+</li>
+<li>拓展<ul>
+<li>信号可以连接信号</li>
+<li>一个信号 可以连接 多个槽函数</li>
+<li>多个信号 可以连接 同一个槽函数</li>
+<li>信号和槽函数的<strong>参数类型</strong>必须一一对应</li>
+<li>信号和槽函数的<strong>参数个数</strong>，是不是要一致？信号的参数个数可以多于槽函数的参数个数</li>
+<li>信号槽可以断开连接 disconnect</li>
+</ul>
+</li>
+<li>Qt4版本连接写法<ul>
+<li>connect(信号的发送者, <strong>SIGNAL(信号)</strong>, 信号的接收者, <strong>SLOT(槽)</strong>);</li>
+<li>优点：参数比较直观</li>
+<li>缺点：编译器不会检测参数类型</li>
+</ul>
+</li>
+<li>Lambda 表达式<ul>
+<li>[] 标识符 匿名函数<ul>
+<li>= 值传递</li>
+<li>&amp; 引用传递</li>
+</ul>
+</li>
+<li>() 参数</li>
+<li>{} 实现体</li>
+<li>mutable 修饰 值传递变量，可以修改拷贝出的数据，改变不了本体</li>
+<li>返回值 []() -&gt; int {}</li>
+<li>lambda表达式最常用的方式为: [=](){}</li>
+</ul>
+</li>
+</ul>
+<h1 id="QMainWindow"><a href="#QMainWindow" class="headerlink" title="QMainWindow"></a>QMainWindow</h1><ul>
+<li>菜单栏<ul>
+<li>最多有一个</li>
+<li>QMenuBar * bar = MenuBar();  //创建菜单栏</li>
+<li>setMenuBar(bar);        //将菜单栏放入到窗口中</li>
+<li>QMenu * fileMenu = bar -&gt; addMenu(“文件”);        //创建“文件”菜单</li>
+<li>QAction * newAction = fileMenu -&gt; addAction(“新建”);        //创建菜单项</li>
+<li>fileMenu-&gt;addSeparator();    //添加分割线</li>
+</ul>
+</li>
+<li>工具栏<ul>
+<li>可以有多个</li>
+<li>QToolBar * toolBar = new QToolBar(this);</li>
+<li>addToolBar(默认停靠区域, toolBar);</li>
+<li>Qt::LeftToolBarArea</li>
+<li>设置后期停靠区域，设置浮动，设置移动</li>
+<li>添加菜单项、添加小控件</li>
+</ul>
+</li>
+<li>状态栏<ul>
+<li>最多有一个</li>
+<li>QStatusBar * stBar = statusBar();</li>
+<li>设置到窗口中 setStatusBar(stBar);</li>
+<li>放左侧信息 stBar-&gt;addWidget(label);</li>
+<li>放右侧信息 stBar-&gt;addPermanentWidget(label2);</li>
+</ul>
+</li>
+<li>铆接部件<ul>
+<li>即浮动窗口，可以有多个</li>
+<li>QDockWidget * dockWidget = new QDockWidget(“浮动”, this);<br>addDockWidget(默认停靠区域, 浮动窗口指针);<br>addDockWidget(Qt::BottomDockWidgetArea, dockWidget);</li>
+<li>设置后期停靠区域<br>dockWidget-&gt;setAllowedAreas(Qt::TopDockWidgetArea | Qt::BottomDockWidgetArea);</li>
+</ul>
+</li>
+<li>设置核心部件<ul>
+<li>最多只有一个</li>
+<li>QTextEdit * edit = new QTextEdit(this);</li>
+<li>setCentralWidget(edit);</li>
+</ul>
+</li>
+</ul>
+<h1 id="资源文件"><a href="#资源文件" class="headerlink" title="资源文件"></a>资源文件</h1><ul>
+<li>将图片文件拷贝到项目位置下</li>
+<li>右键项目-&gt;添加新文件-&gt;Qt-&gt;Qt resouce file-&gt;给资源文件起名res</li>
+<li>res 生成 res.qrc</li>
+<li>open in editor 编辑资源</li>
+<li>添加前缀  添加文件</li>
+<li>使用 “ :+ 前缀名 + 文件名”</li>
+</ul>
+<h1 id="对话框"><a href="#对话框" class="headerlink" title="对话框"></a>对话框</h1><ul>
+<li>分类<ul>
+<li>模态对话框<ul>
+<li>不可以对其他窗口进行操作 阻塞</li>
+<li>QDialog dlg(this);  </li>
+<li>dlg.exec();</li>
+</ul>
+</li>
+<li>非模态对话框<ul>
+<li>可以对其他窗口进行操作</li>
+<li>防止一闪而过，创建到堆区</li>
+<li>QDialog * dlg2 = new QDialog(this);</li>
+<li>dlg2-&gt;show();</li>
+<li>dlg2-&gt;setAttribute(Qt::WA_DeleteOnClose); //55号 属性</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>标准对话框 — 消息对话框<ul>
+<li>用 QMessageBox 的静态成员函数  创建对话框</li>
+<li>错误对话框、信息对话框、提问对话框、警告对话框</li>
+<li>参数1: 父亲 参数2: 标题  参数3: 显示内容 参数4: 按键类型  参数5: 默认关联回车按键</li>
+<li>返回值 也是StandardButton类型，利用返回值判断用户的输入</li>
+</ul>
+</li>
+<li>其他标准对话框<ul>
+<li>颜色对话框  QColorDialog::getColor </li>
+<li>文件对话框  QFileDialog::getOpenFileName(父亲，标题，默认路径，过滤文件)</li>
+<li>字体对话框  QFontDialog::getFont </li>
+</ul>
+</li>
+</ul>
+<h1 id="界面布局"><a href="#界面布局" class="headerlink" title="界面布局"></a>界面布局</h1><ul>
+<li>实现了一个登录窗口</li>
+<li>利用布局方式给窗口进行美化</li>
+<li>选取 widget 进行布局，有水平布局、垂直布局、栅格布局</li>
+<li>给用户名、密码、登录、退出按钮进行布局</li>
+<li>默认窗口和控件之间有9像素间隙，可以调整 layoutLeftMargin</li>
+<li>利用弹簧进行布局</li>
+</ul>
+<h1 id="控件"><a href="#控件" class="headerlink" title="控件"></a>控件</h1><ul>
+<li>按钮组<ul>
+<li>QPushButton 常用按钮</li>
+<li>QToolButton 工具按钮 用于显示图片，如果图片旁边想显示文字，修改风格：toolButtonStyle，凸起风格 autoRaise</li>
+<li>radioButton 单选按钮，设置默认ui-&gt;rBtnMan-&gt;setChecked(true);</li>
+<li>checkbox 多选按钮，监听状态，2选中，1半选，0未选</li>
+</ul>
+</li>
+<li>QListWidgt 列表控件<ul>
+<li>QListWidgetItem * item = new QListWidgetItem(“锄禾日当午”);  //一行内容</li>
+<li>ui-&gt;listWidget-&gt;addItem(item);  //将一行诗放入到listWidget控件中</li>
+<li>item-&gt;setTextAlignment(Qt::AlignHCenter);   //设置居中方式</li>
+<li>可以利用 addItems 一次性添加整个诗内容</li>
+</ul>
+</li>
+<li>QTreeWidget 树控件<ul>
+<li>设置头<ul>
+<li>ui-&gt;treeWidget-&gt;setHeaderLabels(QStringList()&lt;&lt; “英雄”&lt;&lt; “英雄介绍”);</li>
+</ul>
+</li>
+<li>创建根节点<ul>
+<li>QTreeWidgetItem * liItem = new QTreeWidgetItem(QStringList()&lt;&lt; “力量”);</li>
+</ul>
+</li>
+<li>添加<strong>根节点</strong>到<strong>树控件</strong>上<ul>
+<li>ui-&gt;treeWidget-&gt;addTopLevelItem(liItem);</li>
+</ul>
+</li>
+<li>添加子节点<ul>
+<li>QStringList heroL1;<br>heroL1 &lt;&lt; “刚被猪” &lt;&lt; “前排坦克，能在吸收伤害的同时造成可观的范围输出”;<br>QTreeWidgetItem * l1 = new QTreeWidgetItem(heroL1);<br>liItem-&gt;addChild(l1);</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>QTableWidget 表格控件<ul>
+<li>设置列数<ul>
+<li>ui-&gt;tableWidget-&gt;setColumnCount(3);</li>
+</ul>
+</li>
+<li>设置水平表头<ul>
+<li>ui-&gt;tableWidget-&gt;setHorizontalHeaderLabels(QStringList()&lt;&lt;”姓名”&lt;&lt; “性别”&lt;&lt; “年龄”);</li>
+</ul>
+</li>
+<li>设置行数<ul>
+<li>ui-&gt;tableWidget-&gt;setRowCount(5);</li>
+</ul>
+</li>
+<li>设置正文<ul>
+<li>ui-&gt;tableWidget-&gt;setItem(0,0, new QTableWidgetItem(“亚瑟”));</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/cpp/" rel="tag"># cpp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/04/09/numpy-exercises & experiences/" rel="next" title="numpy exercises and experience">
+                <i class="fa fa-chevron-left"></i> numpy exercises and experience
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/04/11/行测/" rel="prev" title="行测-判断推理">
+                行测-判断推理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Signal-and-Slot"><span class="nav-number">1.</span> <span class="nav-text">Signal and Slot</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#QMainWindow"><span class="nav-number">2.</span> <span class="nav-text">QMainWindow</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#资源文件"><span class="nav-number">3.</span> <span class="nav-text">资源文件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对话框"><span class="nav-number">4.</span> <span class="nav-text">对话框</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#界面布局"><span class="nav-number">5.</span> <span class="nav-text">界面布局</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#控件"><span class="nav-number">6.</span> <span class="nav-text">控件</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
+
+
+
+
+<% if (page.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
+</%></%-></%>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

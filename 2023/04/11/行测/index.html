@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="逻辑论证之削弱论证归因类质疑 对比实验归因类 另有他因 结果不同，另找不同的原因 结果相同，另找相同的原因（极少考）   因果倒置 注重时间先后   易混淆的错误选项 未分组就引入其他变量，不行！ 分组方式不对！ 未提及原因的选项 有些、一些、一部分等个例选项往往不选！ 实验瑕疵，万能选项！">
+<meta name="keywords" content="others">
+<meta property="og:type" content="article">
+<meta property="og:title" content="行测-判断推理">
+<meta property="og:url" content="http://yoursite.com/2023/04/11/行测/index.html">
+<meta property="og:site_name" content="书写筑明天">
+<meta property="og:description" content="逻辑论证之削弱论证归因类质疑 对比实验归因类 另有他因 结果不同，另找不同的原因 结果相同，另找相同的原因（极少考）   因果倒置 注重时间先后   易混淆的错误选项 未分组就引入其他变量，不行！ 分组方式不对！ 未提及原因的选项 有些、一些、一部分等个例选项往往不选！ 实验瑕疵，万能选项！">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2023-06-04T10:59:03.334Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="行测-判断推理">
+<meta name="twitter:description" content="逻辑论证之削弱论证归因类质疑 对比实验归因类 另有他因 结果不同，另找不同的原因 结果相同，另找相同的原因（极少考）   因果倒置 注重时间先后   易混淆的错误选项 未分组就引入其他变量，不行！ 分组方式不对！ 未提及原因的选项 有些、一些、一部分等个例选项往往不选！ 实验瑕疵，万能选项！">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2023/04/11/行测/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>行测-判断推理 | 书写筑明天</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">书写筑明天</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Dong Boyang weblog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2023/04/11/行测/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="书写筑明天">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">行测-判断推理
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2023-04-11 21:18:49" itemprop="dateCreated datePublished" datetime="2023-04-11T21:18:49+08:00">2023-04-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-06-04 18:59:03" itemprop="dateModified" datetime="2023-06-04T18:59:03+08:00">2023-06-04</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="逻辑论证之削弱论证"><a href="#逻辑论证之削弱论证" class="headerlink" title="逻辑论证之削弱论证"></a>逻辑论证之削弱论证</h1><h2 id="归因类质疑"><a href="#归因类质疑" class="headerlink" title="归因类质疑"></a>归因类质疑</h2><ul>
+<li>对比实验归因类<ul>
+<li>另有他因<ul>
+<li>结果不同，另找不同的原因</li>
+<li>结果相同，另找相同的原因（极少考）</li>
+</ul>
+</li>
+<li>因果倒置<ul>
+<li>注重时间先后</li>
+</ul>
+</li>
+<li>易混淆的错误选项<ul>
+<li>未分组就引入其他变量，不行！</li>
+<li>分组方式不对！</li>
+<li>未提及原因的选项</li>
+<li>有些、一些、一部分等个例选项往往不选！</li>
+<li>实验瑕疵，万能选项！<a id="more"></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一般归因<ul>
+<li>直接否定原因或事实</li>
+<li>注意主体一致，话题一致，贴合题干</li>
+<li>直接原因/根本原因<ul>
+<li>该类题目的特征：原来的看法认为A导致B，反对者认为是C导致B。<br>此类题+ 实际上为：A导致C导致B</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>实验类的特殊质疑<ul>
+<li>初始状态</li>
+<li>对照组</li>
+<li>样本有效</li>
+</ul>
+</li>
+</ul>
+<h2 id="一般质疑类"><a href="#一般质疑类" class="headerlink" title="一般质疑类"></a>一般质疑类</h2><ul>
+<li>没有论据，直接给结论<ul>
+<li>有一定理由的否定它的结论。用非A质疑A</li>
+</ul>
+</li>
+<li>有论据，推出一个结论<ul>
+<li>极少数题是质疑论据</li>
+<li>在肯定论据的情况下，加上选项的提示，得出相反结论或者得不出这个结论</li>
+<li><strong>虽然（论据），但是（选项），所以（得到相反结论或得不出结论）</strong></li>
+</ul>
+</li>
+</ul>
+<h1 id="逻辑论证之支持与前提假设"><a href="#逻辑论证之支持与前提假设" class="headerlink" title="逻辑论证之支持与前提假设"></a>逻辑论证之支持与前提假设</h1><h2 id="支持类题目"><a href="#支持类题目" class="headerlink" title="支持类题目"></a>支持类题目</h2><ul>
+<li>找准结论！结论最重要！</li>
+<li>题型1：解释说明</li>
+<li>题型2：加入事实数据或论据</li>
+<li>题型3：断点搭桥</li>
+<li>题型3：没他不行</li>
+<li>题型4：自断一臂</li>
+</ul>
+<h2 id="前提假设类题目"><a href="#前提假设类题目" class="headerlink" title="前提假设类题目"></a>前提假设类题目</h2><ul>
+<li>断点搭桥（与支持类题目一样，绝大多数前提假设均为此类）</li>
+<li>存在逻辑漏洞需要补充或排除（补充漏洞或自断一臂）</li>
+<li>能与不能（客观现实能否实现）</li>
+</ul>
+<h1 id="比例类论证与解释说明"><a href="#比例类论证与解释说明" class="headerlink" title="比例类论证与解释说明"></a>比例类论证与解释说明</h1><h2 id="比例类论证"><a href="#比例类论证" class="headerlink" title="比例类论证"></a>比例类论证</h2><ul>
+<li>需要注意的是需要用“率”来进行比较，单纯的比较分子或分母是无意义的，<strong>题干中用比例或数字表述，往往正确选项也包含比例或数字</strong></li>
+</ul>
+<h2 id="解释说明类"><a href="#解释说明类" class="headerlink" title="解释说明类"></a>解释说明类</h2><ul>
+<li>需找到一个最合适的理由解释清楚题干中看似矛盾的现象即可，<strong>关键在于该理由的合理性</strong>，需要注意找出的理由不能像借口，越能让人接受越好</li>
+<li><strong>正确选项往往是题干中未提及，但大家容易忽略的合理事实</strong></li>
+</ul>
+<h1 id="推出类题目与相关知识点"><a href="#推出类题目与相关知识点" class="headerlink" title="推出类题目与相关知识点"></a>推出类题目与相关知识点</h1><h2 id="逻辑基础知识点（包括：一二三四五）"><a href="#逻辑基础知识点（包括：一二三四五）" class="headerlink" title="逻辑基础知识点（包括：一二三四五）"></a>逻辑基础知识点（包括：一二三四五）</h2><h3 id="一、一个符号两种条件"><a href="#一、一个符号两种条件" class="headerlink" title="一、一个符号两种条件"></a>一、一个符号两种条件</h3><pre><code>    A-&gt;B 等价于 非B-&gt;非A 
+</code></pre><p>A是B的<strong>充分条件</strong>，B是A的<strong>必要条件</strong></p>
+<h3 id="二、命题的形式与真假判断"><a href="#二、命题的形式与真假判断" class="headerlink" title="二、命题的形式与真假判断"></a>二、命题的形式与真假判断</h3><p>命题的四种形式：原命题、逆命题、否命题、逆否命题</p>
+<p>| A为真 | B为真 | A-&gt;B为真 |<br>| A为真 | B为假 | A-&gt;B为假 |<br>| A为假 | B为真 | A-&gt;B为真 |<br>| A为假 | B为假 | A-&gt;B为真 |</p>
+<p><code>A -&gt; B</code> 当且仅当 <code>A且非B</code> 时为假</p>
+<h3 id="三、三种推理形式"><a href="#三、三种推理形式" class="headerlink" title="三、三种推理形式"></a>三、三种推理形式</h3><ul>
+<li>演绎推理<ul>
+<li>三段论推理常见的推理错误：第一种 逆命题和否命题；第二种 整体属性不是个体属性</li>
+</ul>
+</li>
+<li>归纳推理</li>
+<li>类比推理</li>
+</ul>
+<h3 id="四、四种相对关系"><a href="#四、四种相对关系" class="headerlink" title="四、四种相对关系"></a>四、四种相对关系</h3><ul>
+<li><strong>或且关系</strong>：A或B、A且B<ul>
+<li>否定：<code>A或B</code>的否定为<code>非A且非B</code>、<code>A且B</code>的否定为<code>非A或非B</code></li>
+</ul>
+</li>
+<li>（重点）<strong>范畴关系</strong>：所有、有些<ul>
+<li>否定态转化：<code>所有A都是B</code>的否定为<code>有些A不是B</code>、<code>有些A是B</code>的否定为<code>所有A都不是B</code></li>
+<li><code>所有、有些</code>推理：<code>所有A都是B</code>可推出<code>有些A是B</code>、<code>有些A是B</code>推不出<code>所有A是B</code>、<code>有些A是B</code>可推出<code>有些B是A</code></li>
+<li><code>有些</code>逻辑含义：<code>有些是</code>推不出<code>有些不是</code>、<code>有些是</code>也无法推出<code>特指是</code></li>
+</ul>
+</li>
+<li><strong>可能关系</strong>：可能、必然<ul>
+<li>否定：<code>可能是</code>的否定为<code>必然不是</code>、<code>比不然是</code>的否定为<code>可能是</code></li>
+</ul>
+</li>
+<li><strong>矛盾关系</strong>：A与B矛盾，则必然存在一真一假<ul>
+<li>常见的矛盾关系有如下三种:<ul>
+<li><code>A</code>和<code>非A</code>、<code>A且B</code>与<code>非A或非B</code>、<code>A或B</code>与<code>非A且非B</code></li>
+<li><code>所有</code>和<code>有些不</code>（<code>有些</code>和<code>所有不</code>）、<code>可能</code>和<code>必然不</code>（<code>必然</code>和<code>可能不</code>）</li>
+<li><code>A-&gt;B</code>和<code>A且非B</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="五、五种命题（假言命题和选言命题）"><a href="#五、五种命题（假言命题和选言命题）" class="headerlink" title="五、五种命题（假言命题和选言命题）"></a>五、五种命题（假言命题和选言命题）</h3><p><strong>如果A，那么B</strong>，逻辑关系为<strong>A-&gt;B</strong>（前推后）</p>
+<p><strong>只有A，才B</strong>，逻辑关系为<strong>B-&gt;A</strong>（后推前），也可记为<strong>非A-&gt;非B</strong></p>
+<p><strong>除非A，否则B</strong>，逻辑关系为<strong>非A-&gt;B</strong></p>
+<p><strong>或者A，或者B</strong>，等价于<strong>非A-&gt;B</strong>，只有A、B都假才为假</p>
+<p><strong>要么A，要么B</strong>，A、B只能一真一假，不能同时为真或为假</p>
+<h1 id="分析类题目与相关知识点"><a href="#分析类题目与相关知识点" class="headerlink" title="分析类题目与相关知识点"></a>分析类题目与相关知识点</h1><ul>
+<li><strong>矛盾真假分析</strong>常见解题方法<ul>
+<li>矛盾法（三种常见矛盾）</li>
+<li>同真同假法 -&gt; 找矛盾，找同真同假</li>
+<li>代入法</li>
+</ul>
+</li>
+<li><strong>范畴分析</strong>常见解题方法：通过“所有”找到一组矛盾，再将所有对象一分为二，根据题意画“圆圈”，确定范围的用实线，不确定范围的用虚线，不确定位置的画线上</li>
+<li><strong>日常分析</strong>题目较为灵活，并没有通用方法</li>
+</ul>
+<h1 id="定义判断"><a href="#定义判断" class="headerlink" title="定义判断"></a>定义判断</h1><p><strong>总体做题思想</strong>：定义判断更重理解，要站在一定高度上把握，可联系生活中的人或事或某种现象，试着猜测其所指</p>
+<p><strong>“被定义词”</strong>才是最关键的信息，“名”里有最重要的特征！后续的解释，是为了让我们理解，其中，<strong>主体、对象、特殊需求，需重点关注。</strong></p>
+<ul>
+<li>抓准关键信息</li>
+<li>”不属于“题目借用”属于“例子</li>
+<li>对比枚举可一一对应</li>
+</ul>
+<h1 id="类比推理"><a href="#类比推理" class="headerlink" title="类比推理"></a>类比推理</h1><ul>
+<li>语义关系——近义、反义、引申义等</li>
+<li>语法关系<ul>
+<li>词性：名词、动词、形容词</li>
+<li>词语结构：动宾、偏正、主谓</li>
+</ul>
+</li>
+<li>逻辑关系<ul>
+<li>圈圈关系<ul>
+<li>交叉</li>
+<li>包含<ul>
+<li>种属：A是B</li>
+<li>组成：A是B的一部分</li>
+</ul>
+</li>
+<li>并列<ul>
+<li>反对：红橙（有第三者）、金木（有第三者）</li>
+<li>矛盾：非黑即白、非男即女</li>
+</ul>
+</li>
+<li>全同</li>
+</ul>
+</li>
+<li>逻辑关系<ul>
+<li>必要充分</li>
+<li>因果</li>
+<li>顺承</li>
+</ul>
+</li>
+<li>日常生活关系</li>
+</ul>
+</li>
+<li>拆词    </li>
+</ul>
+<h1 id="图形推理"><a href="#图形推理" class="headerlink" title="图形推理"></a>图形推理</h1><h2 id="定性分析"><a href="#定性分析" class="headerlink" title="定性分析"></a>定性分析</h2><h3 id="十五字之“屈臣氏整风”："><a href="#十五字之“屈臣氏整风”：" class="headerlink" title="十五字之“屈臣氏整风”："></a>十五字之“<strong>屈臣氏整风</strong>”：</h3><p>屈（曲直性）-曲线直线；臣（对称性）-对称；氏（相似性）-相同相似图形；整（整体性）-整体和部分；风（封闭性）-封闭开放。</p>
+<p><strong>对称性</strong>是一个非常重要的考点：</p>
+<ul>
+<li>常见考点：<ul>
+<li>性质：中心对称 or 轴对称</li>
+<li>数量：对称轴的数量</li>
+<li>方向：对称轴的方向（与性质、数量共称对称性“三大哥”）</li>
+<li>重叠：对称轴与图形中的线是否重叠</li>
+<li>多条对称轴位置关系：对称轴相互平行、对称轴相互垂直、对称轴夹角45°</li>
+<li>分割数量：一个大图形的对称轴穿过该图形内部几个空间几个面</li>
+</ul>
+</li>
+<li>中心对称提示图形：Z字型、S型、风车型、太极八卦状、平行四边形等</li>
+<li>正三角形、五角星、正六边形分别提示3、5、6条对称轴，看到这三个图形应该想到对称轴的数量</li>
+<li>“屈臣氏整风”之整体分割图形：常见考点为相似、对称、边数、三不沾</li>
+</ul>
+<h2 id="定量分析"><a href="#定量分析" class="headerlink" title="定量分析"></a>定量分析</h2><h3 id="十五字之“点线面角素”："><a href="#十五字之“点线面角素”：" class="headerlink" title="十五字之“点线面角素”："></a>十五字之“<strong>点线面角素</strong>”：</h3><p>点：交点。可能是曲线直线交点，圆内交点，圆外交点，外部轮廓上的交点。</p>
+<p>线：直线数量，曲线数量，笔画数，连接线的数量（公共边）</p>
+<p>面：空间数，部分数</p>
+<p>角：多数数的都是直角</p>
+<p>素：元素的种类，某一种元素的数量</p>
+<p>特殊考点：</p>
+<p>“点线面角素”之笔画数（几乎每套必考）。笔画数提示点为出头、T点、分离、特殊字符（田、日、☆、奥迪车标）。封闭图形（比如圆）可以视为没有笔画。</p>
+<pre><code>图中如果存在出头、T点，可以数数奇点
+
+奇点：0个、2个奇点可以一笔画，4个以上不可以一笔画。
+
+笔画数 = 奇点数/2
+</code></pre><p>“点线面角素”之直角数：提示点为电话卡、直角射线、三角形垂线、垂直关系等。</p>
+<p>“点线面角素”之数量加减：提示点 外部轮廓为规整多边形，多考察外部线条与内部点、线、面之和差</p>
+<h2 id="图形推理之位置分析"><a href="#图形推理之位置分析" class="headerlink" title="图形推理之位置分析"></a>图形推理之位置分析</h2><h3 id="十五字之“直接想位移”："><a href="#十五字之“直接想位移”：" class="headerlink" title="十五字之“直接想位移”："></a>十五字之“<strong>直接想位移</strong>”：</h3><p>直：垂直平行关系</p>
+<p>接：连接方式。点连接、线连接</p>
+<p>想：方向。对称轴的方向</p>
+<p>位：位置关系</p>
+<p>移：移动</p>
+<p>特殊考点：</p>
+<p>“直接想位移”之平行组数：提示点为相似三角形</p>
+<h2 id="其他易识别规律"><a href="#其他易识别规律" class="headerlink" title="其他易识别规律"></a>其他易识别规律</h2><p>叠加、元素换算（一般都是等差数列，可以利用等差数列的性质）、背景图</p>
+<p>“直接想位移”之背景图，常见考点：</p>
+<p>【三大哥】移动、叠加（白+黑=？）、部分数（白色有几部分，黑色有几部分）</p>
+<p>【四小弟】递推、 对称、一笔画、抱团（几个黑棋子相挨）</p>
+<h2 id="立体展开图"><a href="#立体展开图" class="headerlink" title="立体展开图"></a>立体展开图</h2><h3 id="花生五步走："><a href="#花生五步走：" class="headerlink" title="花生五步走："></a><strong>花生五步走</strong>：</h3><ol>
+<li>还原母图</li>
+<li>对立面排除选项</li>
+<li>1、4平移四格不变，5、6平移四格不变</li>
+<li>5、6移动两格：中心对称图形平移后不变，非中心对称图形上下、左右互换。5、6上下翻转同理</li>
+<li>五、六移动一格，可标注数字进行<strong>滚动</strong></li>
+</ol>
+<h2 id="立体截面"><a href="#立体截面" class="headerlink" title="立体截面"></a>立体截面</h2><p>一般可以截出简单、规整的图形，<strong>从点入刀斜着可以截出三角形（正三角形）</strong>、<strong>从面入刀斜着可以截出梯形</strong>、<strong>垂直可以截出矩形</strong>。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/others/" rel="tag"># others</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2023/04/11/Qt/" rel="next" title="Qt入门">
+                <i class="fa fa-chevron-left"></i> Qt入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2023/05/25/边缘计算/" rel="prev" title="边缘计算">
+                边缘计算 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑论证之削弱论证"><span class="nav-number">1.</span> <span class="nav-text">逻辑论证之削弱论证</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#归因类质疑"><span class="nav-number">1.1.</span> <span class="nav-text">归因类质疑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一般质疑类"><span class="nav-number">1.2.</span> <span class="nav-text">一般质疑类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#逻辑论证之支持与前提假设"><span class="nav-number">2.</span> <span class="nav-text">逻辑论证之支持与前提假设</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#支持类题目"><span class="nav-number">2.1.</span> <span class="nav-text">支持类题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前提假设类题目"><span class="nav-number">2.2.</span> <span class="nav-text">前提假设类题目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#比例类论证与解释说明"><span class="nav-number">3.</span> <span class="nav-text">比例类论证与解释说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比例类论证"><span class="nav-number">3.1.</span> <span class="nav-text">比例类论证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解释说明类"><span class="nav-number">3.2.</span> <span class="nav-text">解释说明类</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#推出类题目与相关知识点"><span class="nav-number">4.</span> <span class="nav-text">推出类题目与相关知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑基础知识点（包括：一二三四五）"><span class="nav-number">4.1.</span> <span class="nav-text">逻辑基础知识点（包括：一二三四五）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、一个符号两种条件"><span class="nav-number">4.1.1.</span> <span class="nav-text">一、一个符号两种条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、命题的形式与真假判断"><span class="nav-number">4.1.2.</span> <span class="nav-text">二、命题的形式与真假判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、三种推理形式"><span class="nav-number">4.1.3.</span> <span class="nav-text">三、三种推理形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、四种相对关系"><span class="nav-number">4.1.4.</span> <span class="nav-text">四、四种相对关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、五种命题（假言命题和选言命题）"><span class="nav-number">4.1.5.</span> <span class="nav-text">五、五种命题（假言命题和选言命题）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#分析类题目与相关知识点"><span class="nav-number">5.</span> <span class="nav-text">分析类题目与相关知识点</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#定义判断"><span class="nav-number">6.</span> <span class="nav-text">定义判断</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类比推理"><span class="nav-number">7.</span> <span class="nav-text">类比推理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图形推理"><span class="nav-number">8.</span> <span class="nav-text">图形推理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#定性分析"><span class="nav-number">8.1.</span> <span class="nav-text">定性分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#十五字之“屈臣氏整风”："><span class="nav-number">8.1.1.</span> <span class="nav-text">十五字之“屈臣氏整风”：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定量分析"><span class="nav-number">8.2.</span> <span class="nav-text">定量分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#十五字之“点线面角素”："><span class="nav-number">8.2.1.</span> <span class="nav-text">十五字之“点线面角素”：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图形推理之位置分析"><span class="nav-number">8.3.</span> <span class="nav-text">图形推理之位置分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#十五字之“直接想位移”："><span class="nav-number">8.3.1.</span> <span class="nav-text">十五字之“直接想位移”：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他易识别规律"><span class="nav-number">8.4.</span> <span class="nav-text">其他易识别规律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#立体展开图"><span class="nav-number">8.5.</span> <span class="nav-text">立体展开图</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#花生五步走："><span class="nav-number">8.5.1.</span> <span class="nav-text">花生五步走：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#立体截面"><span class="nav-number">8.6.</span> <span class="nav-text">立体截面</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
+
+
+
+
+<% if (page.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
+</%></%-></%>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

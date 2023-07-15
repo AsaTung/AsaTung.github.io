@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.2">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.2">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.2">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.2" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Table Basic Device Configuration Configure Passwords Encrypt Passwords Banner Messages Save the Running Configuration File   VLAN and Trunk Configure Create VLAN Configure Ports to VLAN Delete VLAN Vi">
+<meta name="keywords" content="Computer Network">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cisco Packet Tracer Commands">
+<meta property="og:url" content="http://yoursite.com/2020/05/25/pt命令/index.html">
+<meta property="og:site_name" content="书写筑明天">
+<meta property="og:description" content="Table Basic Device Configuration Configure Passwords Encrypt Passwords Banner Messages Save the Running Configuration File   VLAN and Trunk Configure Create VLAN Configure Ports to VLAN Delete VLAN Vi">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://wxt.sinaimg.cn/mw1024/006woFY4ly1gf4qfpxrbkj30ui0cwwha.jpg?tags=%5B%5D">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw1024/006woFY4ly1gf4qip9jokj30ts0k579j.jpg">
+<meta property="og:image" content="https://wx3.sinaimg.cn/mw1024/006woFY4ly1gf4qinp4obj30py08xac3.jpg">
+<meta property="og:image" content="https://wx2.sinaimg.cn/mw1024/006woFY4ly1gf4qinusvbj30qo09mdig.jpg">
+<meta property="og:updated_time" content="2023-04-09T10:45:03.699Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Cisco Packet Tracer Commands">
+<meta name="twitter:description" content="Table Basic Device Configuration Configure Passwords Encrypt Passwords Banner Messages Save the Running Configuration File   VLAN and Trunk Configure Create VLAN Configure Ports to VLAN Delete VLAN Vi">
+<meta name="twitter:image" content="https://wxt.sinaimg.cn/mw1024/006woFY4ly1gf4qfpxrbkj30ui0cwwha.jpg?tags=%5B%5D">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/05/25/pt命令/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Cisco Packet Tracer Commands | 书写筑明天</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">书写筑明天</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Dong Boyang weblog</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/pt命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content>
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="书写筑明天">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Cisco Packet Tracer Commands
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-25 00:00:00" itemprop="dateCreated datePublished" datetime="2020-05-25T00:00:00+08:00">2020-05-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2023-04-09 18:45:03" itemprop="dateModified" datetime="2023-04-09T18:45:03+08:00">2023-04-09</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h1><ul>
+<li>Basic Device Configuration<ul>
+<li>Configure Passwords</li>
+<li>Encrypt Passwords</li>
+<li>Banner Messages</li>
+<li>Save the Running Configuration File</li>
+</ul>
+</li>
+<li>VLAN and Trunk Configure<ul>
+<li>Create VLAN</li>
+<li>Configure Ports to VLAN</li>
+<li>Delete VLAN</li>
+<li>View the VLAN Configuration</li>
+<li>Configure Trunk</li>
+</ul>
+</li>
+<li>Router<ul>
+<li>Router basic configuration<ul>
+<li>IPv4 Config and DCE Clock Rate</li>
+<li>IPv6 Config</li>
+<li>IPv4 loopback interface</li>
+</ul>
+</li>
+<li>Configure Static and Default Routes<ul>
+<li>IPv4 Static and Default Routes</li>
+<li>IPv6 Static and Default Routes</li>
+<li>Floating Static Routes</li>
+</ul>
+</li>
+<li>Configure RIPv2</li>
+<li>Configuring Router-on-a-Stick Inter-VLAN Routing</li>
+</ul>
+</li>
+<li>IPv4 ACL</li>
+<li>DHCPv4<ul>
+<li>DHCP Server</li>
+<li>DHCP Relay</li>
+<li>DHCP Client</li>
+</ul>
+</li>
+<li>NAT and PAT<ul>
+<li>Configure Static NAT</li>
+<li>Configure Dynamic NAT</li>
+<li>Configure PAT：pool</li>
+</ul>
+</li>
+</ul>
+<a id="more"></a>
+<h1 id="Basic-Device-Configuration"><a href="#Basic-Device-Configuration" class="headerlink" title="Basic Device Configuration"></a>Basic Device Configuration</h1><h2 id="Configure-Passwords"><a href="#Configure-Passwords" class="headerlink" title="Configure Passwords"></a>Configure Passwords</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)# enable password cisco</span><br><span class="line">Switch(config)# enable secret class</span><br><span class="line"></span><br><span class="line">Switch(config)# line console 0</span><br><span class="line">Switch(config)# password cisco</span><br><span class="line">Switch(config)# login</span><br><span class="line"></span><br><span class="line">Switch(config)# line vty 0 15</span><br><span class="line">Switch(config)# password cisco</span><br><span class="line">Switch(config)# login</span><br><span class="line"></span><br><span class="line">Switch# show running-config</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Encrypt-Passwords"><a href="#Encrypt-Passwords" class="headerlink" title="Encrypt Passwords"></a>Encrypt Passwords</h2><pre><code>S1(config)# service password-encryption
+</code></pre><p>Use the <code>show running-config</code> command to verify that passwords are now encrypted.</p>
+<h2 id="Banner-Messages"><a href="#Banner-Messages" class="headerlink" title="Banner Messages"></a>Banner Messages</h2><pre><code>S1(config)#banner motd # the message of the day #
+</code></pre><h2 id="Save-the-Running-Configuration-File"><a href="#Save-the-Running-Configuration-File" class="headerlink" title="Save the Running Configuration File"></a>Save the Running Configuration File</h2><pre><code>S1#copy running-config startup-config
+</code></pre><p>As shown in the figure, use the <code>show running-config</code> privileged EXEC mode command to view the running configuration file. To view the startup configuration file, use the <code>show startup-config</code> privileged EXEC command. </p>
+<h1 id="VLAN-and-Trunk-Configure"><a href="#VLAN-and-Trunk-Configure" class="headerlink" title="VLAN and Trunk Configure"></a>VLAN and Trunk Configure</h1><h2 id="Create-VLAN"><a href="#Create-VLAN" class="headerlink" title="Create VLAN"></a>Create VLAN</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)# vlan 10</span><br><span class="line">Switch(config-vlan)# name Students</span><br><span class="line">Switch(config-vlan)# end</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Configure-Ports-to-VLAN"><a href="#Configure-Ports-to-VLAN" class="headerlink" title="Configure Ports to VLAN"></a>Configure Ports to VLAN</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)# interface f0/0</span><br><span class="line">Switch(config-if)# switchport mode access</span><br><span class="line">Switch(config-if)# switchport access vlan 10</span><br><span class="line">Switch(config-if)# end</span><br><span class="line"></span><br><span class="line">Switch(config)# interface range f0/1 - 24</span><br><span class="line">Switch(config-if)# switchport mode access</span><br><span class="line">Switch(config-if)# switchport access vlan 10</span><br><span class="line">Switch(config-if)# end</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Delete-VLAN"><a href="#Delete-VLAN" class="headerlink" title="Delete VLAN"></a>Delete VLAN</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)# interface f0/0</span><br><span class="line">Switch(config-if)# no switchport access vlan</span><br><span class="line">Switch(config-if)# exit</span><br><span class="line">Switch(config)# no vlan 10</span><br><span class="line">Switch(config)# end</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="View-the-VLAN-Configuration"><a href="#View-the-VLAN-Configuration" class="headerlink" title="View the VLAN Configuration"></a>View the VLAN Configuration</h2><pre><code>Switch# show vlan brief
+</code></pre><h2 id="Configure-Trunk"><a href="#Configure-Trunk" class="headerlink" title="Configure Trunk"></a>Configure Trunk</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)# interface f0/1</span><br><span class="line">Switch(config-if)# switchport mode trunk</span><br><span class="line">Switch(config-if)# switchport trunk native vlan 99</span><br><span class="line">Switch(config-if)# end</span><br><span class="line">Switch# show interfaces f0/1 switchport</span><br></pre></td></tr></table></figure>
+</code></pre><h1 id="Router"><a href="#Router" class="headerlink" title="Router"></a>Router</h1><h2 id="Router-basic-configuration"><a href="#Router-basic-configuration" class="headerlink" title="Router basic configuration"></a>Router basic configuration</h2><h3 id="IPv4-Config-and-DCE-Clock-Rate"><a href="#IPv4-Config-and-DCE-Clock-Rate" class="headerlink" title="IPv4 Config and DCE Clock Rate"></a>IPv4 Config and DCE Clock Rate</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Router# show controllers S0/0/1  !检查路由器接口是DCE还是DTE</span><br><span class="line"></span><br><span class="line">Router(config)# interface S0/0/1</span><br><span class="line">Router(config-if)# description Link to LAN1</span><br><span class="line">Router(config-if)# ip address 192.168.10.1 255.255.255.0</span><br><span class="line"></span><br><span class="line">Router(config-if)# clock rate 64000</span><br><span class="line"></span><br><span class="line">Router(config-if)# no shutdown</span><br><span class="line">Router(config-if)# exit</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="IPv6-Config"><a href="#IPv6-Config" class="headerlink" title="IPv6 Config"></a>IPv6 Config</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# interface G0/0</span><br><span class="line">Router(config-if)# description Link to LAN1</span><br><span class="line">Router(config-if)# ipv6 address 2001:db8:acad:1::1/64</span><br><span class="line"></span><br><span class="line">Router(config-if)# clock rate 64000</span><br><span class="line"></span><br><span class="line">Router(config-if)# no shutdown</span><br><span class="line">Router(config-if)# exit</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="IPv4-loopback-interface"><a href="#IPv4-loopback-interface" class="headerlink" title="IPv4 loopback interface"></a>IPv4 loopback interface</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# interface loopback 0</span><br><span class="line">Router(config-if)# ip address 10.0.0.1 255.255.255.0</span><br><span class="line">Router(config-if)# exit</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Configure-Static-and-Default-Routes"><a href="#Configure-Static-and-Default-Routes" class="headerlink" title="Configure Static and Default Routes"></a>Configure Static and Default Routes</h2><h3 id="IPv4-Static-and-Default-Routes"><a href="#IPv4-Static-and-Default-Routes" class="headerlink" title="IPv4 Static and Default Routes"></a>IPv4 Static and Default Routes</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# ip route network-address subnet-mask &#123;ip-address | exit-interface&#125;</span><br><span class="line">Router(config)# ip route 192.168.1.0 255.255.255.0 172.16.2.2  </span><br><span class="line"></span><br><span class="line">Router(config)# ip route 0.0.0.0 0.0.0.0 G0/0   !默认路由</span><br><span class="line"></span><br><span class="line">Router(config)# exit</span><br><span class="line">Router# show ip route</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="IPv6-Static-and-Default-Routes"><a href="#IPv6-Static-and-Default-Routes" class="headerlink" title="IPv6 Static and Default Routes"></a>IPv6 Static and Default Routes</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# ipv6 unicast-routing   !启用IPv6单播路由</span><br><span class="line">Router(config)# ipv6 route 2001:DB8:ACAD:2::/64 2001:DB8:ACAD:4::2</span><br><span class="line">Router(config)# ipv6 route 2001:DB8:ACAD:2::/64 S0/0/1</span><br><span class="line"></span><br><span class="line">Router(config)# ipv6 route ::/0 &#123;ipv6-address | exit-interface&#125;</span><br><span class="line"></span><br><span class="line">Router(config)# exit</span><br><span class="line">Router# show ipv6 route</span><br></pre></td></tr></table></figure>
+</code></pre><h3 id="Floating-Static-Routes"><a href="#Floating-Static-Routes" class="headerlink" title="Floating Static Routes"></a>Floating Static Routes</h3><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# ip route 0.0.0.0 0.0.0.0 172.16.2.2 !主链路</span><br><span class="line">Router(config)# ip route 0.0.0.0 0.0.0.0 10.10.10.2 5 !浮动链路，距离为5，距离越小，优先级越高</span><br><span class="line"></span><br><span class="line">Router(config)# ipv6 route ::/0 2001:db8:acad:4::2</span><br><span class="line">Router(config)# ipv6 route ::/0 2001:db8:acad:6::2 5</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Configure-RIPv2"><a href="#Configure-RIPv2" class="headerlink" title="Configure RIPv2"></a>Configure RIPv2</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# router rip</span><br><span class="line">Router(config-router)# version 2</span><br><span class="line">Router(config-router)# network 192.168.1.0  // network-address : 与路由直接网络</span><br><span class="line">Router(config-router)# network 192.168.2.0</span><br><span class="line">Router(config-router)# no auto-summary</span><br><span class="line">Router(config-router)# end</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Configuring-Router-on-a-Stick-Inter-VLAN-Routing"><a href="#Configuring-Router-on-a-Stick-Inter-VLAN-Routing" class="headerlink" title="Configuring Router-on-a-Stick Inter-VLAN Routing"></a>Configuring Router-on-a-Stick Inter-VLAN Routing</h2><p><img src="https://wxt.sinaimg.cn/mw1024/006woFY4ly1gf4qfpxrbkj30ui0cwwha.jpg?tags=%5B%5D" alt></p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">! 交换机配置</span><br><span class="line">S1(config)# interface f0/11</span><br><span class="line">S1(config-if)# switchport access vlan 10</span><br><span class="line">S1(config)# interface f0/6</span><br><span class="line">S1(config-if)# switchport access vlan 30</span><br><span class="line">S1(config)# interface f0/5</span><br><span class="line">S1(config-ig)# switchport mode trunk</span><br><span class="line"></span><br><span class="line">！ 路由器配置</span><br><span class="line">Router(config)# interface g0/0.10</span><br><span class="line">Router(config-subif)# encapsulation dot1q 10</span><br><span class="line">Router(config-subif)# ip address 172.17.10.1 255.255.255.0</span><br><span class="line">Router(config)# interface g0/0.30</span><br><span class="line">Router(config-subif)# encapsulation dot1q 30</span><br><span class="line">Router(config-subif)# ip address 172.17.30.1 255.255.255.0</span><br><span class="line">Router(config)# interface g0/0</span><br><span class="line">Router(config-if)# no shutdown</span><br></pre></td></tr></table></figure>
+</code></pre><h1 id="IPv4-ACL"><a href="#IPv4-ACL" class="headerlink" title="IPv4 ACL"></a>IPv4 ACL</h1><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# access-list 1 permit 192.168.0.0 0.0.0.255</span><br><span class="line">Router(config)# exit</span><br><span class="line">Router# show access-lists</span><br><span class="line"></span><br><span class="line">Router(config)# interface S0/0/0</span><br><span class="line">Router(config-if)# ip access-group 1 out  !将ACL 1作为接口的出站过滤器</span><br><span class="line"></span><br><span class="line">Router# config t</span><br><span class="line">Router(config)# no access-list 1</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Router(config)#i p access-list standard NO-ACCESS</span><br><span class="line">Router(config-std-nacl)# deny host 192.168.11.10  !拒绝特定主机</span><br><span class="line">Router(config-std-nacl)# permit any</span><br><span class="line">Router(config-std-nacl)# exit</span><br><span class="line">Router(config)# interface g0/0</span><br><span class="line">Router(config-if)# ip access-list NO-ACCESS out</span><br></pre></td></tr></table></figure>
+</code></pre><h1 id="DHCPv4"><a href="#DHCPv4" class="headerlink" title="DHCPv4"></a>DHCPv4</h1><h2 id="DHCP-Server"><a href="#DHCP-Server" class="headerlink" title="DHCP Server"></a>DHCP Server</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# ip dhcp excluded-address 192.168.10.1 192.168.10.9</span><br><span class="line">Router(config)# ip dhcp excluded-address 192.168.10.254   !排除IPv4地址</span><br><span class="line"></span><br><span class="line">Router(config)# ip dhcp pool LAN-POOL-1     !配置dhcp池</span><br><span class="line"></span><br><span class="line">Router(dhcp-config)# network 192.168.10.0 255.255.255.0  !定义可用地址范围</span><br><span class="line">Router(dhcp-config)# default-router 192.168.10.0  !定义默认网关路由器。通常，网关是最接近客户端设备的路由器的 LAN 接口</span><br><span class="line">Router(dhcp-config)# dns-server 192.168.11.5</span><br><span class="line">Router(dhcp-config)# domain-name example.com</span><br><span class="line">Router(dhcp-config)# end</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="DHCP-Relay"><a href="#DHCP-Relay" class="headerlink" title="DHCP Relay"></a>DHCP Relay</h2><p><img src="https://wx3.sinaimg.cn/mw1024/006woFY4ly1gf4qip9jokj30ts0k579j.jpg" alt></p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">R1(config)# interface g0/0</span><br><span class="line">R1(config-if)# ip helper-address 192.168.11.6  ! dhcp服务器的地址</span><br><span class="line">R1(config-if)# end</span><br><span class="line">R1# show ip interface g0/0</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="DHCP-Client"><a href="#DHCP-Client" class="headerlink" title="DHCP Client"></a>DHCP Client</h2><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Router(config)# interface g0/1</span><br><span class="line">Router(config-if)# ip address dhcp</span><br><span class="line">Router(config-if)# no shutdown</span><br></pre></td></tr></table></figure>
+</code></pre><h1 id="NAT-and-PAT"><a href="#NAT-and-PAT" class="headerlink" title="NAT and PAT"></a>NAT and PAT</h1><h2 id="Configure-Static-NAT"><a href="#Configure-Static-NAT" class="headerlink" title="Configure Static NAT"></a>Configure Static NAT</h2><p><img src="https://wx3.sinaimg.cn/mw1024/006woFY4ly1gf4qinp4obj30py08xac3.jpg" alt></p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">R2(config)# ip nat inside static 192.168.11.99 209.165.201.5</span><br><span class="line">R2(config)# interface S0/0/0</span><br><span class="line">R2(config-if)# ip nat inside</span><br><span class="line">R2(config)# interface S0/1/0</span><br><span class="line">R2(config-if)# ip nat outside</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Configure-Dynamic-NAT"><a href="#Configure-Dynamic-NAT" class="headerlink" title="Configure Dynamic NAT"></a>Configure Dynamic NAT</h2><p><img src="https://wx2.sinaimg.cn/mw1024/006woFY4ly1gf4qinusvbj30qo09mdig.jpg" alt></p>
+<pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R2(config)# ip nat pool NAT-POOL1 209.165.200.226 209.165.200.240 netmask 255.255.255.224   ! 定义地址池</span><br><span class="line">R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255  ! 定义ACL1</span><br><span class="line"></span><br><span class="line">R2(config)# ip nat inside source list 1 pool NAT-POOL1  ! 绑定nat地址池和ACL 1</span><br><span class="line"></span><br><span class="line">R2(config)# interface S0/0/0</span><br><span class="line">R2(config-if)# ip nat inside</span><br><span class="line">R2(config)# interface S0/1/0</span><br><span class="line">R2(config-if)# ip nat outside</span><br></pre></td></tr></table></figure>
+</code></pre><h2 id="Configure-PAT：pool"><a href="#Configure-PAT：pool" class="headerlink" title="Configure PAT：pool"></a>Configure PAT：pool</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">R2(config)# ip nat pool NAT-POOL2 209.165.200.226 209.165.200.240 netmask 255.255.255.224   ! 定义地址池</span><br><span class="line">R2(config)# access-list 1 permit 192.168.0.0 0.0.255.255  ! 定义ACL1</span><br><span class="line"></span><br><span class="line">R2(config)# ip nat inside source list 1 pool NAT-POOL2 overload  ! 绑定nat地址池和ACL 1</span><br><span class="line"></span><br><span class="line">R2(config)# interface S0/0/0</span><br><span class="line">R2(config-if)# ip nat inside</span><br><span class="line">R2(config)# interface S0/1/0</span><br><span class="line">R2(config-if)# ip nat outside</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Computer-Network/" rel="tag"># Computer Network</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/17/AsaTung：信息标记的三种形式与信息提取的一般方法概述/" rel="next" title="AsaTung：信息标记的三种形式与信息提取的一般方法概述">
+                <i class="fa fa-chevron-left"></i> AsaTung：信息标记的三种形式与信息提取的一般方法概述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/05/19/tags_ NLP/" rel="prev" title="词向量与word2vec">
+                词向量与word2vec <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Table"><span class="nav-number">1.</span> <span class="nav-text">Table</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Device-Configuration"><span class="nav-number">2.</span> <span class="nav-text">Basic Device Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Passwords"><span class="nav-number">2.1.</span> <span class="nav-text">Configure Passwords</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Encrypt-Passwords"><span class="nav-number">2.2.</span> <span class="nav-text">Encrypt Passwords</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Banner-Messages"><span class="nav-number">2.3.</span> <span class="nav-text">Banner Messages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Save-the-Running-Configuration-File"><span class="nav-number">2.4.</span> <span class="nav-text">Save the Running Configuration File</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VLAN-and-Trunk-Configure"><span class="nav-number">3.</span> <span class="nav-text">VLAN and Trunk Configure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Create-VLAN"><span class="nav-number">3.1.</span> <span class="nav-text">Create VLAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Ports-to-VLAN"><span class="nav-number">3.2.</span> <span class="nav-text">Configure Ports to VLAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Delete-VLAN"><span class="nav-number">3.3.</span> <span class="nav-text">Delete VLAN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-the-VLAN-Configuration"><span class="nav-number">3.4.</span> <span class="nav-text">View the VLAN Configuration</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Trunk"><span class="nav-number">3.5.</span> <span class="nav-text">Configure Trunk</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Router"><span class="nav-number">4.</span> <span class="nav-text">Router</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Router-basic-configuration"><span class="nav-number">4.1.</span> <span class="nav-text">Router basic configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv4-Config-and-DCE-Clock-Rate"><span class="nav-number">4.1.1.</span> <span class="nav-text">IPv4 Config and DCE Clock Rate</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv6-Config"><span class="nav-number">4.1.2.</span> <span class="nav-text">IPv6 Config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv4-loopback-interface"><span class="nav-number">4.1.3.</span> <span class="nav-text">IPv4 loopback interface</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Static-and-Default-Routes"><span class="nav-number">4.2.</span> <span class="nav-text">Configure Static and Default Routes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv4-Static-and-Default-Routes"><span class="nav-number">4.2.1.</span> <span class="nav-text">IPv4 Static and Default Routes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPv6-Static-and-Default-Routes"><span class="nav-number">4.2.2.</span> <span class="nav-text">IPv6 Static and Default Routes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Floating-Static-Routes"><span class="nav-number">4.2.3.</span> <span class="nav-text">Floating Static Routes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-RIPv2"><span class="nav-number">4.3.</span> <span class="nav-text">Configure RIPv2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuring-Router-on-a-Stick-Inter-VLAN-Routing"><span class="nav-number">4.4.</span> <span class="nav-text">Configuring Router-on-a-Stick Inter-VLAN Routing</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IPv4-ACL"><span class="nav-number">5.</span> <span class="nav-text">IPv4 ACL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DHCPv4"><span class="nav-number">6.</span> <span class="nav-text">DHCPv4</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCP-Server"><span class="nav-number">6.1.</span> <span class="nav-text">DHCP Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCP-Relay"><span class="nav-number">6.2.</span> <span class="nav-text">DHCP Relay</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DHCP-Client"><span class="nav-number">6.3.</span> <span class="nav-text">DHCP Client</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NAT-and-PAT"><span class="nav-number">7.</span> <span class="nav-text">NAT and PAT</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Static-NAT"><span class="nav-number">7.1.</span> <span class="nav-text">Configure Static NAT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-Dynamic-NAT"><span class="nav-number">7.2.</span> <span class="nav-text">Configure Dynamic NAT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configure-PAT：pool"><span class="nav-number">7.3.</span> <span class="nav-text">Configure PAT：pool</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2023</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.1.2</div>
+
+
+
+
+<% if (page.mathjax){ %>
+<%- partial('mathjax') %>
+<% } %>
+</%></%-></%>
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.2"></script>
+
+  <script src="/js/motion.js?v=7.1.2"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.2"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.2"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.2"></script>
+<script src="/js/post-details.js?v=7.1.2"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.2"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
