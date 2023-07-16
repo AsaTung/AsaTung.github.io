@@ -456,7 +456,7 @@ p(s)&=p(w_1)p(w_2 | w_1)p(w_3 | w_1w_2)\cdots p(w_l | w_1...w_{l-1})\\
 <p>为了解决以上问题，我们提出<strong>n元语法</strong>（n-gram）的概念，它的含义我们可以简单理解成：<strong>一个词的概率只依赖于它前面的$n-1$个词</strong>。当$n=1$时，即词$w_i$独立于历史时，记作unigram；当$n=2$时，词$w_i$仅与它前面的一个历史词$w_{i-1}$有关，记作bigram；当$n=3$时，词$w_i$仅与它前面的两个历史词$w_{i-1}w_{i-2}$有关，记作trigram。</p>
 <p>以二元语法模型为例，根据前面的解释，我们可以近似地认为，一个词的概率只依赖于它前面一个词，那么，</p>
 <script type="math/tex; mode=display">
-p(s)=\prod_{i=1}^lp(w_i|w_1w_2\cdots w_{i-1}) \approx \prod_{i=1}^lp(w_i|w_{i-1})</script><p>为了使得$p(w_i|w_{i-1})$对于$i=1$有意义，我们在句子开头加上一个句首标记&lt;<bos>BOS&gt;，即假设$w_0$就是&lt;<bos>BOS&gt;。相应地，在句子末尾加上一个句尾标记&lt;<eos>EOS&gt;。例如，要计算$p(Mark\ wrote\ a\ book)$，我们可以这样计算：</eos></bos></bos></p>
+p(s)=\prod_{i=1}^lp(w_i|w_1w_2\cdots w_{i-1}) \approx \prod_{i=1}^lp(w_i|w_{i-1})</script><p>为了使得$p(w_i|w_{i-1})$对于$i=1$有意义，我们在句子开头加上一个句首标记&lt;<bos>BOS&gt;，即假设$w_0$就是&lt;<bos>BOS&gt;。相应地，在句子末尾加上一个句尾标记&lt;<eos>EOS&gt;。例如，要计算$p(Mark wrote a book)$，我们可以这样计算：</eos></bos></bos></p>
 <script type="math/tex; mode=display">
 \begin{equation}\begin{split}
 p(Mark\ wrote\ a\ book)=&p(Mark|<BOS>)×p(wrote|Mark)\\
