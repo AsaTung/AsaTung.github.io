@@ -105,7 +105,8 @@
 <meta property="og:description" content="高频考点之 ABRX 类问题增长量  X  的常用解题技巧 一般来讲X会有两类考法：  一是直接求X，相对比较简单；二是求两个X的关系（或倍数或比值等），此类考法只是将两道第一种考法的题目合并到了一道题中。  求X的题型一般会给出B、R做为已知条件，我们可以根据R的大小选择适用的方法：  当R大于10%并靠近某个分数时，可以选用415份数法；  当R小于10%时，可以选用假设分配法；  当R非常小">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2023/07/15/行测-资料分析/比重类问题分类.png">
-<meta property="og:updated_time" content="2023-07-16T12:33:33.793Z">
+<meta property="og:image" content="http://yoursite.com/2023/07/15/行测-资料分析/比较类问题.png">
+<meta property="og:updated_time" content="2023-07-18T14:14:56.594Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="行测-资料分析">
 <meta name="twitter:description" content="高频考点之 ABRX 类问题增长量  X  的常用解题技巧 一般来讲X会有两类考法：  一是直接求X，相对比较简单；二是求两个X的关系（或倍数或比值等），此类考法只是将两道第一种考法的题目合并到了一道题中。  求X的题型一般会给出B、R做为已知条件，我们可以根据R的大小选择适用的方法：  当R大于10%并靠近某个分数时，可以选用415份数法；  当R小于10%时，可以选用假设分配法；  当R非常小">
@@ -407,7 +408,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2023-07-16 20:33:33" itemprop="dateModified" datetime="2023-07-16T20:33:33+08:00">2023-07-16</time>
+                <time title="修改时间：2023-07-18 22:14:56" itemprop="dateModified" datetime="2023-07-18T22:14:56+08:00">2023-07-18</time>
               
             
           </span>
@@ -523,6 +524,37 @@
 \end{align}</script><p><strong>比重差公式</strong>：$比重差=本期比重-前期比重=\frac{前期部分}{本期整体}\times(部分增长率-整体增长率)$</p>
 <p><strong>记忆口诀</strong>：<strong>今年的整体</strong>分之<strong>去年的部分</strong>乘上<strong>增长率之差</strong></p>
 <p><strong>比重差秒杀计</strong>：<strong>比重差</strong>绝对值小于<strong>增速差</strong>绝对值</p>
+<h1 id="高频考点之盐水相关问题"><a href="#高频考点之盐水相关问题" class="headerlink" title="高频考点之盐水相关问题"></a>高频考点之盐水相关问题</h1><h2 id="盐水思想介绍"><a href="#盐水思想介绍" class="headerlink" title="盐水思想介绍"></a>盐水思想介绍</h2><h3 id="盐水思想的两个基本原则"><a href="#盐水思想的两个基本原则" class="headerlink" title="盐水思想的两个基本原则"></a>盐水思想的两个基本原则</h3><ul>
+<li>混合溶液浓度要在两杯溶液浓度之间</li>
+<li>混合溶液浓度要接近比重大的那杯溶液浓度</li>
+</ul>
+<h3 id="盐水思想的计算方法"><a href="#盐水思想的计算方法" class="headerlink" title="盐水思想的计算方法"></a>盐水思想的计算方法</h3><p><strong>十字相乘法，适用于求两部分量之比；</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">溶液A浓度────────┐	┌──────── X-B	 溶液A质量		   溶质</span><br><span class="line">			混合溶液浓度X	    ———— = —————————  浓度 = ————  分母之比</span><br><span class="line">溶液B浓度────────┘	└──────── A-X	 溶液B质量         溶液</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">部分<span class="number">1</span>增长率R1────┐	┌──── R1-R	   A1		         X</span><br><span class="line">			 整体增长率R	 —————— = ————          R = ———   分母之比</span><br><span class="line">部分<span class="number">2</span>增长率R2────┘	└──── R-R2	   A2                A</span><br></pre></td></tr></table></figure>
+<p><strong>线段法，适用于求 “3R” 之一：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">按数据标点 → 按比例分段 → 按比重选点 → 几何计算</span><br></pre></td></tr></table></figure>
+<p><strong><em>考人数，想盐水</em></strong></p>
+<h3 id="盐水类问题的三种常见考察方式"><a href="#盐水类问题的三种常见考察方式" class="headerlink" title="盐水类问题的三种常见考察方式"></a>盐水类问题的三种常见考察方式</h3><ul>
+<li>一是给出整体与两部分的 3 个 “R”，可用十字相乘法求得两部分的量之比</li>
+<li>二是给出了两部分的量之比，但求 3 个 “R” 中的某一个，可先用基本原则排除错误选项，再用十字相乘法解题，或者直接使用线段法解题</li>
+<li>三是时间分段，比较特殊</li>
+</ul>
+<h1 id="高频考点之比较类相关问题"><a href="#高频考点之比较类相关问题" class="headerlink" title="高频考点之比较类相关问题"></a>高频考点之比较类相关问题</h1><p>比较类问题分类如下：</p>
+<p><img src="比较类问题.png" alt="image-20230718155236169"></p>
+<h2 id="比值大小比较"><a href="#比值大小比较" class="headerlink" title="比值大小比较"></a>比值大小比较</h2><p>双线法</p>
+<h2 id="增量大小比较"><a href="#增量大小比较" class="headerlink" title="增量大小比较"></a>增量大小比较</h2><p><strong>增量大小比较秒杀计：</strong></p>
+<p>第一句：B 越大 R 越大，则 X 越大</p>
+<p>第二句：我的 B 是你的 N 被，你的 R 是我的 N 倍以上，我们的 X 才可能相等</p>
+<h2 id="图标查找类比较"><a href="#图标查找类比较" class="headerlink" title="图标查找类比较"></a>图标查找类比较</h2><p>一是注意起始、结束年份、月份（重中之重）；</p>
+<p>二是注意”合计“、”总计“行，以免数进去；</p>
+<p>三是注意第一年的增量；</p>
+<p>四是注意单位，例如航空运输和公路运输不是一个数量级。</p>
+<h1 id="高频考点之平均类问题"><a href="#高频考点之平均类问题" class="headerlink" title="高频考点之平均类问题"></a>高频考点之平均类问题</h1><h2 id="一般平均值问题"><a href="#一般平均值问题" class="headerlink" title="一般平均值问题"></a>一般平均值问题</h2><p><strong>均前每后（平均每也是每）做分母；时间平均值注意起止时间（月末月初）和平年闰年；$\frac {\frac{A}{B} }{\frac{C}{D} } = \frac {AD}{BC}$</strong></p>
+<h2 id="年均增长量"><a href="#年均增长量" class="headerlink" title="年均增长量"></a>年均增长量</h2><p><strong>年均增长量：</strong>表示的是 n 年间增量的绝对平均值。$年均增量=\frac {本期-基期}n$</p>
+<h2 id="年均增长率（需要开方，极少考）"><a href="#年均增长率（需要开方，极少考）" class="headerlink" title="年均增长率（需要开方，极少考）"></a>年均增长率（需要开方，极少考）</h2><p><strong>复合平均增长率：</strong>$\frac {末期}{基期}=(1+R)^n$</p>
+<p><strong>算术平均增长率：</strong>$总增长率/n$</p>
+<h1 id="特殊考点：拉动增长与贡献率"><a href="#特殊考点：拉动增长与贡献率" class="headerlink" title="特殊考点：拉动增长与贡献率"></a>特殊考点：拉动增长与贡献率</h1><p>$拉动增长=部分增量/整体前期$</p>
+<p>$增量贡献率=部分增量/整体增量$</p>
 
       
     </div>
@@ -709,7 +741,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#高频考点之-ABRX-类问题"><span class="nav-number">1.</span> <span class="nav-text">高频考点之 ABRX 类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#增长量-X-的常用解题技巧"><span class="nav-number">1.1.</span> <span class="nav-text">增长量  X  的常用解题技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增长率-R-四种考察方式与对应解法"><span class="nav-number">1.2.</span> <span class="nav-text">增长率 R 四种考察方式与对应解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期-A-的考法与解法"><span class="nav-number">1.3.</span> <span class="nav-text">前期 A 的考法与解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已知前期-A-求本期-B"><span class="nav-number">1.4.</span> <span class="nav-text">已知前期 A 求本期 B</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高频考点之比重类相关问题"><span class="nav-number">2.</span> <span class="nav-text">高频考点之比重类相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单期比重之本期比重"><span class="nav-number">2.1.</span> <span class="nav-text">单期比重之本期比重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单期比重之前期比重"><span class="nav-number">2.2.</span> <span class="nav-text">单期比重之前期比重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单期比重之隔级比重"><span class="nav-number">2.3.</span> <span class="nav-text">单期比重之隔级比重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两期比重变化之比重趋势"><span class="nav-number">2.4.</span> <span class="nav-text">两期比重变化之比重趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两期比重变化之比重差"><span class="nav-number">2.5.</span> <span class="nav-text">两期比重变化之比重差</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#高频考点之-ABRX-类问题"><span class="nav-number">1.</span> <span class="nav-text">高频考点之 ABRX 类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#增长量-X-的常用解题技巧"><span class="nav-number">1.1.</span> <span class="nav-text">增长量  X  的常用解题技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增长率-R-四种考察方式与对应解法"><span class="nav-number">1.2.</span> <span class="nav-text">增长率 R 四种考察方式与对应解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#前期-A-的考法与解法"><span class="nav-number">1.3.</span> <span class="nav-text">前期 A 的考法与解法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#已知前期-A-求本期-B"><span class="nav-number">1.4.</span> <span class="nav-text">已知前期 A 求本期 B</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高频考点之比重类相关问题"><span class="nav-number">2.</span> <span class="nav-text">高频考点之比重类相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#单期比重之本期比重"><span class="nav-number">2.1.</span> <span class="nav-text">单期比重之本期比重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单期比重之前期比重"><span class="nav-number">2.2.</span> <span class="nav-text">单期比重之前期比重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单期比重之隔级比重"><span class="nav-number">2.3.</span> <span class="nav-text">单期比重之隔级比重</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两期比重变化之比重趋势"><span class="nav-number">2.4.</span> <span class="nav-text">两期比重变化之比重趋势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#两期比重变化之比重差"><span class="nav-number">2.5.</span> <span class="nav-text">两期比重变化之比重差</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高频考点之盐水相关问题"><span class="nav-number">3.</span> <span class="nav-text">高频考点之盐水相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#盐水思想介绍"><span class="nav-number">3.1.</span> <span class="nav-text">盐水思想介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#盐水思想的两个基本原则"><span class="nav-number">3.1.1.</span> <span class="nav-text">盐水思想的两个基本原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盐水思想的计算方法"><span class="nav-number">3.1.2.</span> <span class="nav-text">盐水思想的计算方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盐水类问题的三种常见考察方式"><span class="nav-number">3.1.3.</span> <span class="nav-text">盐水类问题的三种常见考察方式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高频考点之比较类相关问题"><span class="nav-number">4.</span> <span class="nav-text">高频考点之比较类相关问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#比值大小比较"><span class="nav-number">4.1.</span> <span class="nav-text">比值大小比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#增量大小比较"><span class="nav-number">4.2.</span> <span class="nav-text">增量大小比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图标查找类比较"><span class="nav-number">4.3.</span> <span class="nav-text">图标查找类比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高频考点之平均类问题"><span class="nav-number">5.</span> <span class="nav-text">高频考点之平均类问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一般平均值问题"><span class="nav-number">5.1.</span> <span class="nav-text">一般平均值问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#年均增长量"><span class="nav-number">5.2.</span> <span class="nav-text">年均增长量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#年均增长率（需要开方，极少考）"><span class="nav-number">5.3.</span> <span class="nav-text">年均增长率（需要开方，极少考）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#特殊考点：拉动增长与贡献率"><span class="nav-number">6.</span> <span class="nav-text">特殊考点：拉动增长与贡献率</span></a></li></ol></div>
             
 
           </div>
